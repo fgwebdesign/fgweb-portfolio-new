@@ -33,6 +33,7 @@ function Barcode({ id }: { id: string }) {
 export function Portfolio() {
   const t = useTranslations('portfolio');
   const [activeFilter, setActiveFilter] = useState('all');
+  const [showAll, setShowAll] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   
@@ -55,6 +56,10 @@ export function Portfolio() {
   const filteredProjects = activeFilter === 'all'
     ? projects
     : projects.filter(project => project.category === activeFilter);
+
+  // Mostrar solo los primeros 3 proyectos por defecto
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
+  const hasMore = filteredProjects.length > 3;
 
   // Layouts alternados para cada proyecto (tipo editorial)
   const getProjectLayout = (index: number) => {
@@ -149,7 +154,7 @@ export function Portfolio() {
 
         {/* Projects grid editorial */}
         <div className="space-y-24 lg:space-y-40">
-          {filteredProjects.map((project, index) => {
+          {displayedProjects.map((project, index) => {
             const layout = getProjectLayout(index);
             const isEven = index % 2 === 0;
             const delay = 0.8 + index * 0.15;
@@ -342,6 +347,43 @@ export function Portfolio() {
             );
           })}
         </div>
+
+        {/* Botón Cargar más */}
+        {hasMore && !showAll && (
+          <motion.div
+            className="mt-24 lg:mt-32 flex justify-center"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <motion.button
+              onClick={() => setShowAll(true)}
+              className="group relative px-12 py-5 border-2 border-foreground text-foreground text-sm uppercase tracking-[0.2em] font-medium overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="relative z-10">Cargar más</span>
+              
+              <motion.div
+                className="absolute inset-0 bg-foreground"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.4 }}
+                style={{ originX: 0 }}
+              />
+              
+              <motion.span
+                className="absolute inset-0 flex items-center justify-center text-background text-sm uppercase tracking-[0.2em] font-medium"
+                initial={{ opacity: 0, y: 20 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                Cargar más
+              </motion.span>
+            </motion.button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

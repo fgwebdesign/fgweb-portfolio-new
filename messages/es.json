@@ -119,57 +119,57 @@
     "title": "Portafolio",
     "subtitle": "Trabajos seleccionados",
     "filterAll": "Todos",
-    "filterLanding": "Landing",
+    "filterLanding": "Landing Page",
     "filterEcommerce": "E-commerce",
-    "filterCatalog": "Catálogo",
+    "filterCatalog": "Catálogo Web",
     "projects": [
       {
         "id": "cebala",
         "title": "Cebala E-Commerce",
-        "year": "2023",
+        "year": "2025",
         "category": "ecommerce",
-        "stack": "React, Node.js, Stripe",
-        "description": "Plataforma e-commerce completa con gestión de inventario e integración de pagos."
+        "stack": "WordPress, Elementor, WP Forms, WP Staging",
+        "description": "E-commerce para una tienda que vende mates, bombillas y accesorios para el mate, con un diseño moderno y minimalista. Construido con WordPress para un rendimiento óptimo."
       },
       {
         "id": "dracostore",
-        "title": "DracoStore",
-        "year": "2023",
+        "title": "DracoStore E-Commerce",
+        "year": "2025",
         "category": "ecommerce",
-        "stack": "Next.js, Shopify",
-        "description": "Tienda online moderna con experiencia de checkout fluida."
+        "stack": "WordPress, WP Backery, WP Forms, WooCommerce",
+        "description": "E-commerce para una tienda que vende tecnología para el deporte y la salud, con un diseño moderno y minimalista. Construido con WordPress para un rendimiento óptimo."
       },
       {
         "id": "casa-brava-studio",
         "title": "Estudio Casa Brava",
-        "year": "2022",
+        "year": "2025",
         "category": "landing",
-        "stack": "React, GSAP",
-        "description": "Showcase de estudio de arquitectura con animaciones inmersivas."
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Sitio web profesional para un estudio de diseño de interiores, con un diseño moderno que incluye secciones de servicios, perfiles del equipo y formularios de contacto. Construido con Next.js para un rendimiento óptimo."
       },
       {
         "id": "casa-brava-ecommerce",
         "title": "Casa Brava E-Commerce",
-        "year": "2022",
+        "year": "2025",
         "category": "ecommerce",
-        "stack": "React, WooCommerce",
-        "description": "E-commerce de muebles personalizados con visualización 3D de productos."
+        "stack": "WordPress, WP Backery, WP Forms, WooCommerce",
+        "description": "E-commerce de muebles y decoración con un diseño moderno y minimalista. Implementación completa de WooCommerce con sistema de pagos, gestión de inventario y panel de administración personalizado."
       },
       {
         "id": "schweizer",
         "title": "Schweizer Psychology",
-        "year": "2021",
+        "year": "2025",
         "category": "landing",
-        "stack": "Next.js, Tailwind",
-        "description": "Sitio web profesional de psicología con sistema de reservas."
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Sitio web profesional para servicios de psicología, con sistema de reserva de citas, blog integrado y área de recursos para pacientes. Diseño enfocado en la experiencia del usuario y la accesibilidad."
       },
       {
         "id": "suen",
         "title": "SUEN Uruguay",
-        "year": "2021",
-        "category": "catalog",
-        "stack": "React, Firebase",
-        "description": "Catálogo de productos para marca de bienestar con inventario filtrable."
+        "year": "2025",
+        "category": "landing",
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Plataforma digital para servicios de bienestar y salud, con integración de calendario para citas, sistema de membresías y contenido multimedia interactivo."
       }
     ]
   },
@@ -206,23 +206,23 @@
     "categories": [
       {
         "name": "Frontend",
-        "items": ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "SCSS", "Motion", "GSAP"]
+        "items": ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Bootstrap", "Material UI"]
       },
       {
         "name": "CMS",
-        "items": ["WordPress", "Shopify", "WooCommerce", "Contentful"]
+        "items": ["WordPress", "WebFlow", "Elementor Pro"]
       },
       {
         "name": "QA / Testing",
-        "items": ["Jest", "React Testing Library", "Cypress", "Playwright", "Postman", "JMeter"]
+        "items": ["Cypress", "Postman", "BrowserStack", "Xray Testing", "Zephyr Testing", "App Center", "TestFlight", "Vysor Mirroring"]
       },
       {
         "name": "Lenguajes",
-        "items": ["JavaScript", "TypeScript", "Python", "PHP", "SQL"]
+        "items": ["JavaScript", "TypeScript", "Kotlin", "JAVA", "PHP", "C++"]
       },
       {
         "name": "Herramientas",
-        "items": ["Git", "GitHub", "Figma", "Adobe XD", "Jira", "Notion", "VS Code"]
+        "items": ["Android Studio", "Visual Studio Code", "LaunchDarkly", "Bitrise", "Git", "GitHub Desktop", "Figma", "Slack", "JIRA", "asana", "ClickUp", "Toggl Track", "Adobe Illustrator", "Adobe Photoshop", "Notion"]
       }
     ]
   },
@@ -231,25 +231,25 @@
     "subtitle": "Trayectoria profesional",
     "jobs": [
       {
-        "company": "FG Web Designs",
-        "role": "Fundador y Desarrollador Principal",
-        "period": "2019 - Presente",
-        "location": "Remoto",
-        "description": "Liderando desarrollo full-stack y QA para clientes internacionales. Especializado en plataformas e-commerce, landing pages y aplicaciones web personalizadas."
+        "company": "FG WEB DESIGNS",
+        "role": "CEO & Web Developer",
+        "period": "2020 - Actual",
+        "location": "Uruguay",
+        "description": "Especializado en la gestión de diseño y desarrollo de páginas web a medida, incluyendo E-Commerce, landings y sitios corporativos."
+      },
+      {
+        "company": "Ucontact by net2phone",
+        "role": "Quality Assurance Engineer",
+        "period": "2024 - Actual",
+        "location": "Uruguay",
+        "description": "Actualmente me encuentro trabajando como Software Quality Assurance Engineer en la empresa Ucontact by net2phone, encargado de la creación y ejecución de casos de prueba, reporte de errores y áreas de mejora. Además, soy responsable de la automatización de pruebas y la integración de herramientas de QA en el flujo de trabajo de desarrollo."
       },
       {
         "company": "Practia Uruguay",
-        "role": "Desarrollador Frontend",
-        "period": "2018 - 2019",
-        "location": "Montevideo, Uruguay",
-        "description": "Desarrollé aplicaciones web responsivas para clientes empresariales. Colaboré con equipos multifuncionales para entregar soluciones de alta calidad."
-      },
-      {
-        "company": "Ucontact",
-        "role": "QA Engineer",
-        "period": "2017 - 2018",
-        "location": "Montevideo, Uruguay",
-        "description": "Realicé testing manual y automatizado para plataforma de telecomunicaciones. Creé documentación exhaustiva de pruebas e informes de bugs."
+        "role": "Quality Assurance & Frontend Developer",
+        "period": "2024 - 2024",
+        "location": "Uruguay",
+        "description": "Estuve trabajando en modalidad contractor para la empresa Practia, encargado de la realización de features frontend con tecnologías como React Js, Next Js, Tailwind CSS, entre otras."
       }
     ]
   },
@@ -260,19 +260,19 @@
       {
         "title": "React JS",
         "institution": "Coderhouse",
-        "year": "2022",
+        "year": "2023",
         "type": "Certificación"
       },
       {
         "title": "QA Manual Tester",
         "institution": "Coderhouse",
-        "year": "2021",
+        "year": "2023",
         "type": "Certificación"
       },
       {
-        "title": "Desarrollo Android con Kotlin",
+        "title": "Android con Kotlin",
         "institution": "Udemy",
-        "year": "2020",
+        "year": "2023",
         "type": "Curso"
       }
     ]

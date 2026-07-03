@@ -1,0 +1,315 @@
+{
+  "personal": {
+    "name": "Felipe Gutierrez Romero",
+    "phone": "+598 92 033 831",
+    "email": "contact@fgwebdesign.dev",
+    "location": "Uruguay",
+    "role": "CEO & Web Developer",
+    "company": "FG WEB DESIGNS"
+  },
+  "stats": {
+    "experience": "5+",
+    "projects": "38+",
+    "clients": "24+",
+    "countries": "3+"
+  },
+  "services": [
+    {
+      "id": "web-development",
+      "title": "Desarrollo Web",
+      "description": "Soluciones de desarrollo web personalizadas utilizando tecnologías modernas y mejores prácticas.",
+      "features": [
+        "Desarrollo de Sitios Web Personalizados",
+        "Soluciones E-commerce",
+        "Desarrollo de Aplicaciones Web"
+      ]
+    },
+    {
+      "id": "web-design",
+      "title": "Diseño Web",
+      "description": "Diseño web creativo y responsivo que captura la esencia de tu marca.",
+      "features": [
+        "Diseño UI/UX",
+        "Diseño Responsivo",
+        "Integración de Marca"
+      ]
+    },
+    {
+      "id": "quality-assurance",
+      "title": "Control de Calidad",
+      "description": "Servicios completos de pruebas y aseguramiento de calidad para aplicaciones web.",
+      "features": [
+        "Pruebas Manuales",
+        "Pruebas Automatizadas",
+        "Pruebas de Rendimiento"
+      ]
+    },
+    {
+      "id": "responsive-development",
+      "title": "Desarrollo Responsivo",
+      "description": "Desarrollo mobile-first asegurando que tu sitio funcione perfectamente en todos los dispositivos.",
+      "features": [
+        "Enfoque Mobile-First",
+        "Compatibilidad Cross-Browser",
+        "Optimización de Rendimiento"
+      ]
+    },
+    {
+      "id": "seo-optimization",
+      "title": "Optimización SEO",
+      "description": "Mejora la visibilidad y el ranking de tu sitio web en los motores de búsqueda.",
+      "features": [
+        "SEO On-Page",
+        "SEO Técnico",
+        "Optimización de Rendimiento"
+      ]
+    },
+    {
+      "id": "corporate-email",
+      "title": "Correo Corporativo",
+      "description": "Soluciones de correo profesional para tu empresa con tu propio dominio.",
+      "features": [
+        "Direcciones de Correo Personalizadas",
+        "Configuración de Correos",
+        "Soporte Técnico"
+      ]
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "cebala-ecommerce",
+      "title": "Cebala E-Commerce",
+      "year": "2025",
+      "category": "E-commerce",
+      "description": "E-commerce para una tienda que vende mates, bombillas y accesorios para el mate, con un diseño moderno y minimalista. Construido con WordPress para un rendimiento óptimo.",
+      "technologies": ["WordPress", "Elementor", "WP Forms", "WP Staging"],
+      "image": "/projects/cebala.jpg",
+      "url": "https://cebalaecommerce.com"
+    },
+    {
+      "id": "dracostore-ecommerce",
+      "title": "DracoStore E-Commerce",
+      "year": "2025",
+      "category": "E-commerce",
+      "description": "E-commerce para una tienda que vende tecnología para el deporte y la salud, con un diseño moderno y minimalista. Construido con WordPress para un rendimiento óptimo.",
+      "technologies": ["WordPress", "WP Backery", "WP Forms", "WooCommerce"],
+      "image": "/projects/dracostore.jpg",
+      "url": "https://dracostore.com"
+    },
+    {
+      "id": "estudio-casa-brava",
+      "title": "Estudio Casa Brava",
+      "year": "2025",
+      "category": "Landing Page",
+      "description": "Sitio web profesional para un estudio de diseño de interiores, con un diseño moderno que incluye secciones de servicios, perfiles del equipo y formularios de contacto. Construido con Next.js para un rendimiento óptimo.",
+      "technologies": ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+      "image": "/projects/estudio-casa-brava.jpg",
+      "url": "https://estudiocasabrava.com"
+    },
+    {
+      "id": "casa-brava-ecommerce",
+      "title": "Casa Brava E-Commerce",
+      "year": "2025",
+      "category": "E-commerce",
+      "description": "E-commerce de muebles y decoración con un diseño moderno y minimalista. Implementación completa de WooCommerce con sistema de pagos, gestión de inventario y panel de administración personalizado.",
+      "technologies": ["WordPress", "WP Backery", "WP Forms", "WooCommerce"],
+      "image": "/projects/casa-brava-ecommerce.jpg",
+      "url": "https://casabravaecommerce.com"
+    },
+    {
+      "id": "schweizer-psychology",
+      "title": "Schweizer Psychology",
+      "year": "2025",
+      "category": "Landing Page",
+      "description": "Sitio web profesional para servicios de psicología, con sistema de reserva de citas, blog integrado y área de recursos para pacientes. Diseño enfocado en la experiencia del usuario y la accesibilidad.",
+      "technologies": ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+      "image": "/projects/schweizer-psychology.jpg",
+      "url": "https://schweizerpsychology.com"
+    },
+    {
+      "id": "suen-uruguay",
+      "title": "SUEN Uruguay",
+      "year": "2025",
+      "category": "Landing Page",
+      "description": "Plataforma digital para servicios de bienestar y salud, con integración de calendario para citas, sistema de membresías y contenido multimedia interactivo.",
+      "technologies": ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+      "image": "/projects/suen-uruguay.jpg",
+      "url": "https://suenuruguay.com"
+    }
+  ],
+  "experience": [
+    {
+      "id": "fg-web-designs",
+      "company": "FG WEB DESIGNS",
+      "role": "CEO & Web Developer",
+      "period": "2020 - Actual",
+      "location": "Uruguay",
+      "description": "Especializado en la gestión de diseño y desarrollo de páginas web a medida, incluyendo E-Commerce, landings y sitios corporativos.",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React Js",
+        "Tailwind CSS",
+        "WebFlow",
+        "Figma",
+        "WordPress",
+        "Adobe Photoshop"
+      ]
+    },
+    {
+      "id": "practia-uruguay",
+      "company": "Practia Uruguay",
+      "role": "Quality Assurance & Frontend Developer",
+      "period": "2024 - 2024",
+      "location": "Uruguay",
+      "description": "Estuve trabajando en modalidad contractor para la empresa Practia, encargado de la realizacion de features frontend con tecnologias como React Js, Next Js, Tailwind CSS, entre otras.",
+      "skills": [
+        "React Js",
+        "Next Js",
+        "Tailwind CSS",
+        "JavaScript",
+        "TypeScript",
+        "Git",
+        "GitHub",
+        "Figma",
+        "Confluence",
+        "MySQL Workbench",
+        "Postman",
+        "JIRA"
+      ]
+    },
+    {
+      "id": "ucontact-net2phone",
+      "company": "Ucontact by net2phone",
+      "role": "Quality Assurance Engineer",
+      "period": "2024 - Actual",
+      "location": "Uruguay",
+      "description": "Actualmente me encuentro trabajando como Software Quality Assurance Engineer en la empresa Ucontact by net2phone, encargado de la creación y ejecución de casos de prueba, reporte de errores y áreas de mejora. Además, soy responsable de la automatización de pruebas y la integración de herramientas de QA en el flujo de trabajo de desarrollo.",
+      "skills": [
+        "GitHub",
+        "SalesForce",
+        "Javascript",
+        "Visual Studio Code",
+        "Termius",
+        "Postman",
+        "Confluence",
+        "MySQL Workbench"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "react-js-coderhouse",
+      "title": "React JS",
+      "institution": "Coderhouse",
+      "year": "2023",
+      "type": "Certificación"
+    },
+    {
+      "id": "qa-manual-tester-coderhouse",
+      "title": "QA Manual Tester",
+      "institution": "Coderhouse",
+      "year": "2023",
+      "type": "Certificación"
+    },
+    {
+      "id": "android-kotlin-udemy",
+      "title": "Android con Kotlin",
+      "institution": "Udemy",
+      "year": "2023",
+      "type": "Curso"
+    }
+  ],
+  "skills": {
+    "frontend": {
+      "name": "Tecnologías Frontend",
+      "items": [
+        "React Js",
+        "Next.js",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "Bootstrap",
+        "Material UI",
+        "Tailwind CSS"
+      ]
+    },
+    "cms": {
+      "name": "CMS y Constructores Web",
+      "items": ["WordPress", "WebFlow", "Elementor Pro"]
+    },
+    "testing": {
+      "name": "Testing y Control de Calidad",
+      "items": [
+        "Cypress",
+        "Postman",
+        "BrowserStack",
+        "Xray Testing",
+        "Zephyr Testing",
+        "App Center",
+        "TestFlight",
+        "Vysor Mirroring"
+      ]
+    },
+    "languages": {
+      "name": "Lenguajes de Programación",
+      "items": ["JavaScript", "TypeScript", "Kotlin", "JAVA", "PHP", "C++"]
+    },
+    "tools": {
+      "name": "Herramientas de Desarrollo",
+      "items": [
+        "Android Studio",
+        "Visual Studio Code",
+        "LaunchDarkly",
+        "Bitrise",
+        "Git",
+        "GitHub Desktop",
+        "Figma",
+        "Slack",
+        "JIRA",
+        "asana",
+        "ClickUp",
+        "Toggl Track",
+        "Adobe Illustrator",
+        "Adobe Photoshop",
+        "Notion"
+      ]
+    }
+  },
+  "process": {
+    "steps": [
+      {
+        "number": "1",
+        "title": "Reunión y Presupuesto",
+        "description": "Comenzamos con una reunión para entender tus necesidades y objetivos. Discutimos el tipo de sitio web que necesitas, funcionalidades requeridas y establecemos un presupuesto claro.",
+        "details": [
+          "Creación de carpeta compartida en Google Drive",
+          "Documento detallado de requerimientos",
+          "Definición de diseño y paleta de colores"
+        ]
+      },
+      {
+        "number": "2",
+        "title": "Desarrollo y Testing",
+        "description": "Una vez aprobado el presupuesto, comenzamos el desarrollo. Implementamos las funcionalidades acordadas y realizamos pruebas exhaustivas para garantizar la calidad.",
+        "details": [
+          "Desarrollo con las últimas tecnologías",
+          "Diseño responsive para todos los dispositivos",
+          "Testing continuo y control de calidad"
+        ]
+      },
+      {
+        "number": "3",
+        "title": "Despliegue y Entrega",
+        "description": "Realizamos el despliegue en producción, configuramos el dominio, servidor y certificado SSL. Te entregamos un sitio web completamente funcional y optimizado.",
+        "details": [
+          "Despliegue en servidor de producción",
+          "Configuración de dominio y SSL",
+          "Documentación y capacitación de uso"
+        ]
+      }
+    ]
+  }
+}

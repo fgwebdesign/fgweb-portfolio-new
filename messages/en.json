@@ -126,50 +126,50 @@
       {
         "id": "cebala",
         "title": "Cebala E-Commerce",
-        "year": "2023",
+        "year": "2025",
         "category": "ecommerce",
-        "stack": "React, Node.js, Stripe",
-        "description": "Full-featured e-commerce platform with inventory management and payment integration."
+        "stack": "WordPress, Elementor, WP Forms, WP Staging",
+        "description": "E-commerce for a store that sells mates, bombillas and mate accessories, with a modern and minimalist design. Built with WordPress for optimal performance."
       },
       {
         "id": "dracostore",
-        "title": "DracoStore",
-        "year": "2023",
+        "title": "DracoStore E-Commerce",
+        "year": "2025",
         "category": "ecommerce",
-        "stack": "Next.js, Shopify",
-        "description": "Modern online store with seamless checkout experience."
+        "stack": "WordPress, WP Backery, WP Forms, WooCommerce",
+        "description": "E-commerce for a store that sells technology for sports and health, with a modern and minimalist design. Built with WordPress for optimal performance."
       },
       {
         "id": "casa-brava-studio",
         "title": "Estudio Casa Brava",
-        "year": "2022",
+        "year": "2025",
         "category": "landing",
-        "stack": "React, GSAP",
-        "description": "Architecture studio showcase with immersive animations."
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Professional website for an interior design studio, with a modern design that includes service sections, team profiles and contact forms. Built with Next.js for optimal performance."
       },
       {
         "id": "casa-brava-ecommerce",
         "title": "Casa Brava E-Commerce",
-        "year": "2022",
+        "year": "2025",
         "category": "ecommerce",
-        "stack": "React, WooCommerce",
-        "description": "Custom furniture e-commerce with 3D product visualization."
+        "stack": "WordPress, WP Backery, WP Forms, WooCommerce",
+        "description": "Furniture and decoration e-commerce with a modern and minimalist design. Full WooCommerce implementation with payment system, inventory management and custom admin panel."
       },
       {
         "id": "schweizer",
         "title": "Schweizer Psychology",
-        "year": "2021",
+        "year": "2025",
         "category": "landing",
-        "stack": "Next.js, Tailwind",
-        "description": "Professional psychology practice website with booking system."
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Professional website for psychology services, with appointment booking system, integrated blog and patient resources area. Design focused on user experience and accessibility."
       },
       {
         "id": "suen",
         "title": "SUEN Uruguay",
-        "year": "2021",
-        "category": "catalog",
-        "stack": "React, Firebase",
-        "description": "Product catalog for wellness brand with filterable inventory."
+        "year": "2025",
+        "category": "landing",
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Digital platform for wellness and health services, with calendar integration for appointments, membership system and interactive multimedia content."
       }
     ]
   },
@@ -231,25 +231,25 @@
     "subtitle": "Career path",
     "jobs": [
       {
-        "company": "FG Web Designs",
-        "role": "Founder & Lead Developer",
-        "period": "2019 - Present",
-        "location": "Remote",
-        "description": "Leading full-stack development and QA for international clients. Specialized in e-commerce platforms, landing pages, and custom web applications."
+        "company": "FG WEB DESIGNS",
+        "role": "CEO & Web Developer",
+        "period": "2020 - Present",
+        "location": "Uruguay",
+        "description": "Specialized in the management of design and development of custom websites, including E-Commerce, landing pages and corporate websites. Implementation of complete web solutions using modern technologies such as React, Next.js, WordPress and design tools like Figma."
+      },
+      {
+        "company": "Ucontact by net2phone",
+        "role": "Quality Assurance Engineer",
+        "period": "2024 - Present",
+        "location": "Uruguay",
+        "description": "Currently working as a Software Quality Assurance Engineer at Ucontact by net2phone, responsible for creating and executing test cases, reporting bugs and areas for improvement. Additionally, I am responsible for test automation and the integration of QA tools into the development workflow."
       },
       {
         "company": "Practia Uruguay",
-        "role": "Frontend Developer",
-        "period": "2018 - 2019",
-        "location": "Montevideo, Uruguay",
-        "description": "Developed responsive web applications for enterprise clients. Collaborated with cross-functional teams to deliver high-quality solutions."
-      },
-      {
-        "company": "Ucontact",
-        "role": "QA Engineer",
-        "period": "2017 - 2018",
-        "location": "Montevideo, Uruguay",
-        "description": "Performed manual and automated testing for telecommunications platform. Created comprehensive test documentation and bug reports."
+        "role": "Quality Assurance & Frontend Developer",
+        "period": "2024 - 2024",
+        "location": "Uruguay",
+        "description": "Worked as a contractor for Practia company, responsible for frontend feature development with technologies such as React Js, Next Js, Tailwind CSS, among others."
       }
     ]
   },
@@ -260,19 +260,19 @@
       {
         "title": "React JS",
         "institution": "Coderhouse",
-        "year": "2022",
+        "year": "2023",
         "type": "Certification"
       },
       {
         "title": "QA Manual Tester",
         "institution": "Coderhouse",
-        "year": "2021",
+        "year": "2023",
         "type": "Certification"
       },
       {
         "title": "Android Development with Kotlin",
         "institution": "Udemy",
-        "year": "2020",
+        "year": "2023",
         "type": "Course"
       }
     ]
