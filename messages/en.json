@@ -1,0 +1,313 @@
+{
+  "metadata": {
+    "title": "FG Web Designs | Frontend Dev & QA Engineer",
+    "description": "Professional web development and quality assurance services. Custom websites, e-commerce platforms, and responsive designs with meticulous testing."
+  },
+  "nav": {
+    "services": "Services",
+    "process": "Process",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "FG Web Designs",
+    "services": [
+      "QA Manual Testing",
+      "QA Automation",
+      "UX/UI Designer",
+      "Custom Development"
+    ],
+    "description": "Transforming ideas into powerful digital experiences. From concept to deployment, I deliver pixel-perfect designs, robust code, and comprehensive quality assurance.",
+    "ctaDownload": "Download CV",
+    "ctaContact": "Contact"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "What I do",
+    "list": [
+      {
+        "title": "Web Development",
+        "description": "Custom web development solutions using modern technologies and best practices.",
+        "items": [
+          "Custom Website Development",
+          "E-commerce Solutions",
+          "Web Application Development"
+        ]
+      },
+      {
+        "title": "Web Design",
+        "description": "Creative and responsive web design that captures the essence of your brand.",
+        "items": [
+          "UI/UX Design",
+          "Responsive Design",
+          "Brand Integration"
+        ]
+      },
+      {
+        "title": "Quality Assurance",
+        "description": "Comprehensive testing and quality assurance services for web applications.",
+        "items": [
+          "Manual Testing",
+          "Automated Testing",
+          "Performance Testing"
+        ]
+      },
+      {
+        "title": "Responsive Development",
+        "description": "Mobile-first development ensuring your site works perfectly on all devices.",
+        "items": [
+          "Mobile-First Approach",
+          "Cross-Browser Compatibility",
+          "Performance Optimization"
+        ]
+      },
+      {
+        "title": "SEO Optimization",
+        "description": "Improve your website's visibility and ranking in search engines.",
+        "items": [
+          "On-Page SEO",
+          "Technical SEO",
+          "Performance Optimization"
+        ]
+      },
+      {
+        "title": "Corporate Email",
+        "description": "Professional email solutions for your business with your own domain.",
+        "items": [
+          "Custom Email Addresses",
+          "Email Configuration",
+          "Technical Support"
+        ]
+      },
+      {
+        "title": "Custom Development",
+        "description": "Custom development of complete systems, both backend and frontend, tailored to your specific needs.",
+        "items": [
+          "Custom Backend Development",
+          "Tailored Frontend Development",
+          "System Integration"
+        ]
+      }
+    ]
+  },
+  "process": {
+    "title": "How We Work",
+    "subtitle": "From concept to launch",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Meeting & Budget",
+        "description": "We discuss your project requirements, goals, and timeline. I provide a detailed proposal with transparent pricing and deliverables."
+      },
+      {
+        "number": "02",
+        "title": "Development & Testing",
+        "description": "Building your project with clean code and modern technologies. Continuous testing ensures quality at every stage of development."
+      },
+      {
+        "number": "03",
+        "title": "Deployment & Delivery",
+        "description": "Launch to production with proper hosting setup, domain configuration, and SSL. Full documentation and training included."
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Selected work",
+    "filterAll": "All",
+    "filterLanding": "Landing",
+    "filterEcommerce": "E-commerce",
+    "filterCatalog": "Catalog",
+    "projects": [
+      {
+        "id": "cebala",
+        "title": "Cebala E-Commerce",
+        "year": "2023",
+        "category": "ecommerce",
+        "stack": "React, Node.js, Stripe",
+        "description": "Full-featured e-commerce platform with inventory management and payment integration."
+      },
+      {
+        "id": "dracostore",
+        "title": "DracoStore",
+        "year": "2023",
+        "category": "ecommerce",
+        "stack": "Next.js, Shopify",
+        "description": "Modern online store with seamless checkout experience."
+      },
+      {
+        "id": "casa-brava-studio",
+        "title": "Estudio Casa Brava",
+        "year": "2022",
+        "category": "landing",
+        "stack": "React, GSAP",
+        "description": "Architecture studio showcase with immersive animations."
+      },
+      {
+        "id": "casa-brava-ecommerce",
+        "title": "Casa Brava E-Commerce",
+        "year": "2022",
+        "category": "ecommerce",
+        "stack": "React, WooCommerce",
+        "description": "Custom furniture e-commerce with 3D product visualization."
+      },
+      {
+        "id": "schweizer",
+        "title": "Schweizer Psychology",
+        "year": "2021",
+        "category": "landing",
+        "stack": "Next.js, Tailwind",
+        "description": "Professional psychology practice website with booking system."
+      },
+      {
+        "id": "suen",
+        "title": "SUEN Uruguay",
+        "year": "2021",
+        "category": "catalog",
+        "stack": "React, Firebase",
+        "description": "Product catalog for wellness brand with filterable inventory."
+      }
+    ]
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Who I am",
+    "description": "Frontend Developer and QA Engineer with a passion for creating exceptional digital experiences. I combine design sensibility with technical expertise to deliver products that are both beautiful and bulletproof.",
+    "stats": [
+      {
+        "value": "5",
+        "suffix": "+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "38",
+        "suffix": "+",
+        "label": "Projects Delivered"
+      },
+      {
+        "value": "24",
+        "suffix": "+",
+        "label": "Happy Clients"
+      },
+      {
+        "value": "3",
+        "suffix": "+",
+        "label": "Countries"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies & tools",
+    "categories": [
+      {
+        "name": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "SCSS", "Motion", "GSAP"]
+      },
+      {
+        "name": "CMS",
+        "items": ["WordPress", "Shopify", "WooCommerce", "Contentful"]
+      },
+      {
+        "name": "QA / Testing",
+        "items": ["Jest", "React Testing Library", "Cypress", "Playwright", "Postman", "JMeter"]
+      },
+      {
+        "name": "Languages",
+        "items": ["JavaScript", "TypeScript", "Python", "PHP", "SQL"]
+      },
+      {
+        "name": "Tools",
+        "items": ["Git", "GitHub", "Figma", "Adobe XD", "Jira", "Notion", "VS Code"]
+      }
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Career path",
+    "jobs": [
+      {
+        "company": "FG Web Designs",
+        "role": "Founder & Lead Developer",
+        "period": "2019 - Present",
+        "location": "Remote",
+        "description": "Leading full-stack development and QA for international clients. Specialized in e-commerce platforms, landing pages, and custom web applications."
+      },
+      {
+        "company": "Practia Uruguay",
+        "role": "Frontend Developer",
+        "period": "2018 - 2019",
+        "location": "Montevideo, Uruguay",
+        "description": "Developed responsive web applications for enterprise clients. Collaborated with cross-functional teams to deliver high-quality solutions."
+      },
+      {
+        "company": "Ucontact",
+        "role": "QA Engineer",
+        "period": "2017 - 2018",
+        "location": "Montevideo, Uruguay",
+        "description": "Performed manual and automated testing for telecommunications platform. Created comprehensive test documentation and bug reports."
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "Certifications & courses",
+    "items": [
+      {
+        "title": "React JS",
+        "institution": "Coderhouse",
+        "year": "2022",
+        "type": "Certification"
+      },
+      {
+        "title": "QA Manual Tester",
+        "institution": "Coderhouse",
+        "year": "2021",
+        "type": "Certification"
+      },
+      {
+        "title": "Android Development with Kotlin",
+        "institution": "Udemy",
+        "year": "2020",
+        "type": "Course"
+      }
+    ]
+  },
+  "technical": {
+    "title": "Technical Essentials",
+    "subtitle": "Domain, hosting, and security",
+    "faqs": [
+      {
+        "question": "Do I need a custom domain?",
+        "answer": "A custom domain (yourname.com) provides professionalism and credibility. I can help you register and configure your domain."
+      },
+      {
+        "question": "What hosting do you recommend?",
+        "answer": "I work primarily with Vercel for Next.js projects and reliable shared hosting providers for WordPress. All recommendations include SSL and CDN."
+      },
+      {
+        "question": "Is SSL included?",
+        "answer": "Yes, all projects include free SSL certificates via Let's Encrypt or the hosting provider's built-in solution."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's Talk",
+    "subtitle": "About future projects",
+    "description": "Have a project in mind? Let's discuss how we can work together to bring your ideas to life.",
+    "email": "hello@fgwebdesigns.dev",
+    "ctaEmail": "Send Email",
+    "formName": "Name",
+    "formEmail": "Email",
+    "formMessage": "Message",
+    "formSubmit": "Send Message"
+  },
+  "footer": {
+    "copyright": "© 2026 FG Web Designs. All rights reserved.",
+    "built": "Built with Next.js, TypeScript & Motion"
+  }
+}

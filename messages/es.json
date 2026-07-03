@@ -1,0 +1,313 @@
+{
+  "metadata": {
+    "title": "FG Web Designs | Desarrollador Frontend y QA Engineer",
+    "description": "Servicios profesionales de desarrollo web y aseguramiento de calidad. Sitios web personalizados, plataformas e-commerce y diseños responsivos con testing meticuloso."
+  },
+  "nav": {
+    "services": "Servicios",
+    "process": "Proceso",
+    "portfolio": "Portafolio",
+    "about": "Acerca de",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "FG Web Designs",
+    "services": [
+      "QA Manual Testing",
+      "QA Automation",
+      "Diseñador UX/UI",
+      "Desarrollo a Medida"
+    ],
+    "description": "Transformando ideas en experiencias digitales poderosas. Del concepto al despliegue, entrego diseños pixel-perfect, código robusto y aseguramiento de calidad integral.",
+    "ctaDownload": "Descargar CV",
+    "ctaContact": "Contacto"
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Lo que hago",
+    "list": [
+      {
+        "title": "Desarrollo Web",
+        "description": "Soluciones de desarrollo web personalizadas utilizando tecnologías modernas y mejores prácticas.",
+        "items": [
+          "Desarrollo de Sitios Web Personalizados",
+          "Soluciones E-commerce",
+          "Desarrollo de Aplicaciones Web"
+        ]
+      },
+      {
+        "title": "Diseño Web",
+        "description": "Diseño web creativo y responsivo que captura la esencia de tu marca.",
+        "items": [
+          "Diseño UI/UX",
+          "Diseño Responsivo",
+          "Integración de Marca"
+        ]
+      },
+      {
+        "title": "Control de Calidad",
+        "description": "Servicios completos de pruebas y aseguramiento de calidad para aplicaciones web.",
+        "items": [
+          "Pruebas Manuales",
+          "Pruebas Automatizadas",
+          "Pruebas de Rendimiento"
+        ]
+      },
+      {
+        "title": "Desarrollo Responsivo",
+        "description": "Desarrollo mobile-first asegurando que tu sitio funcione perfectamente en todos los dispositivos.",
+        "items": [
+          "Enfoque Mobile-First",
+          "Compatibilidad Cross-Browser",
+          "Optimización de Rendimiento"
+        ]
+      },
+      {
+        "title": "Optimización SEO",
+        "description": "Mejora la visibilidad y el ranking de tu sitio web en los motores de búsqueda.",
+        "items": [
+          "SEO On-Page",
+          "SEO Técnico",
+          "Optimización de Rendimiento"
+        ]
+      },
+      {
+        "title": "Correo Corporativo",
+        "description": "Soluciones de correo profesional para tu empresa con tu propio dominio.",
+        "items": [
+          "Direcciones de Correo Personalizadas",
+          "Configuración de Correos",
+          "Soporte Técnico"
+        ]
+      },
+      {
+        "title": "Desarrollo a Medida",
+        "description": "Desarrollo personalizado de sistemas completos, tanto backend como frontend, adaptados a tus necesidades específicas.",
+        "items": [
+          "Desarrollo Backend Personalizado",
+          "Desarrollo Frontend a Medida",
+          "Integración de Sistemas"
+        ]
+      }
+    ]
+  },
+  "process": {
+    "title": "Cómo Trabajamos",
+    "subtitle": "Del concepto al lanzamiento",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Reunión y Presupuesto",
+        "description": "Discutimos los requisitos, objetivos y cronograma de tu proyecto. Proporciono una propuesta detallada con precios transparentes y entregables claros."
+      },
+      {
+        "number": "02",
+        "title": "Desarrollo y Testing",
+        "description": "Construyo tu proyecto con código limpio y tecnologías modernas. Testing continuo asegura calidad en cada etapa del desarrollo."
+      },
+      {
+        "number": "03",
+        "title": "Despliegue y Entrega",
+        "description": "Lanzamiento a producción con configuración de hosting, dominio y SSL. Incluye documentación completa y capacitación."
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Portafolio",
+    "subtitle": "Trabajos seleccionados",
+    "filterAll": "Todos",
+    "filterLanding": "Landing",
+    "filterEcommerce": "E-commerce",
+    "filterCatalog": "Catálogo",
+    "projects": [
+      {
+        "id": "cebala",
+        "title": "Cebala E-Commerce",
+        "year": "2023",
+        "category": "ecommerce",
+        "stack": "React, Node.js, Stripe",
+        "description": "Plataforma e-commerce completa con gestión de inventario e integración de pagos."
+      },
+      {
+        "id": "dracostore",
+        "title": "DracoStore",
+        "year": "2023",
+        "category": "ecommerce",
+        "stack": "Next.js, Shopify",
+        "description": "Tienda online moderna con experiencia de checkout fluida."
+      },
+      {
+        "id": "casa-brava-studio",
+        "title": "Estudio Casa Brava",
+        "year": "2022",
+        "category": "landing",
+        "stack": "React, GSAP",
+        "description": "Showcase de estudio de arquitectura con animaciones inmersivas."
+      },
+      {
+        "id": "casa-brava-ecommerce",
+        "title": "Casa Brava E-Commerce",
+        "year": "2022",
+        "category": "ecommerce",
+        "stack": "React, WooCommerce",
+        "description": "E-commerce de muebles personalizados con visualización 3D de productos."
+      },
+      {
+        "id": "schweizer",
+        "title": "Schweizer Psychology",
+        "year": "2021",
+        "category": "landing",
+        "stack": "Next.js, Tailwind",
+        "description": "Sitio web profesional de psicología con sistema de reservas."
+      },
+      {
+        "id": "suen",
+        "title": "SUEN Uruguay",
+        "year": "2021",
+        "category": "catalog",
+        "stack": "React, Firebase",
+        "description": "Catálogo de productos para marca de bienestar con inventario filtrable."
+      }
+    ]
+  },
+  "about": {
+    "title": "Acerca de",
+    "subtitle": "Quién soy",
+    "description": "Desarrollador Frontend y QA Engineer con pasión por crear experiencias digitales excepcionales. Combino sensibilidad de diseño con expertise técnico para entregar productos que son tanto hermosos como robustos.",
+    "stats": [
+      {
+        "value": "5",
+        "suffix": "+",
+        "label": "Años de Experiencia"
+      },
+      {
+        "value": "38",
+        "suffix": "+",
+        "label": "Proyectos Entregados"
+      },
+      {
+        "value": "24",
+        "suffix": "+",
+        "label": "Clientes Satisfechos"
+      },
+      {
+        "value": "3",
+        "suffix": "+",
+        "label": "Países"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades",
+    "subtitle": "Tecnologías y herramientas",
+    "categories": [
+      {
+        "name": "Frontend",
+        "items": ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "SCSS", "Motion", "GSAP"]
+      },
+      {
+        "name": "CMS",
+        "items": ["WordPress", "Shopify", "WooCommerce", "Contentful"]
+      },
+      {
+        "name": "QA / Testing",
+        "items": ["Jest", "React Testing Library", "Cypress", "Playwright", "Postman", "JMeter"]
+      },
+      {
+        "name": "Lenguajes",
+        "items": ["JavaScript", "TypeScript", "Python", "PHP", "SQL"]
+      },
+      {
+        "name": "Herramientas",
+        "items": ["Git", "GitHub", "Figma", "Adobe XD", "Jira", "Notion", "VS Code"]
+      }
+    ]
+  },
+  "experience": {
+    "title": "Experiencia",
+    "subtitle": "Trayectoria profesional",
+    "jobs": [
+      {
+        "company": "FG Web Designs",
+        "role": "Fundador y Desarrollador Principal",
+        "period": "2019 - Presente",
+        "location": "Remoto",
+        "description": "Liderando desarrollo full-stack y QA para clientes internacionales. Especializado en plataformas e-commerce, landing pages y aplicaciones web personalizadas."
+      },
+      {
+        "company": "Practia Uruguay",
+        "role": "Desarrollador Frontend",
+        "period": "2018 - 2019",
+        "location": "Montevideo, Uruguay",
+        "description": "Desarrollé aplicaciones web responsivas para clientes empresariales. Colaboré con equipos multifuncionales para entregar soluciones de alta calidad."
+      },
+      {
+        "company": "Ucontact",
+        "role": "QA Engineer",
+        "period": "2017 - 2018",
+        "location": "Montevideo, Uruguay",
+        "description": "Realicé testing manual y automatizado para plataforma de telecomunicaciones. Creé documentación exhaustiva de pruebas e informes de bugs."
+      }
+    ]
+  },
+  "education": {
+    "title": "Educación",
+    "subtitle": "Certificaciones y cursos",
+    "items": [
+      {
+        "title": "React JS",
+        "institution": "Coderhouse",
+        "year": "2022",
+        "type": "Certificación"
+      },
+      {
+        "title": "QA Manual Tester",
+        "institution": "Coderhouse",
+        "year": "2021",
+        "type": "Certificación"
+      },
+      {
+        "title": "Desarrollo Android con Kotlin",
+        "institution": "Udemy",
+        "year": "2020",
+        "type": "Curso"
+      }
+    ]
+  },
+  "technical": {
+    "title": "Aspectos Técnicos Esenciales",
+    "subtitle": "Dominio, hosting y seguridad",
+    "faqs": [
+      {
+        "question": "¿Necesito un dominio personalizado?",
+        "answer": "Un dominio personalizado (tunombre.com) brinda profesionalismo y credibilidad. Puedo ayudarte a registrar y configurar tu dominio."
+      },
+      {
+        "question": "¿Qué hosting recomiendas?",
+        "answer": "Trabajo principalmente con Vercel para proyectos Next.js y proveedores confiables de hosting compartido para WordPress. Todas las recomendaciones incluyen SSL y CDN."
+      },
+      {
+        "question": "¿Está incluido el SSL?",
+        "answer": "Sí, todos los proyectos incluyen certificados SSL gratuitos vía Let's Encrypt o la solución integrada del proveedor de hosting."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Hablemos",
+    "subtitle": "Sobre futuros proyectos",
+    "description": "¿Tenés un proyecto en mente? Hablemos sobre cómo podemos trabajar juntos para dar vida a tus ideas.",
+    "email": "hello@fgwebdesigns.dev",
+    "ctaEmail": "Enviar Email",
+    "formName": "Nombre",
+    "formEmail": "Email",
+    "formMessage": "Mensaje",
+    "formSubmit": "Enviar Mensaje"
+  },
+  "footer": {
+    "copyright": "© 2026 FG Web Designs. Todos los derechos reservados.",
+    "built": "Construido con Next.js, TypeScript y Motion"
+  }
+}
