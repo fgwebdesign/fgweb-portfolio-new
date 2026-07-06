@@ -96,22 +96,37 @@
   },
   "process": {
     "title": "How We Work",
-    "subtitle": "From concept to launch",
+    "subtitle": "Our development process is designed to ensure the best quality and customer satisfaction",
     "steps": [
       {
         "number": "01",
         "title": "Meeting & Budget",
-        "description": "We discuss your project requirements, goals, and timeline. I provide a detailed proposal with transparent pricing and deliverables."
+        "description": "We start with a meeting to understand your needs and goals. We discuss the type of website you need, required functionalities, and establish a clear budget.",
+        "details": [
+          "Create shared folder in Google Drive",
+          "Detailed requirements document",
+          "Design and color palette definition"
+        ]
       },
       {
         "number": "02",
         "title": "Development & Testing",
-        "description": "Building your project with clean code and modern technologies. Continuous testing ensures quality at every stage of development."
+        "description": "Once the budget is approved, we begin development. We implement the agreed functionalities and perform exhaustive tests to guarantee quality.",
+        "details": [
+          "Development with the latest technologies",
+          "Responsive design for all devices",
+          "Continuous testing and quality control"
+        ]
       },
       {
         "number": "03",
         "title": "Deployment & Delivery",
-        "description": "Launch to production with proper hosting setup, domain configuration, and SSL. Full documentation and training included."
+        "description": "We deploy to production, configure the domain, server and SSL certificate. We deliver a fully functional and optimized website.",
+        "details": [
+          "Deployment to production server",
+          "Domain and SSL configuration",
+          "Documentation and usage training"
+        ]
       }
     ]
   },

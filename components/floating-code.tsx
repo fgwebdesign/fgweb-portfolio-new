@@ -64,8 +64,15 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
   const line6Url = useTypingEffect('www.awesomeproject.com', 30, delay + 7500);
 
   useEffect(() => {
-    setMounted(true);
+    // Evitar hydration errors esperando el primer render
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
     
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     if (type === 'deploy') {
       const interval = setInterval(() => {
         setDeployStep((prev) => (prev + 1) % 4);
@@ -80,7 +87,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
     'top-left': 'top-32 lg:top-40 xl:top-44 left-8 lg:left-12 xl:left-16 2xl:left-20',
     'top-right': 'top-32 lg:top-40 xl:top-44 right-8 lg:right-12 xl:right-16 2xl:right-20',
     'bottom-left': 'bottom-32 lg:bottom-36 xl:bottom-40 left-8 lg:left-12 xl:left-16 2xl:left-20',
-    'bottom-right': 'bottom-32 lg:bottom-36 xl:bottom-40 right-8 lg:right-12 xl:right-16 2xl:right-20',
+    'bottom-right': 'bottom-48 lg:bottom-56 xl:bottom-64 right-8 lg:right-12 xl:right-16 2xl:right-20',
   };
 
   return (
@@ -343,7 +350,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
                 <motion.div 
                   className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
                   animate={{
-                    backgroundColor: deployStep === 0 ? 'rgba(79, 195, 247, 0.1)' : 'transparent',
+                    backgroundColor: deployStep === 0 ? 'rgba(79, 195, 247, 0.1)' : 'rgba(0, 0, 0, 0)',
                   }}
                 >
                   <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">3</span>
@@ -371,7 +378,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
                 <motion.div 
                   className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
                   animate={{
-                    backgroundColor: deployStep === 1 ? 'rgba(255, 189, 46, 0.1)' : 'transparent',
+                    backgroundColor: deployStep === 1 ? 'rgba(255, 189, 46, 0.1)' : 'rgba(0, 0, 0, 0)',
                   }}
                 >
                   <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">4</span>
@@ -399,7 +406,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
                 <motion.div 
                   className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
                   animate={{
-                    backgroundColor: deployStep === 2 ? 'rgba(39, 201, 63, 0.1)' : 'transparent',
+                    backgroundColor: deployStep === 2 ? 'rgba(39, 201, 63, 0.1)' : 'rgba(0, 0, 0, 0)',
                   }}
                 >
                   <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">5</span>
@@ -427,7 +434,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
                 <motion.div 
                   className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
                   animate={{
-                    backgroundColor: deployStep === 3 ? 'rgba(156, 220, 254, 0.1)' : 'transparent',
+                    backgroundColor: deployStep === 3 ? 'rgba(156, 220, 254, 0.1)' : 'rgba(0, 0, 0, 0)',
                   }}
                 >
                   <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">6</span>

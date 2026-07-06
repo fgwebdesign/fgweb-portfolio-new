@@ -1,14 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion, useInView } from 'motion/react';
+import { motion } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
 
 export function Services() {
   const t = useTranslations('services');
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   
   const services = t.raw('list') as Array<{
@@ -69,47 +68,56 @@ export function Services() {
 
   return (
     <section id="services" className="relative py-32 lg:py-40 bg-background overflow-hidden">
-      {/* Línea de transición desde Hero */}
+      {/* Línea de transición desde Hero - entra desde arriba */}
       <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-foreground/20 to-transparent"
         initial={{ height: 0, opacity: 0 }}
-        animate={{ height: 128, opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
+        whileInView={{ height: 128, opacity: 1 }}
+        viewport={{ once: false, amount: 0.8 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
       />
 
       <div ref={sectionRef} className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        {/* Header editorial */}
+        {/* Header editorial - entra desde arriba con blur */}
         <motion.div
           className="mb-20 lg:mb-32"
-          initial={{ opacity: 0, y: 60 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: -80, filter: 'blur(20px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
         >
           <div className="flex items-start justify-between mb-8">
             <div className="flex-1">
+              {/* Subtitle - desde izquierda */}
               <motion.p
                 className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-4"
-                initial={{ opacity: 0, x: -30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.2 }}
+                initial={{ opacity: 0, x: -60, rotateY: -45 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
               >
                 {t('subtitle')}
               </motion.p>
+              
+              {/* Title - desde izquierda con más delay */}
               <motion.h2
                 className="text-[clamp(2rem,8vw,4.5rem)] font-bold leading-[0.9] tracking-tighter uppercase"
-                initial={{ opacity: 0, x: -100 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3, type: 'spring', stiffness: 50 }}
+                initial={{ opacity: 0, x: -120, filter: 'blur(15px)' }}
+                whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                viewport={{ once: false }}
+                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
               >
                 {t('title')}
               </motion.h2>
             </div>
 
+            {/* Services count - desde derecha con escala */}
             <motion.div
               className="hidden lg:block text-right"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
             >
               <p className="text-xs uppercase tracking-[0.15em] text-foreground/60 mb-2">
                 Services
@@ -121,7 +129,7 @@ export function Services() {
 
         {/* Scroll container con flechas - Loop infinito */}
         <div className="relative lg:px-24">
-          {/* Flecha izquierda - Siempre activa, fuera del contenido */}
+          {/* Flecha izquierda - entra desde izquierda */}
           <motion.button
             className="hidden lg:flex absolute -left-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center bg-foreground text-background transition-all duration-300"
             onClick={() => {
@@ -130,9 +138,10 @@ export function Services() {
             }}
             whileHover={{ scale: 1.15, x: -4 }}
             whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, x: 20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.6 }}
+            initial={{ opacity: 0, x: -60, rotate: -90 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: 'backOut' }}
           >
             <motion.svg
               className="w-5 h-5"
@@ -146,7 +155,7 @@ export function Services() {
             </motion.svg>
           </motion.button>
 
-          {/* Flecha derecha - Siempre activa, fuera del contenido */}
+          {/* Flecha derecha - entra desde derecha */}
           <motion.button
             className="hidden lg:flex absolute -right-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center bg-foreground text-background transition-all duration-300"
             onClick={() => {
@@ -155,9 +164,10 @@ export function Services() {
             }}
             whileHover={{ scale: 1.15, x: 4 }}
             whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.6 }}
+            initial={{ opacity: 0, x: 60, rotate: 90 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: 'backOut' }}
           >
             <motion.svg
               className="w-5 h-5"
@@ -171,14 +181,15 @@ export function Services() {
             </motion.svg>
           </motion.button>
 
-          {/* Cards scrolleables */}
+          {/* Cards scrolleables - entran escalonadas desde abajo */}
           <motion.div
             ref={scrollContainerRef}
             className="overflow-x-auto overflow-y-hidden pb-8 scrollbar-hide snap-x snap-mandatory"
             onScroll={handleManualScroll}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.5 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -189,11 +200,13 @@ export function Services() {
                 <motion.article
                   key={index}
                   className="group relative border border-foreground/10 hover:border-foreground/40 transition-all duration-500 snap-start flex-shrink-0 w-[320px] lg:w-[400px] bg-background hover:bg-foreground/[0.02]"
-                  initial={{ opacity: 0, y: 60 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  initial={{ opacity: 0, y: 80, rotateX: -30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
                   transition={{
-                    delay: 0.7 + index * 0.1,
                     duration: 0.8,
+                    delay: 0.8 + index * 0.1,
+                    ease: [0.22, 1, 0.36, 1] as const,
                   }}
                   whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 >
@@ -330,12 +343,13 @@ export function Services() {
             </div>
           </motion.div>
 
-          {/* Indicador de autoplay */}
+          {/* Indicador de autoplay - entra con fade */}
           <motion.div
             className="flex items-center justify-center gap-4 mt-8"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.8 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] as const }}
           >
             <motion.p
               className="text-xs uppercase tracking-[0.15em] text-foreground/40"
@@ -361,15 +375,20 @@ export function Services() {
           </motion.div>
         </div>
 
-        {/* CTA */}
+        {/* CTA - entra desde abajo con blur */}
         <motion.div
           className="mt-20 lg:mt-28 text-center"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.2 }}
+          initial={{ opacity: 0, y: 60, filter: 'blur(15px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: false, amount: 0.8 }}
+          transition={{ duration: 1, delay: 1.3, ease: [0.22, 1, 0.36, 1] as const }}
         >
           <motion.p
             className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 1.4 }}
             whileHover={{
               letterSpacing: '0.25em',
               color: 'rgb(0, 0, 0)',
@@ -380,30 +399,26 @@ export function Services() {
           </motion.p>
           <motion.a
             href="#contact"
-            className="inline-block px-12 py-5 bg-foreground text-background text-sm uppercase tracking-[0.15em] font-medium relative overflow-hidden"
+            className="group inline-block px-12 py-5 bg-foreground text-background text-sm uppercase tracking-[0.15em] font-medium relative overflow-hidden"
+            initial={{ opacity: 0, scale: 0.8, rotateX: -30 }}
+            whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8, delay: 1.5, ease: 'backOut' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            <motion.span
-              className="relative z-10"
-              whileHover={{ letterSpacing: '0.2em' }}
-            >
+            <span className="relative z-10 inline-block group-hover:tracking-[0.2em] transition-all duration-300">
               Get in Touch
-            </motion.span>
+            </span>
             <motion.div
               className="absolute inset-0 bg-background"
               initial={{ x: '-100%' }}
               whileHover={{ x: 0 }}
               transition={{ duration: 0.4 }}
             />
-            <motion.span
-              className="absolute inset-0 flex items-center justify-center text-foreground"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            >
+            <span className="absolute inset-0 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
               Get in Touch
-            </motion.span>
+            </span>
           </motion.a>
         </motion.div>
       </div>

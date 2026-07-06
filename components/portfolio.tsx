@@ -157,205 +157,534 @@ export function Portfolio() {
           {displayedProjects.map((project, index) => {
             const layout = getProjectLayout(index);
             const isEven = index % 2 === 0;
-            const delay = 0.8 + index * 0.15;
 
             return (
               <motion.article
                 key={project.id}
                 className="group cursor-pointer relative"
-                initial={{ opacity: 0, y: 80 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  delay,
-                  duration: 1,
-                  ease: [0.22, 1, 0.36, 1] as const,
-                }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: false, amount: 0.2, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
               >
                 {layout === 'large-title' && (
                   <div className="relative">
-                    {/* Header con código de barras y metadata */}
-                    <div className="flex items-start justify-between mb-8 pb-6 border-b border-foreground/10">
-                      <div className="space-y-2">
+                    {/* Header con código de barras y metadata - entra desde arriba */}
+                    <motion.div 
+                      className="flex items-start justify-between mb-8 pb-6 border-b border-foreground/10 group-hover:border-foreground/30 transition-colors"
+                      initial={{ opacity: 0, y: -60, filter: 'blur(10px)' }}
+                      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      viewport={{ once: false, amount: 0.3 }}
+                      transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+                      whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                    >
+                      {/* Barcode - desde izquierda */}
+                      <motion.div 
+                        className="space-y-2"
+                        initial={{ opacity: 0, x: -80, rotateY: -90 }}
+                        whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                        viewport={{ once: false, amount: 0.5 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+                        whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                      >
                         <Barcode id={project.id} />
-                        <p className="text-xs tracking-[0.15em] text-foreground/40">
+                        <p className="text-xs tracking-[0.15em] text-foreground/40 group-hover:text-foreground/70 transition-colors">
                           ID: {project.id.toUpperCase()}
                         </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm uppercase tracking-[0.15em] text-foreground/60 mb-1">
+                      </motion.div>
+
+                      {/* Year/Category - desde derecha */}
+                      <motion.div 
+                        className="text-right"
+                        initial={{ opacity: 0, x: 80, rotateY: 90 }}
+                        whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                        viewport={{ once: false, amount: 0.5 }}
+                        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+                        whileHover={{ x: -4, transition: { duration: 0.2 } }}
+                      >
+                        <p className="text-sm uppercase tracking-[0.15em] text-foreground/60 mb-1 group-hover:text-foreground transition-colors">
                           {project.category}
                         </p>
-                        <p className="text-4xl font-bold">{project.year}</p>
-                      </div>
-                    </div>
+                        <motion.p 
+                          className="text-4xl font-bold"
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.6, delay: 0.5, ease: 'backOut' }}
+                          whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                        >
+                          {project.year}
+                        </motion.p>
+                      </motion.div>
+                    </motion.div>
 
-                    {/* Título gigante */}
+                    {/* Título gigante - desde abajo con blur */}
                     <motion.h3
-                      className="text-[clamp(2.5rem,12vw,10rem)] font-bold leading-[0.9] tracking-tighter uppercase mb-8"
-                      whileHover={{ x: 20, transition: { duration: 0.4 } }}
+                      className="text-[clamp(2rem,8vw,6rem)] font-bold leading-[0.9] tracking-tighter uppercase mb-8 cursor-pointer"
+                      initial={{ opacity: 0, y: 100, filter: 'blur(20px)', scale: 0.9 }}
+                      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
+                      viewport={{ once: false, amount: 0.3 }}
+                      transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+                      whileHover={{ 
+                        x: 20,
+                        scale: 1.02,
+                        color: 'rgba(0, 0, 0, 0.9)',
+                        transition: { duration: 0.4 } 
+                      }}
                     >
                       {project.title}
                     </motion.h3>
 
                     {/* Content grid */}
                     <div className="grid lg:grid-cols-3 gap-8">
-                      <div className="lg:col-span-1 space-y-4">
+                      {/* Stack - desde izquierda */}
+                      <motion.div 
+                        className="lg:col-span-1 space-y-4 cursor-pointer"
+                        initial={{ opacity: 0, x: -60, rotateX: -45 }}
+                        whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
+                        viewport={{ once: false, amount: 0.5 }}
+                        transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
+                        whileHover={{ x: 8, transition: { duration: 0.3 } }}
+                      >
                         <div>
-                          <p className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-2">
+                          <motion.p 
+                            className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-2"
+                            whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
+                          >
                             Stack
-                          </p>
-                          <p className="text-sm font-medium">{project.stack}</p>
+                          </motion.p>
+                          <motion.p 
+                            className="text-sm font-medium"
+                            whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
+                          >
+                            {project.stack}
+                          </motion.p>
                         </div>
-                      </div>
-                      <div className="lg:col-span-2">
-                        <p className="text-base leading-relaxed text-foreground/70">
+                      </motion.div>
+
+                      {/* Description - desde derecha */}
+                      <motion.div 
+                        className="lg:col-span-2 cursor-pointer"
+                        initial={{ opacity: 0, x: 60, rotateX: 45 }}
+                        whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
+                        viewport={{ once: false, amount: 0.5 }}
+                        transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+                        whileHover={{ x: 4, transition: { duration: 0.3 } }}
+                      >
+                        <motion.p 
+                          className="text-base leading-relaxed text-foreground/70"
+                          whileHover={{ 
+                            color: 'rgba(0, 0, 0, 0.85)',
+                            transition: { duration: 0.2 }
+                          }}
+                        >
                           {project.description}
-                        </p>
-                      </div>
+                        </motion.p>
+                      </motion.div>
                     </div>
 
-                    {/* Placeholder visual */}
-                    <div className="mt-8 aspect-[21/9] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700">
+                    {/* Placeholder visual - con escala y rotación */}
+                    <motion.div 
+                      className="mt-8 aspect-[21/9] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700"
+                      initial={{ opacity: 0, scale: 0.8, rotateX: -30 }}
+                      whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+                      viewport={{ once: false, amount: 0.3 }}
+                      transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+                    >
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-[12rem] font-bold text-foreground/5 group-hover:scale-110 transition-transform duration-700">
+                        <motion.span 
+                          className="text-[12rem] font-bold text-foreground/5 group-hover:scale-110 transition-transform duration-700"
+                          initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 1.2, delay: 0.8, ease: 'backOut' }}
+                        >
                           {index + 1}
-                        </span>
+                        </motion.span>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 )}
 
                 {layout === 'split-vertical' && (
                   <div className={`grid lg:grid-cols-2 gap-12 ${isEven ? '' : 'lg:grid-flow-dense'}`}>
-                    <div className={isEven ? 'lg:col-start-1' : 'lg:col-start-2'}>
-                      {/* Visual */}
-                      <div className="aspect-[4/5] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700">
-                        <div className="absolute top-6 left-6">
+                    {/* Visual - entra con escala desde el lado correspondiente */}
+                    <motion.div 
+                      className={isEven ? 'lg:col-start-1' : 'lg:col-start-2'}
+                      initial={{ 
+                        opacity: 0, 
+                        x: isEven ? -100 : 100, 
+                        scale: 0.8,
+                        rotateY: isEven ? -45 : 45 
+                      }}
+                      whileInView={{ 
+                        opacity: 1, 
+                        x: 0, 
+                        scale: 1,
+                        rotateY: 0 
+                      }}
+                      viewport={{ once: false, amount: 0.4 }}
+                      transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+                      whileHover={{ scale: 1.02, transition: { duration: 0.4 } }}
+                    >
+                      <div className="aspect-[4/5] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700 cursor-pointer">
+                        {/* Barcode - sube desde abajo */}
+                        <motion.div 
+                          className="absolute top-6 left-6"
+                          initial={{ opacity: 0, y: 30, scale: 0 }}
+                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
+                          whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
+                        >
                           <Barcode id={project.id} />
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
+                        </motion.div>
+                        
+                        {/* Year - crece desde el centro */}
+                        <motion.div 
+                          className="absolute inset-0 flex items-center justify-center"
+                          initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 1.2, delay: 0.6, ease: 'backOut' }}
+                          whileHover={{ scale: 1.1, rotate: 5, transition: { duration: 0.4 } }}
+                        >
                           <span className="text-[10rem] font-bold text-foreground/5">
                             {project.year.slice(-2)}
                           </span>
-                        </div>
+                        </motion.div>
                       </div>
-                    </div>
+                    </motion.div>
 
-                    <div className={`flex flex-col justify-center ${isEven ? 'lg:col-start-2' : 'lg:col-start-1'}`}>
+                    {/* Content - entra desde el lado opuesto */}
+                    <motion.div 
+                      className={`flex flex-col justify-center ${isEven ? 'lg:col-start-2' : 'lg:col-start-1'}`}
+                      initial={{ 
+                        opacity: 0, 
+                        x: isEven ? 100 : -100,
+                        filter: 'blur(10px)' 
+                      }}
+                      whileInView={{ 
+                        opacity: 1, 
+                        x: 0,
+                        filter: 'blur(0px)' 
+                      }}
+                      viewport={{ once: false, amount: 0.4 }}
+                      transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+                      whileHover={{ x: isEven ? 8 : -8, transition: { duration: 0.3 } }}
+                    >
                       <div className="space-y-6">
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-2">
+                        {/* Year/Category - desde arriba */}
+                        <motion.div
+                          initial={{ opacity: 0, y: -40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                        >
+                          <motion.p 
+                            className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-2 cursor-pointer"
+                            whileHover={{ letterSpacing: '0.25em', color: 'rgba(0, 0, 0, 0.7)', transition: { duration: 0.2 } }}
+                          >
                             {project.year} / {project.category}
-                          </p>
-                          <h3 className="text-[clamp(2rem,8vw,5rem)] font-bold leading-[0.95] tracking-tighter uppercase">
+                          </motion.p>
+                          
+                          {/* Title - aparece con blur */}
+                          <motion.h3 
+                            className="text-[clamp(1.75rem,6vw,3.5rem)] font-bold leading-[0.95] tracking-tighter uppercase cursor-pointer"
+                            initial={{ opacity: 0, filter: 'blur(20px)', x: -30 }}
+                            whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+                            whileHover={{ 
+                              x: 8,
+                              scale: 1.02,
+                              color: 'rgba(0, 0, 0, 0.95)',
+                              transition: { duration: 0.3 } 
+                            }}
+                          >
                             {project.title}
-                          </h3>
-                        </div>
+                          </motion.h3>
+                        </motion.div>
 
-                        <div className="w-24 h-[2px] bg-foreground" />
+                        {/* Divider - crece desde izquierda */}
+                        <motion.div 
+                          className="w-24 h-[2px] bg-foreground"
+                          initial={{ opacity: 0, width: 0 }}
+                          whileInView={{ opacity: 1, width: '6rem' }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ width: '8rem', height: '3px', transition: { duration: 0.3 } }}
+                        />
 
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-3">
+                        {/* Stack - desde izquierda */}
+                        <motion.div
+                          initial={{ opacity: 0, x: -40, rotateX: -30 }}
+                          whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                        >
+                          <motion.p 
+                            className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-3 cursor-pointer"
+                            whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
+                          >
                             Technology Stack
-                          </p>
-                          <p className="text-sm font-medium mb-6">{project.stack}</p>
-                        </div>
+                          </motion.p>
+                          <motion.p 
+                            className="text-sm font-medium mb-6"
+                            whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
+                          >
+                            {project.stack}
+                          </motion.p>
+                        </motion.div>
 
-                        <p className="text-base leading-relaxed text-foreground/70">
+                        {/* Description - desde abajo */}
+                        <motion.p 
+                          className="text-base leading-relaxed text-foreground/70 cursor-pointer"
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ 
+                            x: 4,
+                            color: 'rgba(0, 0, 0, 0.85)',
+                            transition: { duration: 0.2 }
+                          }}
+                        >
                           {project.description}
-                        </p>
+                        </motion.p>
 
-                        <div className="pt-4">
-                          <p className="text-xs tracking-[0.15em] text-foreground/40">
+                        {/* ID - aparece con fade */}
+                        <motion.div 
+                          className="pt-4"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.6, delay: 1, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                        >
+                          <motion.p 
+                            className="text-xs tracking-[0.15em] text-foreground/40 cursor-pointer"
+                            whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
+                          >
                             ID: {project.id.toUpperCase()}
-                          </p>
-                        </div>
+                          </motion.p>
+                        </motion.div>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 )}
 
                 {(layout === 'compact' || layout === 'magazine-spread') && (
-                  <div className="border border-foreground/10 p-8 lg:p-12 group-hover:border-foreground/30 transition-colors">
+                  <motion.div 
+                    className="border border-foreground/10 p-8 lg:p-12 group-hover:border-foreground/30 transition-colors"
+                    initial={{ opacity: 0, scale: 0.95, borderColor: 'rgba(0, 0, 0, 0)' }}
+                    whileInView={{ opacity: 1, scale: 1, borderColor: 'rgba(0, 0, 0, 0.1)' }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+                  >
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-                      {/* Left: Metadata */}
-                      <div className="lg:w-64 flex-shrink-0 space-y-6">
-                        <Barcode id={project.id} />
+                      {/* Left: Metadata - entra desde izquierda */}
+                      <motion.div 
+                        className="lg:w-64 flex-shrink-0 space-y-6"
+                        initial={{ opacity: 0, x: -80, rotateY: -45 }}
+                        whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                        viewport={{ once: false, amount: 0.4 }}
+                        transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+                        whileHover={{ x: -8, transition: { duration: 0.3 } }}
+                      >
+                        {/* Barcode - aparece con escala */}
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0, rotate: -90 }}
+                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
+                          whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
+                        >
+                          <Barcode id={project.id} />
+                        </motion.div>
                         
                         <div className="space-y-4">
-                          <div>
-                            <p className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1">
+                          {/* Project ID - desde abajo */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                          >
+                            <motion.p 
+                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
+                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
+                            >
                               Project
-                            </p>
-                            <p className="text-sm font-medium">
+                            </motion.p>
+                            <motion.p 
+                              className="text-sm font-medium cursor-pointer"
+                              whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
+                            >
                               {project.id.toUpperCase()}
-                            </p>
-                          </div>
+                            </motion.p>
+                          </motion.div>
 
-                          <div>
-                            <p className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1">
+                          {/* Year - crece desde el centro */}
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 0.6, delay: 0.6, ease: 'backOut' }}
+                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                          >
+                            <motion.p 
+                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
+                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
+                            >
                               Year
-                            </p>
-                            <p className="text-3xl font-bold">{project.year}</p>
-                          </div>
+                            </motion.p>
+                            <motion.p 
+                              className="text-3xl font-bold cursor-pointer"
+                              whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                            >
+                              {project.year}
+                            </motion.p>
+                          </motion.div>
 
-                          <div>
-                            <p className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1">
+                          {/* Category - desde abajo */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 0.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
+                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                          >
+                            <motion.p 
+                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
+                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
+                            >
                               Category
-                            </p>
-                            <p className="text-sm font-medium">{project.category}</p>
-                          </div>
+                            </motion.p>
+                            <motion.p 
+                              className="text-sm font-medium cursor-pointer"
+                              whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
+                            >
+                              {project.category}
+                            </motion.p>
+                          </motion.div>
 
-                          <div>
-                            <p className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1">
+                          {/* Stack - desde abajo */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                          >
+                            <motion.p 
+                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
+                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
+                            >
                               Stack
-                            </p>
-                            <p className="text-sm font-medium">{project.stack}</p>
-                          </div>
+                            </motion.p>
+                            <motion.p 
+                              className="text-sm font-medium cursor-pointer"
+                              whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
+                            >
+                              {project.stack}
+                            </motion.p>
+                          </motion.div>
                         </div>
-                      </div>
+                      </motion.div>
 
-                      {/* Right: Content */}
-                      <div className="flex-1">
-                        <h3 className="text-[clamp(2rem,8vw,4.5rem)] font-bold leading-[0.95] tracking-tighter uppercase mb-6">
+                      {/* Right: Content - entra desde derecha */}
+                      <motion.div 
+                        className="flex-1"
+                        initial={{ opacity: 0, x: 80, filter: 'blur(10px)' }}
+                        whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                        viewport={{ once: false, amount: 0.4 }}
+                        transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+                        whileHover={{ x: 8, transition: { duration: 0.3 } }}
+                      >
+                        {/* Title - aparece desde arriba con blur */}
+                        <motion.h3 
+                          className="text-[clamp(1.75rem,6vw,3.5rem)] font-bold leading-[0.95] tracking-tighter uppercase mb-6 cursor-pointer"
+                          initial={{ opacity: 0, y: -40, filter: 'blur(15px)' }}
+                          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ 
+                            x: 8,
+                            scale: 1.02,
+                            color: 'rgba(0, 0, 0, 0.95)',
+                            transition: { duration: 0.3 } 
+                          }}
+                        >
                           {project.title}
-                        </h3>
+                        </motion.h3>
 
-                        <p className="text-base leading-relaxed text-foreground/70 mb-8">
+                        {/* Description - aparece desde abajo */}
+                        <motion.p 
+                          className="text-base leading-relaxed text-foreground/70 mb-8 cursor-pointer"
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ 
+                            x: 4,
+                            color: 'rgba(0, 0, 0, 0.85)',
+                            transition: { duration: 0.2 }
+                          }}
+                        >
                           {project.description}
-                        </p>
+                        </motion.p>
 
-                        {/* Visual placeholder */}
-                        <div className="aspect-[16/9] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700">
-                          <div className="absolute bottom-6 right-6 text-8xl font-bold text-foreground/5">
+                        {/* Visual placeholder - crece con rotación */}
+                        <motion.div 
+                          className="aspect-[16/9] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700 cursor-pointer"
+                          initial={{ opacity: 0, scale: 0.85, rotateX: -20 }}
+                          whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+                          viewport={{ once: false, amount: 0.3 }}
+                          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+                          whileHover={{ scale: 1.02, transition: { duration: 0.4 } }}
+                        >
+                          <motion.div 
+                            className="absolute bottom-6 right-6 text-8xl font-bold text-foreground/5"
+                            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 1.2, delay: 0.8, ease: 'backOut' }}
+                            whileHover={{ scale: 1.2, rotate: -5, transition: { duration: 0.4 } }}
+                          >
                             {index + 1}
-                          </div>
-                        </div>
-                      </div>
+                          </motion.div>
+                        </motion.div>
+                      </motion.div>
                     </div>
-                  </div>
+                  </motion.div>
                 )}
 
-                {/* Hover effect: línea que crece */}
+                {/* Hover effect: línea que crece al scrollear */}
                 <motion.div
                   className="absolute bottom-0 left-0 h-[2px] bg-foreground"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.6 }}
+                  initial={{ width: 0, opacity: 0 }}
+                  whileInView={{ width: '100%', opacity: 0.3 }}
+                  viewport={{ once: false, amount: 0.8 }}
+                  transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+                  whileHover={{ opacity: 1 }}
                 />
               </motion.article>
             );
           })}
         </div>
 
-        {/* Botón Cargar más */}
+        {/* Botón Cargar más - animación profesional */}
         {hasMore && !showAll && (
           <motion.div
             className="mt-24 lg:mt-32 flex justify-center"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            initial={{ opacity: 0, y: 60, scale: 0.9, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: false, amount: 0.8 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
           >
             <motion.button
               onClick={() => setShowAll(true)}

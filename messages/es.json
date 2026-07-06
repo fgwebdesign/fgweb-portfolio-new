@@ -95,23 +95,38 @@
     ]
   },
   "process": {
-    "title": "Cómo Trabajamos",
-    "subtitle": "Del concepto al lanzamiento",
+    "title": "¿Cómo Trabajamos?",
+    "subtitle": "Nuestro proceso de desarrollo está diseñado para asegurar la mejor calidad y satisfacción del cliente",
     "steps": [
       {
         "number": "01",
         "title": "Reunión y Presupuesto",
-        "description": "Discutimos los requisitos, objetivos y cronograma de tu proyecto. Proporciono una propuesta detallada con precios transparentes y entregables claros."
+        "description": "Comenzamos con una reunión para entender tus necesidades y objetivos. Discutimos el tipo de sitio web que necesitas, funcionalidades requeridas y establecemos un presupuesto claro.",
+        "details": [
+          "Creación de carpeta compartida en Google Drive",
+          "Documento detallado de requerimientos",
+          "Definición de diseño y paleta de colores"
+        ]
       },
       {
         "number": "02",
         "title": "Desarrollo y Testing",
-        "description": "Construyo tu proyecto con código limpio y tecnologías modernas. Testing continuo asegura calidad en cada etapa del desarrollo."
+        "description": "Una vez aprobado el presupuesto, comenzamos el desarrollo. Implementamos las funcionalidades acordadas y realizamos pruebas exhaustivas para garantizar la calidad.",
+        "details": [
+          "Desarrollo con las últimas tecnologías",
+          "Diseño responsive para todos los dispositivos",
+          "Testing continuo y control de calidad"
+        ]
       },
       {
         "number": "03",
         "title": "Despliegue y Entrega",
-        "description": "Lanzamiento a producción con configuración de hosting, dominio y SSL. Incluye documentación completa y capacitación."
+        "description": "Realizamos el despliegue en producción, configuramos el dominio, servidor y certificado SSL. Te entregamos un sitio web completamente funcional y optimizado.",
+        "details": [
+          "Despliegue en servidor de producción",
+          "Configuración de dominio y SSL",
+          "Documentación y capacitación de uso"
+        ]
       }
     ]
   },
