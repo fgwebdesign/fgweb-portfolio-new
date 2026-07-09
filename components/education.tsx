@@ -1,19 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
+import { certificationsData, certificationTypeLabels, localizeText } from '@/data/certifications-data';
+import type { Locale } from '@/data/experience-data';
 
 export function Education() {
   const t = useTranslations('education');
+  const tCommon = useTranslations('common');
+  const locale = useLocale() as Locale;
   const [showAll, setShowAll] = useState(false);
-  
-  const items = t.raw('items') as Array<{
-    title: string;
-    institution: string;
-    year: string;
-    type: string;
-  }>;
+
+  const items = certificationsData;
 
   // Mostrar solo los primeros 3 items por defecto
   const displayedItems = showAll ? items : items.slice(0, 3);
@@ -72,7 +71,7 @@ export function Education() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {displayedItems.map((item, index) => (
             <motion.div
-              key={index}
+              key={item.id}
               className="relative group"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +106,7 @@ export function Education() {
                 {/* Header */}
                 <div className="mb-6">
                   <p className="text-xs uppercase tracking-[0.2em] text-foreground/40 font-medium mb-1">
-                    {item.type}
+                    {localizeText(certificationTypeLabels[item.type], locale)}
                   </p>
                   <p className="text-2xl lg:text-3xl font-bold text-foreground/80">
                     {item.year}
@@ -125,7 +124,7 @@ export function Education() {
 
                 {/* Content */}
                 <h3 className="text-xl lg:text-2xl font-bold mb-4 group-hover:text-foreground/80 transition-colors">
-                  {item.title}
+                  {localizeText(item.title, locale)}
                 </h3>
                 <p className="text-base lg:text-lg text-foreground/60 leading-relaxed">
                   {item.institution}
@@ -188,7 +187,7 @@ export function Education() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="relative z-10">Cargar más</span>
+              <span className="relative z-10">{tCommon('loadMore')}</span>
               
               <motion.div
                 className="absolute inset-0 bg-foreground"
@@ -204,7 +203,7 @@ export function Education() {
                 whileHover={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                Cargar más
+                {tCommon('loadMore')}
               </motion.span>
             </motion.button>
           </motion.div>

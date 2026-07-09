@@ -6,80 +6,23 @@ import { useEffect, useState } from 'react';
 interface FloatingCodeProps {
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   delay?: number;
-  type: 'personal' | 'deploy';
-}
-
-// Hook para efecto de typing
-function useTypingEffect(text: string, speed: number = 30, startDelay: number = 0) {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    if (startDelay > 0) {
-      const delayTimeout = setTimeout(() => {
-        let currentIndex = 0;
-        const interval = setInterval(() => {
-          if (currentIndex <= text.length) {
-            setDisplayedText(text.slice(0, currentIndex));
-            currentIndex++;
-          } else {
-            setIsComplete(true);
-            clearInterval(interval);
-          }
-        }, speed);
-        return () => clearInterval(interval);
-      }, startDelay);
-      return () => clearTimeout(delayTimeout);
-    } else {
-      let currentIndex = 0;
-      const interval = setInterval(() => {
-        if (currentIndex <= text.length) {
-          setDisplayedText(text.slice(0, currentIndex));
-          currentIndex++;
-        } else {
-          setIsComplete(true);
-          clearInterval(interval);
-        }
-      }, speed);
-      return () => clearInterval(interval);
-    }
-  }, [text, speed, startDelay]);
-
-  return { displayedText, isComplete };
+  type: 'skills' | 'info';
 }
 
 export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
   const [mounted, setMounted] = useState(false);
-  const [deployStep, setDeployStep] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
-
-  // Typing effects para cada línea del deploy
-  const line1 = useTypingEffect('// Deploying Awesome Project', 40, delay + 1000);
-  const line3 = useTypingEffect('🚀 Building application...', 35, delay + 2200);
-  const line4 = useTypingEffect('⚡ Optimizing bundles...', 35, delay + 3800);
-  const line5 = useTypingEffect('🎉 Deploying to production...', 35, delay + 5400);
-  const line6Text = useTypingEffect('✨ Live at ', 35, delay + 7000);
-  const line6Url = useTypingEffect('www.awesomeproject.com', 30, delay + 7500);
 
   useEffect(() => {
     // Evitar hydration errors esperando el primer render
     const timer = setTimeout(() => {
       setMounted(true);
     }, 0);
-    
+
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (type === 'deploy') {
-      const interval = setInterval(() => {
-        setDeployStep((prev) => (prev + 1) % 4);
-      }, 2000);
-      return () => clearInterval(interval);
-    }
-  }, [type]);
 
   if (!mounted || !isVisible) return null;
 
@@ -92,7 +35,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
 
   return (
     <motion.div
-      className={`hidden lg:block absolute ${positionClasses[position]} z-20`}
+      className={`absolute ${positionClasses[position]} z-20`}
       initial={{ opacity: 0, y: 20, rotateX: -15 }}
       animate={{ 
         opacity: isVisible ? 1 : 0, 
@@ -197,7 +140,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
               </motion.button>
             </div>
             <span className="text-[11px] text-[#cccccc]/80 font-mono">
-              {type === 'personal' ? 'portfolio.tsx' : 'deploy.sh'}
+              {type === 'skills' ? 'skills.ts' : 'profile.ts'}
             </span>
           </div>
           <motion.div 
@@ -220,7 +163,88 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: delay + 0.8, duration: 0.6 }}
           >
-            {type === 'personal' ? (
+            {type === 'skills' ? (
+              <>
+                {/* Skills Code */}
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">1</span>
+                  <span>
+                    <span style={{ color: '#c586c0' }}>const</span>
+                    <span style={{ color: '#9cdcfe' }}> skills</span>
+                    <span style={{ color: '#d4d4d4' }}> = [</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">2</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>  </span>
+                    <span style={{ color: '#ce9178' }}>&apos;React Js&apos;</span>
+                    <span style={{ color: '#d4d4d4' }}>,</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">3</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>  </span>
+                    <span style={{ color: '#ce9178' }}>&apos;Next Js&apos;</span>
+                    <span style={{ color: '#d4d4d4' }}>,</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">4</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>  </span>
+                    <span style={{ color: '#ce9178' }}>&apos;TypeScript&apos;</span>
+                    <span style={{ color: '#d4d4d4' }}>,</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">5</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>  </span>
+                    <span style={{ color: '#ce9178' }}>&apos;Tailwind CSS&apos;</span>
+                    <span style={{ color: '#d4d4d4' }}>,</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">6</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>  </span>
+                    <span style={{ color: '#ce9178' }}>&apos;WordPress&apos;</span>
+                    <span style={{ color: '#d4d4d4' }}>,</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">7</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>  </span>
+                    <span style={{ color: '#ce9178' }}>&apos;QA Automation&apos;</span>
+                    <span style={{ color: '#d4d4d4' }}>,</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">8</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>  </span>
+                    <span style={{ color: '#ce9178' }}>&apos;Figma&apos;</span>
+                  </span>
+                </div>
+
+                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
+                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">9</span>
+                  <span>
+                    <span style={{ color: '#d4d4d4' }}>];</span>
+                  </span>
+                </div>
+              </>
+            ) : (
               <>
                 {/* Personal Info Code */}
                 <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
@@ -249,7 +273,7 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
                     <span style={{ color: '#d4d4d4' }}>  </span>
                     <span style={{ color: '#9cdcfe' }}>role</span>
                     <span style={{ color: '#d4d4d4' }}>: </span>
-                    <span style={{ color: '#ce9178' }}>&apos;FullStack&apos;</span>
+                    <span style={{ color: '#ce9178' }}>&apos;FullStack Developer&apos;</span>
                     <span style={{ color: '#d4d4d4' }}>,</span>
                   </span>
                 </div>
@@ -258,55 +282,15 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
                   <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">4</span>
                   <span>
                     <span style={{ color: '#d4d4d4' }}>  </span>
-                    <span style={{ color: '#9cdcfe' }}>skills</span>
-                    <span style={{ color: '#d4d4d4' }}>: [</span>
+                    <span style={{ color: '#9cdcfe' }}>location</span>
+                    <span style={{ color: '#d4d4d4' }}>: </span>
+                    <span style={{ color: '#ce9178' }}>&apos;Uruguay&apos;</span>
+                    <span style={{ color: '#d4d4d4' }}>,</span>
                   </span>
                 </div>
 
                 <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
                   <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">5</span>
-                  <span>
-                    <span style={{ color: '#d4d4d4' }}>    </span>
-                    <span style={{ color: '#ce9178' }}>&apos;QA Manual&apos;</span>
-                    <span style={{ color: '#d4d4d4' }}>,</span>
-                  </span>
-                </div>
-
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">6</span>
-                  <span>
-                    <span style={{ color: '#d4d4d4' }}>    </span>
-                    <span style={{ color: '#ce9178' }}>&apos;QA Automation&apos;</span>
-                    <span style={{ color: '#d4d4d4' }}>,</span>
-                  </span>
-                </div>
-
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">7</span>
-                  <span>
-                    <span style={{ color: '#d4d4d4' }}>    </span>
-                    <span style={{ color: '#ce9178' }}>&apos;React &amp; Next.js&apos;</span>
-                    <span style={{ color: '#d4d4d4' }}>,</span>
-                  </span>
-                </div>
-
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">8</span>
-                  <span>
-                    <span style={{ color: '#d4d4d4' }}>    </span>
-                    <span style={{ color: '#ce9178' }}>&apos;UI/UX Design&apos;</span>
-                  </span>
-                </div>
-
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">9</span>
-                  <span>
-                    <span style={{ color: '#d4d4d4' }}>  ],</span>
-                  </span>
-                </div>
-
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">10</span>
                   <span>
                     <span style={{ color: '#d4d4d4' }}>  </span>
                     <span style={{ color: '#9cdcfe' }}>passion</span>
@@ -316,162 +300,11 @@ export function FloatingCode({ position, delay = 0, type }: FloatingCodeProps) {
                 </div>
 
                 <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">11</span>
-                  <span>
-                    <span style={{ color: '#d4d4d4' }}>{'}'}</span>
-                  </span>
-                </div>
-              </>
-            ) : (
-              <>
-                {/* Deploy Animation Code con typing effect */}
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">1</span>
-                  <span>
-                    <span style={{ color: '#6a9955' }}>
-                      {line1.displayedText}
-                      {!line1.isComplete && (
-                        <motion.span
-                          animate={{ opacity: [1, 0, 1] }}
-                          transition={{ duration: 0.8, repeat: Infinity }}
-                        >
-                          _
-                        </motion.span>
-                      )}
-                    </span>
-                  </span>
-                </div>
-
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">2</span>
-                  <span style={{ color: '#d4d4d4' }}>&nbsp;</span>
-                </div>
-
-                <motion.div 
-                  className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
-                  animate={{
-                    backgroundColor: deployStep === 0 ? 'rgba(79, 195, 247, 0.1)' : 'rgba(0, 0, 0, 0)',
-                  }}
-                >
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">3</span>
-                  <span>
-                    <motion.span 
-                      style={{ color: '#4fc3f7' }}
-                      animate={{
-                        opacity: deployStep === 0 ? [1, 0.7, 1] : 1,
-                      }}
-                      transition={{ duration: 1, repeat: deployStep === 0 ? Infinity : 0 }}
-                    >
-                      {line3.displayedText}
-                      {!line3.isComplete && (
-                        <motion.span
-                          animate={{ opacity: [1, 0, 1] }}
-                          transition={{ duration: 0.8, repeat: Infinity }}
-                        >
-                          _
-                        </motion.span>
-                      )}
-                    </motion.span>
-                  </span>
-                </motion.div>
-
-                <motion.div 
-                  className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
-                  animate={{
-                    backgroundColor: deployStep === 1 ? 'rgba(255, 189, 46, 0.1)' : 'rgba(0, 0, 0, 0)',
-                  }}
-                >
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">4</span>
-                  <span>
-                    <motion.span 
-                      style={{ color: '#ffbd2e' }}
-                      animate={{
-                        opacity: deployStep === 1 ? [1, 0.7, 1] : 1,
-                      }}
-                      transition={{ duration: 1, repeat: deployStep === 1 ? Infinity : 0 }}
-                    >
-                      {line4.displayedText}
-                      {!line4.isComplete && (
-                        <motion.span
-                          animate={{ opacity: [1, 0, 1] }}
-                          transition={{ duration: 0.8, repeat: Infinity }}
-                        >
-                          _
-                        </motion.span>
-                      )}
-                    </motion.span>
-                  </span>
-                </motion.div>
-
-                <motion.div 
-                  className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
-                  animate={{
-                    backgroundColor: deployStep === 2 ? 'rgba(39, 201, 63, 0.1)' : 'rgba(0, 0, 0, 0)',
-                  }}
-                >
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">5</span>
-                  <span>
-                    <motion.span 
-                      style={{ color: '#27c93f' }}
-                      animate={{
-                        opacity: deployStep === 2 ? [1, 0.7, 1] : 1,
-                      }}
-                      transition={{ duration: 1, repeat: deployStep === 2 ? Infinity : 0 }}
-                    >
-                      {line5.displayedText}
-                      {!line5.isComplete && (
-                        <motion.span
-                          animate={{ opacity: [1, 0, 1] }}
-                          transition={{ duration: 0.8, repeat: Infinity }}
-                        >
-                          _
-                        </motion.span>
-                      )}
-                    </motion.span>
-                  </span>
-                </motion.div>
-
-                <motion.div 
-                  className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2"
-                  animate={{
-                    backgroundColor: deployStep === 3 ? 'rgba(156, 220, 254, 0.1)' : 'rgba(0, 0, 0, 0)',
-                  }}
-                >
                   <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">6</span>
                   <span>
-                    <motion.span 
-                      style={{ color: '#9cdcfe' }}
-                      animate={{
-                        opacity: deployStep === 3 ? [1, 0.7, 1] : 1,
-                      }}
-                      transition={{ duration: 1, repeat: deployStep === 3 ? Infinity : 0 }}
-                    >
-                      {line6Text.displayedText}
-                    </motion.span>
-                    <motion.span 
-                      style={{ color: '#4ec9b0' }}
-                      animate={{
-                        opacity: deployStep === 3 ? [1, 0.7, 1] : 1,
-                        textDecoration: deployStep === 3 ? 'underline' : 'none',
-                      }}
-                      transition={{ duration: 1, repeat: deployStep === 3 ? Infinity : 0 }}
-                    >
-                      {line6Url.displayedText}
-                      {!line6Url.isComplete && (
-                        <motion.span
-                          animate={{ opacity: [1, 0, 1] }}
-                          transition={{ duration: 0.8, repeat: Infinity }}
-                        >
-                          _
-                        </motion.span>
-                      )}
-                    </motion.span>
+                    <span style={{ color: '#d4d4d4' }}>{'}'}</span>
+                    <span style={{ color: '#d4d4d4' }}>;</span>
                   </span>
-                </motion.div>
-
-                <div className="flex group hover:bg-[#2a2d2e] transition-colors duration-150 -mx-2 px-2">
-                  <span style={{ color: '#858585' }} className="select-none mr-4 text-right w-6 shrink-0">7</span>
-                  <span style={{ color: '#d4d4d4' }}>&nbsp;</span>
                 </div>
               </>
             )}

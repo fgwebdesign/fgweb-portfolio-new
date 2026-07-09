@@ -471,7 +471,7 @@ export function Process() {
             }}
           />
           <span className="text-xs uppercase tracking-[0.2em] text-foreground/30">
-            From Concept to Launch
+            {t('footerTagline')}
           </span>
           <motion.div
             className="w-24 h-px bg-foreground/20"

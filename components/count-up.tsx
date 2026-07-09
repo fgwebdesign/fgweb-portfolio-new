@@ -7,9 +7,10 @@ interface CountUpProps {
   end: number;
   duration?: number;
   suffix?: string;
+  className?: string;
 }
 
-export function CountUp({ end, duration = 2, suffix = '' }: CountUpProps) {
+export function CountUp({ end, duration = 2, suffix = '', className = '' }: CountUpProps) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
@@ -44,7 +45,7 @@ export function CountUp({ end, duration = 2, suffix = '' }: CountUpProps) {
   }, [isInView, end, duration]);
 
   return (
-    <div ref={ref} className="text-[clamp(2.5rem,6vw,3rem)] lg:text-[clamp(3rem,6vw,6rem)] font-bold">
+    <div ref={ref} className={className || "text-[clamp(2.5rem,6vw,3rem)] lg:text-[clamp(3rem,6vw,6rem)] font-bold"}>
       {count}{suffix}
     </div>
   );

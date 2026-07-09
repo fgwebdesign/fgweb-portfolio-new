@@ -120,7 +120,7 @@ export function Services() {
               transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
             >
               <p className="text-xs uppercase tracking-[0.15em] text-foreground/60 mb-2">
-                Services
+                {t('servicesLabel')}
               </p>
               <p className="text-4xl font-bold leading-none">{services.length.toString().padStart(2, '0')}</p>
             </motion.div>
@@ -222,7 +222,7 @@ export function Services() {
                           transition: { duration: 0.2 }
                         }}
                       >
-                        SERVICE #{(index + 1).toString().padStart(2, '0')}
+                        {t('serviceNumberLabel')}{(index + 1).toString().padStart(2, '0')}
                       </motion.p>
                       <div className="text-right">
                         <motion.p
@@ -290,7 +290,7 @@ export function Services() {
                           transition: { duration: 0.3 }
                         }}
                       >
-                        Includes
+                        {t('includesLabel')}
                       </motion.p>
                       <ul className="space-y-3">
                         {service.items.map((item, itemIndex) => (
@@ -362,7 +362,7 @@ export function Services() {
                 ease: 'easeInOut',
               }}
             >
-              {isAutoPlaying ? 'Auto-playing' : 'Paused'} →
+              {isAutoPlaying ? t('autoPlaying') : t('paused')} →
             </motion.p>
             <motion.button
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
@@ -370,7 +370,7 @@ export function Services() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {isAutoPlaying ? 'Pause' : 'Play'}
+              {isAutoPlaying ? t('pause') : t('play')}
             </motion.button>
           </motion.div>
         </div>
@@ -395,7 +395,7 @@ export function Services() {
               transition: { duration: 0.3 }
             }}
           >
-            Ready to Start?
+            {t('readyToStart')}
           </motion.p>
           <motion.a
             href="#contact"
@@ -408,7 +408,7 @@ export function Services() {
             whileTap={{ scale: 0.98 }}
           >
             <span className="relative z-10 inline-block group-hover:tracking-[0.2em] transition-all duration-300">
-              Get in Touch
+              {t('getInTouch')}
             </span>
             <motion.div
               className="absolute inset-0 bg-background"
@@ -417,7 +417,7 @@ export function Services() {
               transition={{ duration: 0.4 }}
             />
             <span className="absolute inset-0 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-              Get in Touch
+              {t('getInTouch')}
             </span>
           </motion.a>
         </motion.div>

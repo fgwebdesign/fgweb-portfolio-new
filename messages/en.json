@@ -3,18 +3,30 @@
     "title": "FG Web Designs | Frontend Dev & QA Engineer",
     "description": "Professional web development and quality assurance services. Custom websites, e-commerce platforms, and responsive designs with meticulous testing."
   },
+  "common": {
+    "loadMore": "Load More",
+    "viewSite": "View site",
+    "scroll": "Scroll",
+    "signature": "Signature",
+    "logoOf": "Logo of {name}",
+    "projectOf": "Project {name}"
+  },
   "nav": {
     "services": "Services",
     "process": "Process",
     "portfolio": "Portfolio",
+    "clients": "Clients",
     "about": "About",
     "skills": "Skills",
     "experience": "Experience",
     "education": "Education",
-    "contact": "Contact"
+    "contact": "Contact",
+    "tapHere": "TAP HERE!",
+    "menu": "Menu",
+    "close": "Close"
   },
   "hero": {
-    "title": "FG Web Designs",
+    "title": "Felipe Gutierrez",
     "services": [
       "QA Manual Testing",
       "QA Automation",
@@ -28,6 +40,15 @@
   "services": {
     "title": "Services",
     "subtitle": "What I do",
+    "servicesLabel": "Services",
+    "serviceNumberLabel": "SERVICE #",
+    "includesLabel": "Includes",
+    "autoPlaying": "Auto-playing",
+    "paused": "Paused",
+    "play": "Play",
+    "pause": "Pause",
+    "readyToStart": "Ready to Start?",
+    "getInTouch": "Get in Touch",
     "list": [
       {
         "title": "Web Development",
@@ -97,6 +118,7 @@
   "process": {
     "title": "How We Work",
     "subtitle": "Our development process is designed to ensure the best quality and customer satisfaction",
+    "footerTagline": "From Concept to Launch",
     "steps": [
       {
         "number": "01",
@@ -130,9 +152,28 @@
       }
     ]
   },
+  "clients": {
+    "title": "Clients",
+    "subtitle": "Companies and brands that trust our work",
+    "trustedBy": "Trusted By",
+    "statClients": "Clients",
+    "statSatisfaction": "Satisfaction",
+    "statYears": "Years",
+    "statCountries": "Countries"
+  },
   "portfolio": {
     "title": "Portfolio",
     "subtitle": "Selected work",
+    "volumeLabel": "Volume — 025",
+    "selectedWorks": "Selected Works",
+    "yearsRange": "2023—2026",
+    "projectIdLabel": "ID",
+    "stackLabel": "Stack",
+    "technologyStackLabel": "Technology Stack",
+    "projectLabel": "Project",
+    "yearLabel": "Year",
+    "categoryLabel": "Category",
+    "imageUnavailable": "Project image unavailable",
     "filterAll": "All",
     "filterLanding": "Landing",
     "filterEcommerce": "E-commerce",
@@ -218,6 +259,9 @@
   "skills": {
     "title": "Skills",
     "subtitle": "Technologies & tools",
+    "eyebrow": "Technologies & Tools",
+    "skillSingular": "skill",
+    "skillPlural": "skills",
     "categories": [
       {
         "name": "Frontend",
@@ -316,10 +360,31 @@
     "description": "Have a project in mind? Let's discuss how we can work together to bring your ideas to life.",
     "email": "hello@fgwebdesigns.dev",
     "ctaEmail": "Send Email",
+    "introSubtitle": "Let's start something great",
+    "introTitleLine1": "Let's talk about",
+    "introTitleLine2": "your project.",
+    "introScroll": "Scroll for the form",
+    "formSubtitle": "Tell me the details",
+    "formTitle": "Tell us about your project",
+    "formDescription": "Fill out the form with as much detail as possible. I'll get back to you within 24 hours.",
     "formName": "Name",
+    "formNamePlaceholder": "Your full name",
     "formEmail": "Email",
-    "formMessage": "Message",
-    "formSubmit": "Send Message"
+    "formEmailPlaceholder": "you@email.com",
+    "formProjectType": "Project Type",
+    "formProjectTypePlaceholder": "Select type",
+    "formProjectTypeOptions": ["Landing Page", "Corporate Website", "E-Commerce", "Creative Portfolio", "Web Application", "Other"],
+    "formBudget": "Estimated Budget",
+    "formBudgetPlaceholder": "Select range",
+    "formBudgetOptions": ["Less than $500", "$500 - $1,500", "$1,500 - $3,000", "$3,000 - $6,000", "More than $6,000"],
+    "formTimeline": "Project Timeline",
+    "formTimelinePlaceholder": "Select timeline",
+    "formTimelineOptions": ["Urgent (less than 2 weeks)", "1 month", "2 - 3 months", "Flexible / No deadline"],
+    "formMessage": "Tell me about your project",
+    "formMessagePlaceholder": "Describe your idea, goals, and any relevant details...",
+    "formSubmit": "Send Message",
+    "formSuccessTitle": "Message received!",
+    "formSuccessDescription": "Thanks for reaching out. I'll contact you very soon to talk about your project."
   },
   "footer": {
     "copyright": "© 2026 FG Web Designs. All rights reserved.",

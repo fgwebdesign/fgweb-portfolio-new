@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useIsDesktop } from '@/hooks/use-is-desktop';
 
 interface FloatingAssetProps {
   type: 'code' | 'bug' | 'palette' | 'layers';
@@ -10,10 +9,6 @@ interface FloatingAssetProps {
 }
 
 export function FloatingAsset({ type, position, index }: FloatingAssetProps) {
-  const isDesktop = useIsDesktop();
-
-  if (!isDesktop) return null;
-
   const assets = {
     code: (
       <svg width="120" height="120" viewBox="0 0 120 120" fill="none">

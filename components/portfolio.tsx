@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, useInView } from 'motion/react';
+import Image from 'next/image';
 
 // Componente para generar código de barras único
 function Barcode({ id }: { id: string }) {
@@ -30,8 +31,78 @@ function Barcode({ id }: { id: string }) {
   );
 }
 
+// Helper para obtener la ruta de la imagen del proyecto
+function getProjectImagePath(projectId: string): string {
+  // Por defecto intentamos PNG (ya que la imagen de Casa Brava es PNG)
+  // Puedes cambiar a .jpg si prefieres ese formato
+  return `/projects/${projectId}.png`;
+}
+
+// Componente para mostrar imagen del proyecto con fallback
+function ProjectImage({ projectId, projectTitle, className, index, imageUnavailableLabel }: { 
+  projectId: string; 
+  projectTitle: string; 
+  className?: string;
+  index: number;
+  imageUnavailableLabel: string;
+}) {
+  const tCommon = useTranslations('common');
+  const [imageError, setImageError] = useState(false);
+  const [imagePath, setImagePath] = useState(getProjectImagePath(projectId));
+
+  // Intentar con JPG si PNG falla
+  const handleImageError = () => {
+    if (imagePath.endsWith('.png')) {
+      setImagePath(`/projects/${projectId}.jpg`);
+    } else {
+      setImageError(true);
+    }
+  };
+
+  if (imageError) {
+    // Fallback: mostrar placeholder con info
+    return (
+      <div className={`relative overflow-hidden bg-foreground/5 group-hover:bg-foreground/10 transition-colors duration-700 ${className || ''}`}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+          <motion.span 
+            className="text-[8rem] lg:text-[12rem] font-bold text-foreground/5 mb-4"
+            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 1.2, delay: 0.6, ease: 'backOut' }}
+          >
+            {index + 1}
+          </motion.span>
+          <p className="text-xs uppercase tracking-[0.15em] text-foreground/40 text-center">
+            {imageUnavailableLabel}
+          </p>
+          <p className="text-sm text-foreground/30 text-center mt-2">
+            {projectTitle}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`relative overflow-hidden ${className || ''}`}>
+      <Image
+        src={imagePath}
+        alt={tCommon('projectOf', { name: projectTitle })}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        onError={handleImageError}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
+      {/* Overlay oscuro al hacer hover */}
+      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-700" />
+    </div>
+  );
+}
+
 export function Portfolio() {
   const t = useTranslations('portfolio');
+  const tCommon = useTranslations('common');
   const [activeFilter, setActiveFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
   const sectionRef = useRef(null);
@@ -90,7 +161,7 @@ export function Portfolio() {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.2 }}
               >
-                Volume — 025
+                {t('volumeLabel')}
               </motion.p>
               <motion.h2
                 className="text-[clamp(3rem,15vw,12rem)] font-bold leading-[0.85] tracking-tighter uppercase"
@@ -109,9 +180,9 @@ export function Portfolio() {
               transition={{ delay: 0.4 }}
             >
               <p className="text-xs uppercase tracking-[0.15em] text-foreground/60 mb-2">
-                Selected Works
+                {t('selectedWorks')}
               </p>
-              <p className="text-2xl font-bold">2023—2026</p>
+              <p className="text-2xl font-bold">{t('yearsRange')}</p>
             </motion.div>
           </div>
 
@@ -189,7 +260,7 @@ export function Portfolio() {
                       >
                         <Barcode id={project.id} />
                         <p className="text-xs tracking-[0.15em] text-foreground/40 group-hover:text-foreground/70 transition-colors">
-                          ID: {project.id.toUpperCase()}
+                          {t('projectIdLabel')}: {project.id.toUpperCase()}
                         </p>
                       </motion.div>
 
@@ -251,7 +322,7 @@ export function Portfolio() {
                             className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-2"
                             whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
                           >
-                            Stack
+                            {t('stackLabel')}
                           </motion.p>
                           <motion.p 
                             className="text-sm font-medium"
@@ -283,25 +354,21 @@ export function Portfolio() {
                       </motion.div>
                     </div>
 
-                    {/* Placeholder visual - con escala y rotación */}
+                    {/* Imagen del proyecto - con escala y rotación */}
                     <motion.div 
-                      className="mt-8 aspect-[21/9] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700"
+                      className="mt-8 aspect-[21/9] relative"
                       initial={{ opacity: 0, scale: 0.8, rotateX: -30 }}
                       whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
                       viewport={{ once: false, amount: 0.3 }}
                       transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
                     >
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <motion.span 
-                          className="text-[12rem] font-bold text-foreground/5 group-hover:scale-110 transition-transform duration-700"
-                          initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                          viewport={{ once: false }}
-                          transition={{ duration: 1.2, delay: 0.8, ease: 'backOut' }}
-                        >
-                          {index + 1}
-                        </motion.span>
-                      </div>
+                      <ProjectImage 
+                        projectId={project.id}
+                        projectTitle={project.title}
+                        className="aspect-[21/9]"
+                        index={index}
+                        imageUnavailableLabel={t('imageUnavailable')}
+                      />
                     </motion.div>
                   </div>
                 )}
@@ -327,31 +394,27 @@ export function Portfolio() {
                       transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
                       whileHover={{ scale: 1.02, transition: { duration: 0.4 } }}
                     >
-                      <div className="aspect-[4/5] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700 cursor-pointer">
-                        {/* Barcode - sube desde abajo */}
+                      <div className="aspect-[4/5] relative cursor-pointer">
+                        <ProjectImage 
+                          projectId={project.id}
+                          projectTitle={project.title}
+                          className="aspect-[4/5]"
+                          index={index}
+                          imageUnavailableLabel={t('imageUnavailable')}
+                        />
+                        
+                        {/* Barcode overlay - sube desde abajo */}
                         <motion.div 
-                          className="absolute top-6 left-6"
+                          className="absolute top-6 left-6 z-10"
                           initial={{ opacity: 0, y: 30, scale: 0 }}
                           whileInView={{ opacity: 1, y: 0, scale: 1 }}
                           viewport={{ once: false }}
                           transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
                           whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
                         >
-                          <Barcode id={project.id} />
-                        </motion.div>
-                        
-                        {/* Year - crece desde el centro */}
-                        <motion.div 
-                          className="absolute inset-0 flex items-center justify-center"
-                          initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                          viewport={{ once: false }}
-                          transition={{ duration: 1.2, delay: 0.6, ease: 'backOut' }}
-                          whileHover={{ scale: 1.1, rotate: 5, transition: { duration: 0.4 } }}
-                        >
-                          <span className="text-[10rem] font-bold text-foreground/5">
-                            {project.year.slice(-2)}
-                          </span>
+                          <div className="bg-background/90 backdrop-blur-sm p-2 rounded">
+                            <Barcode id={project.id} />
+                          </div>
                         </motion.div>
                       </div>
                     </motion.div>
@@ -429,7 +492,7 @@ export function Portfolio() {
                             className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-3 cursor-pointer"
                             whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
                           >
-                            Technology Stack
+                            {t('technologyStackLabel')}
                           </motion.p>
                           <motion.p 
                             className="text-sm font-medium mb-6"
@@ -468,7 +531,7 @@ export function Portfolio() {
                             className="text-xs tracking-[0.15em] text-foreground/40 cursor-pointer"
                             whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
                           >
-                            ID: {project.id.toUpperCase()}
+                            {t('projectIdLabel')}: {project.id.toUpperCase()}
                           </motion.p>
                         </motion.div>
                       </div>
@@ -518,7 +581,7 @@ export function Portfolio() {
                               className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
                               whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
                             >
-                              Project
+                              {t('projectLabel')}
                             </motion.p>
                             <motion.p 
                               className="text-sm font-medium cursor-pointer"
@@ -540,7 +603,7 @@ export function Portfolio() {
                               className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
                               whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
                             >
-                              Year
+                              {t('yearLabel')}
                             </motion.p>
                             <motion.p 
                               className="text-3xl font-bold cursor-pointer"
@@ -562,7 +625,7 @@ export function Portfolio() {
                               className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
                               whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
                             >
-                              Category
+                              {t('categoryLabel')}
                             </motion.p>
                             <motion.p 
                               className="text-sm font-medium cursor-pointer"
@@ -584,7 +647,7 @@ export function Portfolio() {
                               className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
                               whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
                             >
-                              Stack
+                              {t('stackLabel')}
                             </motion.p>
                             <motion.p 
                               className="text-sm font-medium cursor-pointer"
@@ -638,25 +701,22 @@ export function Portfolio() {
                           {project.description}
                         </motion.p>
 
-                        {/* Visual placeholder - crece con rotación */}
+                        {/* Imagen del proyecto - crece con rotación */}
                         <motion.div 
-                          className="aspect-[16/9] bg-foreground/5 relative overflow-hidden group-hover:bg-foreground/10 transition-colors duration-700 cursor-pointer"
+                          className="aspect-[16/9] relative cursor-pointer"
                           initial={{ opacity: 0, scale: 0.85, rotateX: -20 }}
                           whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
                           viewport={{ once: false, amount: 0.3 }}
                           transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
                           whileHover={{ scale: 1.02, transition: { duration: 0.4 } }}
                         >
-                          <motion.div 
-                            className="absolute bottom-6 right-6 text-8xl font-bold text-foreground/5"
-                            initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ duration: 1.2, delay: 0.8, ease: 'backOut' }}
-                            whileHover={{ scale: 1.2, rotate: -5, transition: { duration: 0.4 } }}
-                          >
-                            {index + 1}
-                          </motion.div>
+                          <ProjectImage 
+                            projectId={project.id}
+                            projectTitle={project.title}
+                            className="aspect-[16/9]"
+                            index={index}
+                            imageUnavailableLabel={t('imageUnavailable')}
+                          />
                         </motion.div>
                       </motion.div>
                     </div>
@@ -692,7 +752,7 @@ export function Portfolio() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="relative z-10">Cargar más</span>
+              <span className="relative z-10">{tCommon('loadMore')}</span>
               
               <motion.div
                 className="absolute inset-0 bg-foreground"
@@ -708,7 +768,7 @@ export function Portfolio() {
                 whileHover={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                Cargar más
+                {tCommon('loadMore')}
               </motion.span>
             </motion.button>
           </motion.div>

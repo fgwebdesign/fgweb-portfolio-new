@@ -3,18 +3,30 @@
     "title": "FG Web Designs | Desarrollador Frontend y QA Engineer",
     "description": "Servicios profesionales de desarrollo web y aseguramiento de calidad. Sitios web personalizados, plataformas e-commerce y diseños responsivos con testing meticuloso."
   },
+  "common": {
+    "loadMore": "Cargar más",
+    "viewSite": "Ver sitio",
+    "scroll": "Scroll",
+    "signature": "Firma",
+    "logoOf": "Logo de {name}",
+    "projectOf": "Proyecto {name}"
+  },
   "nav": {
     "services": "Servicios",
     "process": "Proceso",
     "portfolio": "Portafolio",
+    "clients": "Clientes",
     "about": "Acerca de",
     "skills": "Habilidades",
     "experience": "Experiencia",
     "education": "Educación",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "tapHere": "¡TOCÁ AQUÍ!",
+    "menu": "Menú",
+    "close": "Cerrar"
   },
   "hero": {
-    "title": "FG Web Designs",
+    "title": "Felipe Gutierrez",
     "services": [
       "QA Manual Testing",
       "QA Automation",
@@ -28,6 +40,15 @@
   "services": {
     "title": "Servicios",
     "subtitle": "Lo que hago",
+    "servicesLabel": "Servicios",
+    "serviceNumberLabel": "SERVICIO #",
+    "includesLabel": "Incluye",
+    "autoPlaying": "Reproducción automática",
+    "paused": "Pausado",
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "readyToStart": "¿Listo para empezar?",
+    "getInTouch": "Contactame",
     "list": [
       {
         "title": "Desarrollo Web",
@@ -97,6 +118,7 @@
   "process": {
     "title": "¿Cómo Trabajamos?",
     "subtitle": "Nuestro proceso de desarrollo está diseñado para asegurar la mejor calidad y satisfacción del cliente",
+    "footerTagline": "Del Concepto al Lanzamiento",
     "steps": [
       {
         "number": "01",
@@ -130,9 +152,28 @@
       }
     ]
   },
+  "clients": {
+    "title": "Clientes",
+    "subtitle": "Empresas y marcas que confían en nuestro trabajo",
+    "trustedBy": "Confían en Nosotros",
+    "statClients": "Clientes",
+    "statSatisfaction": "Satisfacción",
+    "statYears": "Años",
+    "statCountries": "Países"
+  },
   "portfolio": {
     "title": "Portafolio",
     "subtitle": "Trabajos seleccionados",
+    "volumeLabel": "Volumen — 025",
+    "selectedWorks": "Trabajos Seleccionados",
+    "yearsRange": "2023—2026",
+    "projectIdLabel": "ID",
+    "stackLabel": "Stack",
+    "technologyStackLabel": "Stack Tecnológico",
+    "projectLabel": "Proyecto",
+    "yearLabel": "Año",
+    "categoryLabel": "Categoría",
+    "imageUnavailable": "Imagen del proyecto no disponible",
     "filterAll": "Todos",
     "filterLanding": "Landing Page",
     "filterEcommerce": "E-commerce",
@@ -218,6 +259,9 @@
   "skills": {
     "title": "Habilidades",
     "subtitle": "Tecnologías y herramientas",
+    "eyebrow": "Tecnologías y Herramientas",
+    "skillSingular": "habilidad",
+    "skillPlural": "habilidades",
     "categories": [
       {
         "name": "Frontend",
@@ -316,10 +360,31 @@
     "description": "¿Tenés un proyecto en mente? Hablemos sobre cómo podemos trabajar juntos para dar vida a tus ideas.",
     "email": "hello@fgwebdesigns.dev",
     "ctaEmail": "Enviar Email",
+    "introSubtitle": "Iniciemos algo grande",
+    "introTitleLine1": "Hablemos de",
+    "introTitleLine2": "tu proyecto.",
+    "introScroll": "Scroll para el formulario",
+    "formSubtitle": "Contame los detalles",
+    "formTitle": "Contanos sobre tu proyecto",
+    "formDescription": "Completá el formulario con la mayor cantidad de detalles posible. Te voy a responder dentro de las próximas 24 horas.",
     "formName": "Nombre",
+    "formNamePlaceholder": "Tu nombre completo",
     "formEmail": "Email",
-    "formMessage": "Mensaje",
-    "formSubmit": "Enviar Mensaje"
+    "formEmailPlaceholder": "tu@email.com",
+    "formProjectType": "Tipo de Proyecto",
+    "formProjectTypePlaceholder": "Seleccionar tipo",
+    "formProjectTypeOptions": ["Landing Page", "Sitio Corporativo", "E-Commerce", "Portafolio Creativo", "Aplicación Web", "Otro"],
+    "formBudget": "Presupuesto Estimado",
+    "formBudgetPlaceholder": "Seleccionar rango",
+    "formBudgetOptions": ["Menos de USD 500", "USD 500 - 1.500", "USD 1.500 - 3.000", "USD 3.000 - 6.000", "Más de USD 6.000"],
+    "formTimeline": "Timeline del Proyecto",
+    "formTimelinePlaceholder": "Seleccionar plazo",
+    "formTimelineOptions": ["Urgente (menos de 2 semanas)", "1 mes", "2 - 3 meses", "Flexible / Sin fecha límite"],
+    "formMessage": "Contame sobre tu proyecto",
+    "formMessagePlaceholder": "Describí tu idea, objetivos y cualquier detalle relevante...",
+    "formSubmit": "Enviar Mensaje",
+    "formSuccessTitle": "¡Mensaje recibido!",
+    "formSuccessDescription": "Gracias por escribirme. Te voy a contactar muy pronto para hablar sobre tu proyecto."
   },
   "footer": {
     "copyright": "© 2026 FG Web Designs. Todos los derechos reservados.",

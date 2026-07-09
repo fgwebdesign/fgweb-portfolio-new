@@ -13,6 +13,7 @@ export function Nav() {
     { key: 'services', href: '#services' },
     { key: 'process', href: '#process' },
     { key: 'portfolio', href: '#portfolio' },
+    { key: 'clients', href: '#clients' },
     { key: 'about', href: '#about' },
     { key: 'skills', href: '#skills' },
     { key: 'experience', href: '#experience' },
@@ -138,7 +139,7 @@ export function Nav() {
                           ease: "easeInOut",
                         }}
                       >
-                        TAP HERE!
+                        {t('tapHere')}
                       </motion.span>
                       {/* Flecha hacia la izquierda */}
                       <div className="absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-foreground transform rotate-45" />
@@ -148,7 +149,7 @@ export function Nav() {
 
                 {/* Label MENU */}
                 <span className="text-sm lg:text-[15px] font-normal uppercase tracking-[0.1em]">
-                  {isOpen ? 'Close' : 'Menu'}
+                  {isOpen ? t('close') : t('menu')}
                 </span>
 
                 {/* Hamburger icon - minimal */}
