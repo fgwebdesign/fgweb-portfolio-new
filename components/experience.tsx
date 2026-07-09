@@ -1,11 +1,38 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState, type RefObject } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { motion, MotionValue, useScroll, useTransform } from 'motion/react';
+import { motion, MotionValue, useScroll, useTransform, useMotionValue, useMotionValueEvent, useSpring } from 'motion/react';
 import Image from 'next/image';
 import { useIsDesktop } from '@/hooks/use-is-desktop';
 import { experienceData, localize, type ExperienceJob, type Locale } from '@/data/experience-data';
+
+// Fondo llamativo detrás del roadmap: manchas de gradiente muy blureadas que
+// derivan suavemente en loop, más un viñetado radial para dar profundidad.
+function ExperienceBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <motion.div
+        className="absolute -top-[10%] -left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] rounded-full bg-foreground/[0.07] blur-[110px]"
+        animate={{ x: [0, 60, -30, 0], y: [0, 50, -20, 0] }}
+        transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-[-10%] right-[-10%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px] rounded-full bg-foreground/[0.06] blur-[100px]"
+        animate={{ x: [0, -50, 30, 0], y: [0, -40, 20, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+      />
+      <motion.div
+        className="absolute top-[30%] left-[45%] w-[30vw] h-[30vw] max-w-[420px] max-h-[420px] rounded-full bg-foreground/[0.05] blur-[90px]"
+        animate={{ x: [0, 40, -30, 0], y: [0, -30, 30, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+      />
+      {/* Viñeta radial sutil para concentrar la atención en el centro */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_15%,rgba(10,10,10,0.05),transparent_55%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+    </div>
+  );
+}
 
 // Barcode decorativo reutilizado en cada job (mismo patrón que otras secciones)
 function MiniBarcode({ delay = 0 }: { delay?: number }) {
@@ -56,7 +83,7 @@ function CompanyLogo({ job }: { job: ExperienceJob }) {
 
   if (imageError || !job.logo) {
     return (
-      <div className="relative w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0 border border-foreground/15 bg-foreground/[0.03] flex items-center justify-center">
+      <div className="relative w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0 rounded-2xl border border-foreground/15 bg-foreground/[0.03] flex items-center justify-center overflow-hidden">
         <span className="text-lg lg:text-xl font-black tracking-tight text-foreground/40">
           {initials}
         </span>
@@ -65,12 +92,12 @@ function CompanyLogo({ job }: { job: ExperienceJob }) {
   }
 
   return (
-    <div className="relative w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0 border border-foreground/15 bg-background overflow-hidden">
+    <div className="relative w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0 rounded-2xl border border-foreground/15 bg-background overflow-hidden">
       <Image
         src={job.logo}
         alt={tCommon('logoOf', { name: job.company })}
         fill
-        className="object-contain p-2"
+        className="object-cover"
         onError={() => setImageError(true)}
         sizes="80px"
       />
@@ -79,23 +106,30 @@ function CompanyLogo({ job }: { job: ExperienceJob }) {
 }
 
 function SkillTags({ skills }: { skills: string[] }) {
+  const t = useTranslations('experience');
+
   return (
-    <div className="flex flex-wrap gap-2 mt-6">
-      {skills.map((skill, i) => (
-        <span
-          key={i}
-          className="px-2.5 py-1 text-[10px] lg:text-[11px] uppercase tracking-[0.08em] font-medium border border-foreground/15 text-foreground/60 hover:border-foreground/40 hover:text-foreground/90 transition-colors"
-        >
-          {skill}
-        </span>
-      ))}
+    <div className="mt-6">
+      <p className="text-[10px] lg:text-[11px] uppercase tracking-[0.15em] font-medium text-foreground/35 mb-3">
+        {t('skillsLabel')}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill, i) => (
+          <span
+            key={i}
+            className="px-2.5 py-1 text-[10px] lg:text-[11px] uppercase tracking-[0.08em] font-medium border border-foreground/15 text-foreground/60 hover:border-foreground/40 hover:text-foreground/90 transition-colors"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
 
 function RoadmapCard({ job, index, locale }: { job: ExperienceJob; index: number; locale: Locale }) {
   return (
-    <div className="group border border-foreground/10 p-6 lg:p-8 bg-background hover:border-foreground/30 transition-colors relative overflow-hidden">
+    <div className="group border border-foreground/10 p-6 lg:p-8 bg-background/90 backdrop-blur-xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] hover:border-foreground/30 hover:shadow-[0_12px_50px_-12px_rgba(0,0,0,0.14)] transition-all duration-300 relative overflow-hidden">
       {/* Número gigante de fondo */}
       <div className="absolute -top-4 right-3 text-[70px] lg:text-[100px] font-black text-foreground/[0.03] select-none -z-10 leading-none pointer-events-none">
         {String(index + 1).padStart(2, '0')}
@@ -198,7 +232,54 @@ function RoadmapNodeDot({
   range: [number, number];
 }) {
   const scale = useTransform(scrollYProgress, range, [0, 1]);
-  return <motion.circle cx={x} cy={y} r="8" className="fill-foreground" style={{ scale }} />;
+  return (
+    <g>
+      {/* Halo pulsante detrás del nodo */}
+      <motion.circle
+        cx={x}
+        cy={y}
+        r="16"
+        className="fill-foreground/10"
+        style={{ scale }}
+        animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0.15, 0.5] }}
+        transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.circle cx={x} cy={y} r="9" className="fill-background stroke-foreground" strokeWidth="2" style={{ scale }} />
+      <motion.circle cx={x} cy={y} r="3.5" className="fill-foreground" style={{ scale }} />
+    </g>
+  );
+}
+
+// Punto luminoso que recorre el trazado real (getPointAtLength) a medida que se
+// scrollea, dando sensación de "cometa" viajando por el camino.
+function RoadmapComet({
+  pathRef,
+  scrollYProgress,
+}: {
+  pathRef: RefObject<SVGPathElement | null>;
+  scrollYProgress: MotionValue<number>;
+}) {
+  const cometX = useMotionValue(0);
+  const cometY = useMotionValue(0);
+  const opacity = useTransform(scrollYProgress, [0.02, 0.07, 0.92, 0.97], [0, 1, 1, 0]);
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const path = pathRef.current;
+    if (!path) return;
+    const total = path.getTotalLength();
+    const progress = Math.min(Math.max((latest - 0.03) / 0.92, 0), 1);
+    const point = path.getPointAtLength(progress * total);
+    cometX.set(point.x);
+    cometY.set(point.y);
+  });
+
+  return (
+    <motion.g style={{ opacity }}>
+      <motion.circle cx={cometX} cy={cometY} r="14" className="fill-foreground/15" filter="url(#comet-blur)" />
+      <motion.circle cx={cometX} cy={cometY} r="5" className="fill-foreground" />
+      <motion.circle cx={cometX} cy={cometY} r="2" className="fill-background" />
+    </motion.g>
+  );
 }
 
 function RoadmapCardAnimated({
@@ -218,13 +299,34 @@ function RoadmapCardAnimated({
   range: [number, number];
   locale: Locale;
 }) {
-  const opacity = useTransform(scrollYProgress, range, [0, 1]);
-  const x = useTransform(scrollYProgress, range, [side === 'right' ? 60 : -60, 0]);
+  // Progreso crudo del scroll suavizado con un spring: le da a la revelación
+  // una inercia elástica en vez de moverse 1:1 y de forma mecánica con el scroll.
+  const rawProgress = useTransform(scrollYProgress, range, [0, 1]);
+  const progress = useSpring(rawProgress, { stiffness: 260, damping: 32, mass: 0.7 });
+
+  const opacity = useTransform(progress, [0, 1], [0, 1]);
+  const x = useTransform(progress, [0, 1], [side === 'right' ? 140 : -140, 0]);
+  const y = useTransform(progress, [0, 1], [50, 0]);
+  const scale = useTransform(progress, [0, 1], [0.82, 1]);
+  const rotate = useTransform(progress, [0, 1], [side === 'right' ? 5 : -5, 0]);
+  const rotateY = useTransform(progress, [0, 1], [side === 'right' ? -18 : 18, 0]);
+  const blurValue = useTransform(progress, [0, 1], [16, 0]);
+  const filter = useTransform(blurValue, (v) => `blur(${v}px)`);
 
   return (
     <motion.div
       className={`absolute w-[45%] max-w-[560px] ${side === 'right' ? 'left-[53%]' : 'left-[2%]'}`}
-      style={{ top, opacity, x }}
+      style={{
+        top,
+        opacity,
+        x,
+        y,
+        scale,
+        rotate,
+        rotateY,
+        filter,
+        transformPerspective: 1200,
+      }}
     >
       <RoadmapCard job={job} index={index} locale={locale} />
     </motion.div>
@@ -233,6 +335,7 @@ function RoadmapCardAnimated({
 
 function DesktopRoadmap({ jobs, locale }: { jobs: ExperienceJob[]; locale: Locale }) {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -242,30 +345,59 @@ function DesktopRoadmap({ jobs, locale }: { jobs: ExperienceJob[]; locale: Local
 
   const pathLength = useTransform(scrollYProgress, [0.05, 0.95], [0, 1]);
   const pathOpacity = useTransform(scrollYProgress, [0.03, 0.1], [0, 1]);
+  const glowOpacity = useTransform(scrollYProgress, [0.03, 0.1], [0, 0.6]);
 
   // Altura del contenedor: proporcional a la cantidad de trabajos
   const containerHeight = jobs.length * 480 + 200;
 
   return (
     <div ref={sectionRef} className="relative" style={{ height: `${containerHeight}px` }}>
-      {/* Camino SVG que se va dibujando */}
+      {/* Camino SVG que se va dibujando: trazo grueso, con gradiente y glow */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox={`0 0 800 ${totalHeight}`}
         preserveAspectRatio="none"
         fill="none"
       >
+        <defs>
+          <linearGradient id="roadmap-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0.1" />
+            <stop offset="15%" stopColor="currentColor" stopOpacity="0.55" />
+            <stop offset="85%" stopColor="currentColor" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.1" />
+          </linearGradient>
+          <filter id="comet-blur" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="6" />
+          </filter>
+        </defs>
+
+        {/* Halo de glow debajo del trazo principal */}
         <motion.path
           d={path}
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="10"
           strokeLinecap="round"
-          className="text-foreground/25"
+          className="text-foreground/10"
+          filter="url(#comet-blur)"
+          style={{ pathLength, opacity: glowOpacity }}
+        />
+
+        {/* Trazo principal con gradiente */}
+        <motion.path
+          ref={pathRef}
+          d={path}
+          stroke="url(#roadmap-gradient)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          className="text-foreground"
           style={{ pathLength, opacity: pathOpacity }}
         />
 
         {/* Punto de inicio */}
         <motion.circle cx="400" cy="30" r="6" className="fill-foreground" style={{ opacity: pathOpacity }} />
+
+        {/* Cometa que recorre el trazado con el scroll */}
+        <RoadmapComet pathRef={pathRef} scrollYProgress={scrollYProgress} />
 
         {/* Nodos en cada trabajo */}
         {nodes.map((node, i) => (
@@ -279,10 +411,10 @@ function DesktopRoadmap({ jobs, locale }: { jobs: ExperienceJob[]; locale: Local
         ))}
       </svg>
 
-      {/* Cards de cada trabajo, posicionadas junto a su nodo */}
+      {/* Cards de cada trabajo, posicionadas junto a su nodo (con offset para que el nodo quede un poco por encima) */}
       {jobs.map((job, index) => {
         const node = nodes[index];
-        const top = `${(node.y / totalHeight) * 100}%`;
+        const top = `calc(${(node.y / totalHeight) * 100}% + 22px)`;
 
         return (
           <RoadmapCardAnimated
@@ -318,18 +450,18 @@ function MobileTimeline({ jobs, locale }: { jobs: ExperienceJob[]; locale: Local
           <motion.div
             key={job.id}
             className="relative pl-10"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 60, scale: 0.85, rotate: -3, filter: 'blur(14px)' }}
+            whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, delay: Math.min(index * 0.05, 0.3), ease: [0.22, 1, 0.36, 1] }}
+            transition={{ type: 'spring', stiffness: 220, damping: 26, mass: 0.7, delay: Math.min(index * 0.05, 0.3) }}
           >
-            {/* Dot del nodo */}
+            {/* Dot del nodo, ligeramente por encima de la card */}
             <motion.div
-              className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-foreground -translate-x-1/2"
+              className="absolute left-0 -top-2 w-2 h-2 rounded-full bg-foreground -translate-x-1/2 ring-4 ring-background"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) + 0.2 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 18, delay: Math.min(index * 0.05, 0.3) + 0.25 }}
             />
 
             <RoadmapCard job={job} index={index} locale={locale} />
@@ -349,11 +481,8 @@ export function Experience() {
 
   return (
     <section id="experience" className="py-32 lg:py-48 bg-background relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 opacity-[0.015]">
-        <div className="absolute top-1/3 right-0 w-1/2 h-px bg-foreground" />
-        <div className="absolute bottom-1/3 left-0 w-1/2 h-px bg-foreground" />
-      </div>
+      {/* Background llamativo: gradientes blureados en movimiento */}
+      <ExperienceBackground />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}

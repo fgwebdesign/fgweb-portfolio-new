@@ -5,9 +5,9 @@ import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Typewriter } from './typewriter';
 import { HeroMinimalBackground } from './hero-minimal-background';
+import { HeroCursorSpotlight } from './hero-cursor-spotlight';
 import { HeroSkillsWindow } from './hero-skills-window';
 import { HeroProfileWindow } from './hero-profile-window';
-import { FloatingAsset } from './floating-asset';
 
 export function Hero() {
   const t = useTranslations('hero');
@@ -39,16 +39,13 @@ export function Hero() {
         <HeroMinimalBackground />
       </div>
 
+      {/* Mancha que sigue al cursor: oscurece/desatura el fondo con blur para dar profundidad */}
+      <HeroCursorSpotlight targetId="hero" />
+
       {/* Ventanas flotantes tipo editor - SIEMPRE visibles en desktop */}
       <HeroSkillsWindow position="top-left" delay={1} />
       <HeroProfileWindow position="bottom-right" delay={1.5} />
 
-      {/* Assets decorativos flotantes - íconos sutiles a los costados */}
-      <FloatingAsset type="code" position="left" index={0} />
-      <FloatingAsset type="bug" position="right" index={1} />
-      <FloatingAsset type="palette" position="left" index={2} />
-      <FloatingAsset type="layers" position="right" index={3} />
-      
       {/* Firma en video */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
