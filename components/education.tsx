@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
 import { certificationsData, certificationTypeLabels, localizeText } from '@/data/certifications-data';
@@ -8,15 +7,9 @@ import type { Locale } from '@/data/experience-data';
 
 export function Education() {
   const t = useTranslations('education');
-  const tCommon = useTranslations('common');
   const locale = useLocale() as Locale;
-  const [showAll, setShowAll] = useState(false);
 
   const items = certificationsData;
-
-  // Mostrar solo los primeros 3 items por defecto
-  const displayedItems = showAll ? items : items.slice(0, 3);
-  const hasMore = items.length > 3;
 
   return (
     <section id="education" className="py-32 lg:py-48 bg-background relative overflow-hidden">
@@ -69,7 +62,7 @@ export function Education() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {displayedItems.map((item, index) => (
+          {items.map((item, index) => (
             <motion.div
               key={item.id}
               className="relative group"
@@ -78,7 +71,7 @@ export function Education() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{
                 duration: 0.8,
-                delay: index * 0.1,
+                delay: Math.min(index * 0.1, 0.5),
                 ease: [0.22, 1, 0.36, 1],
               }}
               whileHover={{
@@ -119,7 +112,7 @@ export function Education() {
                   initial={{ width: 0 }}
                   whileInView={{ width: '4rem' }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
+                  transition={{ duration: 1, delay: Math.min(index * 0.1, 0.5) + 0.3 }}
                 />
 
                 {/* Content */}
@@ -136,7 +129,7 @@ export function Education() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 + 0.8 }}
+                  transition={{ delay: Math.min(index * 0.1, 0.5) + 0.6 }}
                 >
                   {[14, 20, 16, 22, 18, 24, 15, 21].map((height, i) => (
                     <motion.div
@@ -171,43 +164,6 @@ export function Education() {
             </motion.div>
           ))}
         </div>
-
-        {/* Botón Cargar más */}
-        {hasMore && !showAll && (
-          <motion.div
-            className="mt-24 lg:mt-32 flex justify-center"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <motion.button
-              onClick={() => setShowAll(true)}
-              className="group relative px-12 py-5 border-2 border-foreground text-foreground text-sm uppercase tracking-[0.2em] font-medium overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="relative z-10">{tCommon('loadMore')}</span>
-              
-              <motion.div
-                className="absolute inset-0 bg-foreground"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.4 }}
-                style={{ originX: 0 }}
-              />
-              
-              <motion.span
-                className="absolute inset-0 flex items-center justify-center text-background text-sm uppercase tracking-[0.2em] font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                whileHover={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {tCommon('loadMore')}
-              </motion.span>
-            </motion.button>
-          </motion.div>
-        )}
       </div>
     </section>
   );

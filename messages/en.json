@@ -35,7 +35,10 @@
     ],
     "description": "Transforming ideas into powerful digital experiences. From concept to deployment, I deliver pixel-perfect designs, robust code, and comprehensive quality assurance.",
     "ctaDownload": "Download CV",
-    "ctaContact": "Contact"
+    "ctaContact": "Contact",
+    "role": "FullStack Developer",
+    "location": "Uruguay",
+    "passion": "Quality Assurance"
   },
   "services": {
     "title": "Services",
