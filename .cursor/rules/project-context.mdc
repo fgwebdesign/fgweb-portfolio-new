@@ -1,0 +1,19 @@
+---
+description: Contexto completo del portfolio FG Web Designs — arquitectura, diseño y convenciones
+alwaysApply: true
+---
+
+# Contexto del proyecto
+
+Antes de modificar código, lee y sigue `PROJECT-CONTEXT.md` en la raíz del repo.
+
+Puntos críticos:
+- Portfolio minimal B/N de Felipe Gutiérrez (FG Web Designs)
+- Next.js 16 + React 19 + Tailwind v4 + Motion (`motion/react`) + next-intl (EN/ES)
+- Colores estrictos: blanco `#FFF`, negro `#0A0A0A`, gris `#8A8A8A` — sin acentos
+- Fuentes: Inter (cuerpo) + Manrope (H1 hero)
+- Spacing solo: 4/8/16/24/32/48/64/96px
+- Easing global: `[0.22, 1, 0.36, 1]`
+- Desktop breakpoint: 1024px (`lg:`)
+- Textos en `messages/en.json` y `messages/es.json` — nunca hardcodear
+- Next.js 16 tiene breaking changes — consultar `node_modules/next/dist/docs/`

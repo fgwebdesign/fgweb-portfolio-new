@@ -5,6 +5,44 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './language-switcher';
 
+// Ícono social con círculo de fondo que se expande al hover, invirtiendo el color del ícono.
+function SocialIcon({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative group flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 -m-2"
+      aria-label={label}
+      whileTap={{ scale: 0.9 }}
+    >
+      {/* Círculo de fondo que se expande desde el centro */}
+      <motion.span
+        className="absolute inset-0 rounded-full bg-foreground"
+        initial={{ scale: 0 }}
+        whileHover={{ scale: 1 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        style={{ originX: 0.5, originY: 0.5 }}
+      />
+      <motion.span
+        className="relative z-10 text-foreground group-hover:text-background transition-colors duration-300"
+        whileHover={{ rotate: 12, scale: 1.1 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {children}
+      </motion.span>
+    </motion.a>
+  );
+}
+
 export function Nav() {
   const t = useTranslations('nav');
   const [isOpen, setIsOpen] = useState(false);
@@ -36,27 +74,18 @@ export function Nav() {
             {/* Logo - Ultra minimal */}
             <motion.a
               href="#hero"
-              className="text-base lg:text-lg font-medium tracking-tight uppercase"
+              className="text-base lg:text-lg font-bold tracking-tight lowercase"
               whileHover={{ opacity: 0.6 }}
               whileTap={{ scale: 0.98 }}
             >
-              FG Web Designs
+              felipegutierrez.dev
             </motion.a>
 
             {/* Desktop & Mobile: Social + Language + Menu */}
             <div className="flex items-center gap-6 lg:gap-8">
               {/* Social Icons - Ultra Minimal */}
-              <div className="flex items-center gap-5">
-                {/* Instagram - Simple square with circle */}
-                <motion.a
-                  href="https://www.instagram.com/fgwebdesign_/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative group"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label="Instagram"
-                >
+              <div className="flex items-center gap-3 lg:gap-4">
+                <SocialIcon href="https://www.instagram.com/fgwebdesign_/" label="Instagram">
                   <svg
                     className="w-5 h-5 lg:w-[22px] lg:h-[22px]"
                     fill="none"
@@ -71,18 +100,9 @@ export function Nav() {
                     <circle cx="12" cy="12" r="4" />
                     <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
                   </svg>
-                </motion.a>
+                </SocialIcon>
 
-                {/* LinkedIn - Simple L shape */}
-                <motion.a
-                  href="https://www.linkedin.com/in/felipegut/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative group"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label="LinkedIn"
-                >
+                <SocialIcon href="https://www.linkedin.com/in/felipegut/" label="LinkedIn">
                   <svg
                     className="w-5 h-5 lg:w-[22px] lg:h-[22px]"
                     fill="none"
@@ -96,7 +116,7 @@ export function Nav() {
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                     <path d="M8 11v5M8 8v.01M12 16v-5M12 11c0-1.5.8-2 2-2s2 .5 2 2v5" />
                   </svg>
-                </motion.a>
+                </SocialIcon>
               </div>
 
               {/* Divider - más sutil */}
@@ -180,33 +200,59 @@ export function Nav() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-background flex items-center justify-center"
+            className="fixed inset-0 z-40 bg-background flex items-center justify-center overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
+              className="flex flex-col items-center justify-center gap-1 lg:gap-2 py-24"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.key}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
+                  className="overflow-hidden"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.12 + index * 0.05,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
-                  <a
+                  <motion.a
                     href={item.href}
                     onClick={handleLinkClick}
-                    className="block text-4xl lg:text-6xl font-bold uppercase tracking-tight py-4 lg:py-6 hover:opacity-50 transition-opacity"
+                    className="relative flex items-center justify-center text-xl lg:text-2xl font-semibold uppercase tracking-[0.08em] px-8 py-2.5 lg:py-3 rounded-full"
+                    whileHover="hover"
+                    initial="rest"
+                    animate="rest"
                   >
-                    {t(item.key)}
-                  </a>
+                    <motion.span
+                      className="absolute inset-0 rounded-full bg-foreground"
+                      variants={{
+                        rest: { scale: 0.4, opacity: 0 },
+                        hover: { scale: 1, opacity: 1 },
+                      }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                    <motion.span
+                      className="relative z-10"
+                      variants={{
+                        rest: { color: 'var(--foreground)' },
+                        hover: { color: 'var(--background)' },
+                      }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      {t(item.key)}
+                    </motion.span>
+                  </motion.a>
                 </motion.div>
               ))}
             </motion.div>

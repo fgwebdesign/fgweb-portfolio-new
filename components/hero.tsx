@@ -39,45 +39,12 @@ export function Hero() {
         <HeroMinimalBackground />
       </div>
 
-      {/* Mancha que sigue al cursor: oscurece/desatura el fondo con blur para dar profundidad */}
+      {/* Cursor custom minimal */}
       <HeroCursorSpotlight targetId="hero" />
 
       {/* Ventanas flotantes tipo editor - SIEMPRE visibles en desktop */}
       <HeroSkillsWindow position="top-left" delay={1} />
       <HeroProfileWindow position="bottom-right" delay={1.5} />
-
-      {/* Firma en video */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={mounted ? { opacity: 1, scale: 1 } : {}}
-        transition={{ delay: 2, duration: 0.8 }}
-        className="hidden lg:block absolute top-[580px] lg:top-[600px] xl:top-[620px] left-[60px] xl:left-[120px] 2xl:left-[180px] z-20"
-      >
-        <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <div className="relative border border-foreground/10 bg-background px-4 py-2 shadow-lg rounded-lg">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-[100px] lg:w-[120px] xl:w-[140px] h-auto opacity-90"
-            >
-              <source src="/signaturefg2.mp4" type="video/mp4" />
-            </video>
-            
-            <p className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[8px] uppercase tracking-[0.15em] text-foreground/40 whitespace-nowrap">
-              {tCommon('signature')}
-            </p>
-          </div>
-        </motion.div>
-      </motion.div>
 
       {/* Contenido principal */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-32">
@@ -91,7 +58,7 @@ export function Hero() {
               delay: 0.2,
               ease: [0.22, 1, 0.36, 1] 
             }}
-            className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black mb-8 lg:mb-12 leading-[0.9] tracking-tighter uppercase"
+            className="text-[clamp(2rem,8vw,3.5rem)] lg:text-[clamp(3.5rem,7vw,6rem)] font-bold mb-8 lg:mb-12 leading-[0.95] tracking-tight lowercase"
           >
             {words.map((word, index) => (
               <span
