@@ -261,30 +261,31 @@
   },
   "skills": {
     "title": "Skills",
-    "subtitle": "Technologies & tools",
+    "subtitle": "These are some of the skills and tools I've been working with over the past few years.",
     "eyebrow": "Technologies & Tools",
     "skillSingular": "skill",
     "skillPlural": "skills",
+    "mostUsed": "Most used",
     "categories": [
       {
-        "name": "Frontend",
-        "items": ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "SCSS", "Motion", "GSAP"]
+        "name": "Frontend Technologies",
+        "items": ["React Js", "Next Js", "HTML", "CSS", "JavaScript", "TypeScript", "Bootstrap", "Material UI", "TailWind"]
       },
       {
-        "name": "CMS",
-        "items": ["WordPress", "Shopify", "WooCommerce", "Contentful"]
+        "name": "CMS & Web Builders",
+        "items": ["WordPress", "WebFlow", "Elementor Pro"]
       },
       {
-        "name": "QA / Testing",
-        "items": ["Jest", "React Testing Library", "Cypress", "Playwright", "Postman", "JMeter"]
+        "name": "Testing & Quality Assurance",
+        "items": ["Cypress", "Postman", "BrowserStack", "Xray Testing", "Zephyr Testing", "App Center", "TestFlight", "Vysor Mirroring"]
       },
       {
-        "name": "Languages",
-        "items": ["JavaScript", "TypeScript", "Python", "PHP", "SQL"]
+        "name": "Programming Languages",
+        "items": ["JavaScript", "TypeScript", "Kotlin", "JAVA", "PHP", "C++"]
       },
       {
-        "name": "Tools",
-        "items": ["Git", "GitHub", "Figma", "Adobe XD", "Jira", "Notion", "VS Code"]
+        "name": "Development Tools",
+        "items": ["Android Studio", "Visual Studio Code", "LaunchDarkly", "Bitrise", "Git", "GitHub Desktop", "Figma", "Slack", "JIRA", "asana", "ClickUp", "Toggl Track", "Adobe Illustrator", "Adobe Photoshop", "Notion"]
       }
     ]
   },

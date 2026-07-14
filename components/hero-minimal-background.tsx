@@ -1,7 +1,6 @@
 'use client';
 
 import { motion, useReducedMotion } from 'motion/react';
-import { useEffect, useState } from 'react';
 import { useIsDesktop } from '@/hooks/use-is-desktop';
 
 const PALETTE = [
@@ -262,13 +261,8 @@ function BrushPath({ stroke, reduceMotion }: { stroke: BrushStroke; reduceMotion
 export function HeroMinimalBackground() {
   const isDesktop = useIsDesktop();
   const shouldReduceMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || !isDesktop) {
+  if (!isDesktop) {
     return null;
   }
 

@@ -58,7 +58,7 @@ export function Hero() {
               delay: 0.2,
               ease: [0.22, 1, 0.36, 1] 
             }}
-            className="text-[clamp(2rem,8vw,3.5rem)] lg:text-[clamp(3.5rem,7vw,6rem)] font-bold mb-8 lg:mb-12 leading-[0.95] tracking-tight lowercase"
+            className="text-[clamp(2rem,8vw,3.5rem)] lg:text-[clamp(3.5rem,7vw,6rem)] font-bold mb-8 lg:mb-12 leading-[0.95] tracking-tight lowercase select-none"
           >
             {words.map((word, index) => (
               <span

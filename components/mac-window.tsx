@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useEffect, useState, type ReactNode } from 'react';
+import { codeTheme } from './code-line';
 
 export type MacWindowPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
@@ -56,7 +57,8 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
       style={{ perspective: 1000 }}
     >
       <motion.div
-        className={`relative bg-[#1e1e1e] rounded-md overflow-hidden shadow-2xl border border-foreground/10 ${widthClassName ?? ''}`}
+        className={`relative rounded-md overflow-hidden shadow-2xl border border-foreground/10 select-none ${widthClassName ?? ''}`}
+        style={{ backgroundColor: codeTheme.background, transformStyle: 'preserve-3d' }}
         animate={{
           y: [0, -10, 0],
           rotateX: [-1, 1, -1],
@@ -71,10 +73,12 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
           rotateX: 0,
           transition: { duration: 0.3 },
         }}
-        style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Header con traffic lights interactivos */}
-        <div className="bg-[#252526] px-3 py-2 flex items-center justify-between border-b border-[#1e1e1e]">
+        <div
+          className="px-3 py-2 flex items-center justify-between border-b"
+          style={{ backgroundColor: codeTheme.header, borderColor: codeTheme.border }}
+        >
           <div className="flex items-center gap-3">
             <div className="flex gap-1.5">
               {/* Rojo - cerrar */}
@@ -125,7 +129,9 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
                 </motion.span>
               </motion.button>
             </div>
-            <span className="text-[11px] text-[#cccccc]/80 font-mono">{title}</span>
+            <span className="text-[11px] font-mono" style={{ color: codeTheme.variable, opacity: 0.8 }}>
+              {title}
+            </span>
           </div>
           <motion.div
             className="w-1.5 h-1.5 rounded-full bg-foreground/30"
@@ -144,7 +150,7 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: delay + 0.8, duration: 0.6 }}
-            className="px-4 py-5 font-mono text-[10px] lg:text-[11px] leading-[1.7] w-[220px] lg:w-[240px] xl:w-[280px] 2xl:w-[300px]"
+            className="px-4 py-5 font-mono text-[10px] lg:text-[11px] leading-[1.7] w-[220px] lg:w-[240px] xl:w-[280px] 2xl:w-[300px] select-none"
           >
             {children}
           </motion.div>

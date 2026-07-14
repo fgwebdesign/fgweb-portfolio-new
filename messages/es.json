@@ -261,29 +261,30 @@
   },
   "skills": {
     "title": "Habilidades",
-    "subtitle": "Tecnologías y herramientas",
+    "subtitle": "Estas son algunas de mis habilidades y herramientas con las que he estado trabajando durante los últimos años.",
     "eyebrow": "Tecnologías y Herramientas",
     "skillSingular": "habilidad",
     "skillPlural": "habilidades",
+    "mostUsed": "Más usadas",
     "categories": [
       {
-        "name": "Frontend",
-        "items": ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Bootstrap", "Material UI"]
+        "name": "Tecnologías Frontend",
+        "items": ["React Js", "Next Js", "HTML", "CSS", "JavaScript", "TypeScript", "Bootstrap", "Material UI", "TailWind"]
       },
       {
-        "name": "CMS",
+        "name": "CMS y Constructores Web",
         "items": ["WordPress", "WebFlow", "Elementor Pro"]
       },
       {
-        "name": "QA / Testing",
+        "name": "Testing y Control de Calidad",
         "items": ["Cypress", "Postman", "BrowserStack", "Xray Testing", "Zephyr Testing", "App Center", "TestFlight", "Vysor Mirroring"]
       },
       {
-        "name": "Lenguajes",
+        "name": "Lenguajes de Programación",
         "items": ["JavaScript", "TypeScript", "Kotlin", "JAVA", "PHP", "C++"]
       },
       {
-        "name": "Herramientas",
+        "name": "Herramientas de Desarrollo",
         "items": ["Android Studio", "Visual Studio Code", "LaunchDarkly", "Bitrise", "Git", "GitHub Desktop", "Figma", "Slack", "JIRA", "asana", "ClickUp", "Toggl Track", "Adobe Illustrator", "Adobe Photoshop", "Notion"]
       }
     ]

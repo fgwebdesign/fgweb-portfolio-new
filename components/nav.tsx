@@ -74,7 +74,7 @@ export function Nav() {
             {/* Logo - Ultra minimal */}
             <motion.a
               href="#hero"
-              className="text-base lg:text-lg font-bold tracking-tight lowercase"
+              className="text-base lg:text-lg font-bold tracking-tight lowercase select-none"
               whileHover={{ opacity: 0.6 }}
               whileTap={{ scale: 0.98 }}
             >
