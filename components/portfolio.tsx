@@ -12,30 +12,29 @@ import {
 } from '@/data/portfolio-projects';
 import { SECTION_EASE, SECTION_VIEWPORT } from '@/lib/motion-viewport';
 
-// Componente para generar código de barras único
-function Barcode({ id }: { id: string }) {
-  // Genera un patrón único basado en el ID
-  const seed = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const bars = Array.from({ length: 35 }, (_, i) => {
-    const height = ((seed * (i + 1)) % 3) + 1;
-    const width = ((seed * (i + 2)) % 2) + 1;
-    return { height: height * 25, width: width === 1 ? 2 : 3 };
-  });
+type PortfolioVisualSize = 'featured' | 'standard' | 'column';
 
-  return (
-    <div className="flex items-end gap-[1px] h-12">
-      {bars.map((bar, i) => (
-        <div
-          key={i}
-          className="bg-foreground"
-          style={{
-            height: `${bar.height}%`,
-            width: `${bar.width}px`,
-          }}
-        />
-      ))}
-    </div>
-  );
+const VISUAL_SIZE_CLASS: Record<PortfolioVisualSize, string> = {
+  featured: 'w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto',
+  standard: 'w-full max-w-sm sm:max-w-lg lg:max-w-2xl mx-auto',
+  column: 'w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none lg:mx-0',
+};
+
+const IMAGE_SIZES: Record<PortfolioVisualSize, string> = {
+  featured: '(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 960px',
+  standard: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px',
+  column: '(max-width: 1024px) 100vw, 45vw, 520px',
+};
+
+function parseStack(stack: string): string[] {
+  return stack.split(',').map((item) => item.trim()).filter(Boolean);
+}
+
+function getCategoryLabel(
+  category: string,
+  labels: Record<string, string>,
+): string {
+  return labels[category] ?? category;
 }
 
 // Marco adaptable para mockups (PNG con transparencia, perspectiva, 4:3)
@@ -44,12 +43,14 @@ function PortfolioProjectVisual({
   projectTitle,
   index,
   imageUnavailableLabel,
+  size = 'standard',
   className = '',
 }: {
   projectId: string;
   projectTitle: string;
   index: number;
   imageUnavailableLabel: string;
+  size?: PortfolioVisualSize;
   className?: string;
 }) {
   const tCommon = useTranslations('common');
@@ -73,7 +74,7 @@ function PortfolioProjectVisual({
   if (imageError) {
     return (
       <div
-        className={`relative w-full overflow-hidden rounded-sm border border-foreground/10 bg-foreground/[0.03] ${className}`}
+        className={`relative overflow-hidden rounded-sm border border-dashed border-foreground/15 bg-foreground/[0.02] ${VISUAL_SIZE_CLASS[size]} ${className}`}
         style={{ aspectRatio: aspect }}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
@@ -96,24 +97,135 @@ function PortfolioProjectVisual({
   }
 
   return (
-    <div
-      className={`relative w-full overflow-hidden rounded-sm border border-foreground/10 bg-[linear-gradient(145deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0.045)_50%,rgba(0,0,0,0.02)_100%)] group-hover:border-foreground/20 transition-colors duration-500 ${className}`}
-      style={{ aspectRatio: aspect }}
-    >
-      {/* Área interior con padding para mockups en perspectiva */}
-      <div className="absolute inset-3 sm:inset-5 lg:inset-8 xl:inset-10">
+    <div className={`${VISUAL_SIZE_CLASS[size]} ${className}`}>
+      <div className="relative w-full" style={{ aspectRatio: aspect }}>
         <Image
           src={imagePath}
           alt={tCommon('projectOf', { name: projectTitle })}
           fill
           loading="lazy"
           quality={82}
-          className="object-contain object-center drop-shadow-[0_12px_40px_rgba(0,0,0,0.12)] transition-transform duration-700 group-hover:scale-[1.015]"
+          className="object-contain object-center drop-shadow-[0_24px_48px_rgba(0,0,0,0.14)] transition-transform duration-700 group-hover:scale-[1.02]"
           onError={handleImageError}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+          sizes={IMAGE_SIZES[size]}
         />
       </div>
     </div>
+  );
+}
+
+const PROJECT_VIEWPORT = {
+  once: true,
+  amount: 0.15,
+  margin: '0px 0px -60px 0px',
+} as const;
+
+function PortfolioProjectEntry({
+  project,
+  index,
+  categoryLabels,
+  imageUnavailableLabel,
+  t,
+}: {
+  project: PortfolioProject;
+  index: number;
+  categoryLabels: Record<string, string>;
+  imageUnavailableLabel: string;
+  t: ReturnType<typeof useTranslations<'portfolio'>>;
+}) {
+  const isReversed = index % 2 === 1;
+  const projectNumber = String(index + 1).padStart(2, '0');
+
+  return (
+    <motion.article
+      className="relative border-b border-foreground/10 py-16 lg:py-24 last:border-b-0"
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={PROJECT_VIEWPORT}
+      transition={{ duration: 0.65, ease: SECTION_EASE }}
+    >
+      {/* Meta */}
+      <motion.div
+        className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-8 lg:mb-10"
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={PROJECT_VIEWPORT}
+        transition={{ duration: 0.5, delay: 0.04, ease: SECTION_EASE }}
+      >
+        <span className="text-xs font-mono tabular-nums text-foreground/35">{projectNumber}</span>
+        <span className="hidden sm:block w-px h-3 bg-foreground/15" aria-hidden />
+        <span className="text-[11px] uppercase tracking-[0.14em] text-foreground/50">
+          {getCategoryLabel(project.category, categoryLabels)}
+        </span>
+        <span className="hidden sm:block w-px h-3 bg-foreground/15" aria-hidden />
+        <span className="text-[11px] uppercase tracking-[0.14em] text-foreground/50 tabular-nums">
+          {project.year}
+        </span>
+      </motion.div>
+
+      <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-20 items-center">
+        {/* Texto */}
+        <div className={isReversed ? 'lg:order-2' : 'lg:order-1'}>
+          <motion.h3
+            className="text-[clamp(1.625rem,3.2vw,2.625rem)] font-semibold leading-[1.12] tracking-tight uppercase text-foreground mb-5 lg:mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={PROJECT_VIEWPORT}
+            transition={{ duration: 0.55, delay: 0.08, ease: SECTION_EASE }}
+          >
+            {project.title}
+          </motion.h3>
+
+          <motion.p
+            className="text-[0.95rem] lg:text-base leading-[1.75] text-foreground/60 max-w-xl mb-8"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={PROJECT_VIEWPORT}
+            transition={{ duration: 0.55, delay: 0.14, ease: SECTION_EASE }}
+          >
+            {project.description}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={PROJECT_VIEWPORT}
+            transition={{ duration: 0.5, delay: 0.2, ease: SECTION_EASE }}
+          >
+            <p className="text-[10px] uppercase tracking-[0.18em] text-foreground/40 mb-3">
+              {t('stackLabel')}
+            </p>
+            <ul className="flex flex-wrap gap-2">
+              {parseStack(project.stack).map((tech) => (
+                <li
+                  key={tech}
+                  className="px-3 py-1.5 rounded-full bg-foreground text-background text-[11px] tracking-wide"
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Mockup */}
+        <motion.div
+          className={isReversed ? 'lg:order-1' : 'lg:order-2'}
+          initial={{ opacity: 0, y: 28, x: isReversed ? -20 : 20 }}
+          whileInView={{ opacity: 1, y: 0, x: 0 }}
+          viewport={PROJECT_VIEWPORT}
+          transition={{ duration: 0.65, delay: 0.12, ease: SECTION_EASE }}
+        >
+          <PortfolioProjectVisual
+            projectId={project.id}
+            projectTitle={project.title}
+            index={index}
+            size="column"
+            imageUnavailableLabel={imageUnavailableLabel}
+          />
+        </motion.div>
+      </div>
+    </motion.article>
   );
 }
 
@@ -133,20 +245,13 @@ export function Portfolio() {
     { key: 'catalog', label: t('filterCatalog') },
   ];
 
+  const categoryLabels = Object.fromEntries(
+    filters.filter((f) => f.key !== 'all').map((f) => [f.key, f.label]),
+  ) as Record<string, string>;
+
   const filteredProjects = activeFilter === 'all'
     ? projects
     : projects.filter((project) => project.category === activeFilter);
-
-  // Layouts alternados para cada proyecto (tipo editorial)
-  const getProjectLayout = (index: number) => {
-    const layouts = [
-      'large-title',      // Título gigante dominante
-      'split-vertical',   // Dividido verticalmente
-      'compact',          // Compacto con énfasis en data
-      'magazine-spread',  // Estilo revista spread
-    ];
-    return layouts[index % layouts.length];
-  };
 
   return (
     <section id="portfolio" className="py-24 lg:py-32 bg-background overflow-hidden">
@@ -235,513 +340,18 @@ export function Portfolio() {
           ))}
         </motion.div>
 
-        {/* Projects grid editorial */}
-        <div className="space-y-24 lg:space-y-40">
-          {filteredProjects.map((project, index) => {
-            const layout = getProjectLayout(index);
-            const isEven = index % 2 === 0;
-
-            return (
-              <motion.article
-                key={project.id}
-                className="group cursor-pointer relative"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.2, margin: "-100px" }}
-                transition={{ duration: 0.6 }}
-              >
-                {layout === 'large-title' && (
-                  <div className="relative">
-                    {/* Header con código de barras y metadata - entra desde arriba */}
-                    <motion.div 
-                      className="flex items-start justify-between mb-8 pb-6 border-b border-foreground/10 group-hover:border-foreground/30 transition-colors"
-                      initial={{ opacity: 0, y: -60, filter: 'blur(10px)' }}
-                      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-                      whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                    >
-                      {/* Barcode - desde izquierda */}
-                      <motion.div 
-                        className="space-y-2"
-                        initial={{ opacity: 0, x: -80, rotateY: -90 }}
-                        whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
-                        whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                      >
-                        <Barcode id={project.id} />
-                        <p className="text-xs tracking-[0.15em] text-foreground/40 group-hover:text-foreground/70 transition-colors">
-                          {t('projectIdLabel')}: {project.id.toUpperCase()}
-                        </p>
-                      </motion.div>
-
-                      {/* Year/Category - desde derecha */}
-                      <motion.div 
-                        className="text-right"
-                        initial={{ opacity: 0, x: 80, rotateY: 90 }}
-                        whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-                        whileHover={{ x: -4, transition: { duration: 0.2 } }}
-                      >
-                        <p className="text-sm uppercase tracking-[0.15em] text-foreground/60 mb-1 group-hover:text-foreground transition-colors">
-                          {project.category}
-                        </p>
-                        <motion.p 
-                          className="text-4xl font-bold"
-                          initial={{ opacity: 0, scale: 0.5 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: 0.5, ease: 'backOut' }}
-                          whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                        >
-                          {project.year}
-                        </motion.p>
-                      </motion.div>
-                    </motion.div>
-
-                    {/* Título gigante - desde abajo con blur */}
-                    <motion.h3
-                      className="text-[clamp(2rem,8vw,6rem)] font-bold leading-[0.9] tracking-tighter uppercase mb-8 cursor-pointer"
-                      initial={{ opacity: 0, y: 100, filter: 'blur(20px)', scale: 0.9 }}
-                      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
-                      whileHover={{ 
-                        x: 20,
-                        scale: 1.02,
-                        color: 'rgba(0, 0, 0, 0.9)',
-                        transition: { duration: 0.4 } 
-                      }}
-                    >
-                      {project.title}
-                    </motion.h3>
-
-                    {/* Content grid */}
-                    <div className="grid lg:grid-cols-3 gap-8">
-                      {/* Stack - desde izquierda */}
-                      <motion.div 
-                        className="lg:col-span-1 space-y-4 cursor-pointer"
-                        initial={{ opacity: 0, x: -60, rotateX: -45 }}
-                        whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
-                        whileHover={{ x: 8, transition: { duration: 0.3 } }}
-                      >
-                        <div>
-                          <motion.p 
-                            className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-2"
-                            whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
-                          >
-                            {t('stackLabel')}
-                          </motion.p>
-                          <motion.p 
-                            className="text-sm font-medium"
-                            whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
-                          >
-                            {project.stack}
-                          </motion.p>
-                        </div>
-                      </motion.div>
-
-                      {/* Description - desde derecha */}
-                      <motion.div 
-                        className="lg:col-span-2 cursor-pointer"
-                        initial={{ opacity: 0, x: 60, rotateX: 45 }}
-                        whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-                        whileHover={{ x: 4, transition: { duration: 0.3 } }}
-                      >
-                        <motion.p 
-                          className="text-base leading-relaxed text-foreground/70"
-                          whileHover={{ 
-                            color: 'rgba(0, 0, 0, 0.85)',
-                            transition: { duration: 0.2 }
-                          }}
-                        >
-                          {project.description}
-                        </motion.p>
-                      </motion.div>
-                    </div>
-
-                    {/* Imagen del proyecto - con escala y rotación */}
-                    <motion.div
-                      className="mt-8"
-                      initial={{ opacity: 0, y: 24 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-                    >
-                      <PortfolioProjectVisual
-                        projectId={project.id}
-                        projectTitle={project.title}
-                        index={index}
-                        imageUnavailableLabel={t('imageUnavailable')}
-                      />
-                    </motion.div>
-                  </div>
-                )}
-
-                {layout === 'split-vertical' && (
-                  <div className={`grid lg:grid-cols-2 gap-12 ${isEven ? '' : 'lg:grid-flow-dense'}`}>
-                    {/* Visual - entra con escala desde el lado correspondiente */}
-                    <motion.div 
-                      className={isEven ? 'lg:col-start-1' : 'lg:col-start-2'}
-                      initial={{ 
-                        opacity: 0, 
-                        x: isEven ? -100 : 100, 
-                        scale: 0.8,
-                        rotateY: isEven ? -45 : 45 
-                      }}
-                      whileInView={{ 
-                        opacity: 1, 
-                        x: 0, 
-                        scale: 1,
-                        rotateY: 0 
-                      }}
-                      viewport={{ once: true, amount: 0.4 }}
-                      transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
-                      whileHover={{ scale: 1.02, transition: { duration: 0.4 } }}
-                    >
-                      <div className="relative">
-                        <PortfolioProjectVisual
-                          projectId={project.id}
-                          projectTitle={project.title}
-                          index={index}
-                          imageUnavailableLabel={t('imageUnavailable')}
-                        />
-                        <motion.div
-                          className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10"
-                          initial={{ opacity: 0, y: 30, scale: 0 }}
-                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
-                          whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
-                        >
-                          <div className="bg-background/90 backdrop-blur-sm p-2 rounded">
-                            <Barcode id={project.id} />
-                          </div>
-                        </motion.div>
-                      </div>
-                    </motion.div>
-
-                    {/* Content - entra desde el lado opuesto */}
-                    <motion.div 
-                      className={`flex flex-col justify-center ${isEven ? 'lg:col-start-2' : 'lg:col-start-1'}`}
-                      initial={{ 
-                        opacity: 0, 
-                        x: isEven ? 100 : -100,
-                        filter: 'blur(10px)' 
-                      }}
-                      whileInView={{ 
-                        opacity: 1, 
-                        x: 0,
-                        filter: 'blur(0px)' 
-                      }}
-                      viewport={{ once: true, amount: 0.4 }}
-                      transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-                      whileHover={{ x: isEven ? 8 : -8, transition: { duration: 0.3 } }}
-                    >
-                      <div className="space-y-6">
-                        {/* Year/Category - desde arriba */}
-                        <motion.div
-                          initial={{ opacity: 0, y: -40 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                        >
-                          <motion.p 
-                            className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-2 cursor-pointer"
-                            whileHover={{ letterSpacing: '0.25em', color: 'rgba(0, 0, 0, 0.7)', transition: { duration: 0.2 } }}
-                          >
-                            {project.year} / {project.category}
-                          </motion.p>
-                          
-                          {/* Title - aparece con blur */}
-                          <motion.h3 
-                            className="text-[clamp(1.75rem,6vw,3.5rem)] font-bold leading-[0.95] tracking-tighter uppercase cursor-pointer"
-                            initial={{ opacity: 0, filter: 'blur(20px)', x: -30 }}
-                            whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-                            whileHover={{ 
-                              x: 8,
-                              scale: 1.02,
-                              color: 'rgba(0, 0, 0, 0.95)',
-                              transition: { duration: 0.3 } 
-                            }}
-                          >
-                            {project.title}
-                          </motion.h3>
-                        </motion.div>
-
-                        {/* Divider - crece desde izquierda */}
-                        <motion.div 
-                          className="w-24 h-[2px] bg-foreground"
-                          initial={{ opacity: 0, width: 0 }}
-                          whileInView={{ opacity: 1, width: '6rem' }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ width: '8rem', height: '3px', transition: { duration: 0.3 } }}
-                        />
-
-                        {/* Stack - desde izquierda */}
-                        <motion.div
-                          initial={{ opacity: 0, x: -40, rotateX: -30 }}
-                          whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                        >
-                          <motion.p 
-                            className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-3 cursor-pointer"
-                            whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
-                          >
-                            {t('technologyStackLabel')}
-                          </motion.p>
-                          <motion.p 
-                            className="text-sm font-medium mb-6"
-                            whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
-                          >
-                            {project.stack}
-                          </motion.p>
-                        </motion.div>
-
-                        {/* Description - desde abajo */}
-                        <motion.p 
-                          className="text-base leading-relaxed text-foreground/70 cursor-pointer"
-                          initial={{ opacity: 0, y: 40 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ 
-                            x: 4,
-                            color: 'rgba(0, 0, 0, 0.85)',
-                            transition: { duration: 0.2 }
-                          }}
-                        >
-                          {project.description}
-                        </motion.p>
-
-                        {/* ID - aparece con fade */}
-                        <motion.div 
-                          className="pt-4"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: 1, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                        >
-                          <motion.p 
-                            className="text-xs tracking-[0.15em] text-foreground/40 cursor-pointer"
-                            whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
-                          >
-                            {t('projectIdLabel')}: {project.id.toUpperCase()}
-                          </motion.p>
-                        </motion.div>
-                      </div>
-                    </motion.div>
-                  </div>
-                )}
-
-                {(layout === 'compact' || layout === 'magazine-spread') && (
-                  <motion.div 
-                    className="border border-foreground/10 p-8 lg:p-12 group-hover:border-foreground/30 transition-colors"
-                    initial={{ opacity: 0, scale: 0.95, borderColor: 'rgba(0, 0, 0, 0)' }}
-                    whileInView={{ opacity: 1, scale: 1, borderColor: 'rgba(0, 0, 0, 0.1)' }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-                  >
-                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-                      {/* Left: Metadata - entra desde izquierda */}
-                      <motion.div 
-                        className="lg:w-64 flex-shrink-0 space-y-6"
-                        initial={{ opacity: 0, x: -80, rotateY: -45 }}
-                        whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                        viewport={{ once: true, amount: 0.4 }}
-                        transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
-                        whileHover={{ x: -8, transition: { duration: 0.3 } }}
-                      >
-                        {/* Barcode - aparece con escala */}
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0, rotate: -90 }}
-                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
-                          whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
-                        >
-                          <Barcode id={project.id} />
-                        </motion.div>
-                        
-                        <div className="space-y-4">
-                          {/* Project ID - desde abajo */}
-                          <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                          >
-                            <motion.p 
-                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
-                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
-                            >
-                              {t('projectLabel')}
-                            </motion.p>
-                            <motion.p 
-                              className="text-sm font-medium cursor-pointer"
-                              whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
-                            >
-                              {project.id.toUpperCase()}
-                            </motion.p>
-                          </motion.div>
-
-                          {/* Year - crece desde el centro */}
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.6, ease: 'backOut' }}
-                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                          >
-                            <motion.p 
-                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
-                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
-                            >
-                              {t('yearLabel')}
-                            </motion.p>
-                            <motion.p 
-                              className="text-3xl font-bold cursor-pointer"
-                              whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                            >
-                              {project.year}
-                            </motion.p>
-                          </motion.div>
-
-                          {/* Category - desde abajo */}
-                          <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
-                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                          >
-                            <motion.p 
-                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
-                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
-                            >
-                              {t('categoryLabel')}
-                            </motion.p>
-                            <motion.p 
-                              className="text-sm font-medium cursor-pointer"
-                              whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
-                            >
-                              {project.category}
-                            </motion.p>
-                          </motion.div>
-
-                          {/* Stack - desde abajo */}
-                          <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-                            whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                          >
-                            <motion.p 
-                              className="text-xs uppercase tracking-[0.15em] text-foreground/40 mb-1 cursor-pointer"
-                              whileHover={{ letterSpacing: '0.2em', transition: { duration: 0.2 } }}
-                            >
-                              {t('stackLabel')}
-                            </motion.p>
-                            <motion.p 
-                              className="text-sm font-medium cursor-pointer"
-                              whileHover={{ x: 4, color: 'rgba(0, 0, 0, 1)', transition: { duration: 0.2 } }}
-                            >
-                              {project.stack}
-                            </motion.p>
-                          </motion.div>
-                        </div>
-                      </motion.div>
-
-                      {/* Right: Content - entra desde derecha */}
-                      <motion.div 
-                        className="flex-1"
-                        initial={{ opacity: 0, x: 80, filter: 'blur(10px)' }}
-                        whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                        viewport={{ once: true, amount: 0.4 }}
-                        transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-                        whileHover={{ x: 8, transition: { duration: 0.3 } }}
-                      >
-                        {/* Title - aparece desde arriba con blur */}
-                        <motion.h3 
-                          className="text-[clamp(1.75rem,6vw,3.5rem)] font-bold leading-[0.95] tracking-tighter uppercase mb-6 cursor-pointer"
-                          initial={{ opacity: 0, y: -40, filter: 'blur(15px)' }}
-                          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ 
-                            x: 8,
-                            scale: 1.02,
-                            color: 'rgba(0, 0, 0, 0.95)',
-                            transition: { duration: 0.3 } 
-                          }}
-                        >
-                          {project.title}
-                        </motion.h3>
-
-                        {/* Description - aparece desde abajo */}
-                        <motion.p 
-                          className="text-base leading-relaxed text-foreground/70 mb-8 cursor-pointer"
-                          initial={{ opacity: 0, y: 40 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ 
-                            x: 4,
-                            color: 'rgba(0, 0, 0, 0.85)',
-                            transition: { duration: 0.2 }
-                          }}
-                        >
-                          {project.description}
-                        </motion.p>
-
-                        {/* Imagen del proyecto - crece con rotación */}
-                        <motion.div
-                          className="relative cursor-pointer"
-                          initial={{ opacity: 0, scale: 0.85, rotateX: -12 }}
-                          whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
-                          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-                          whileHover={{ scale: 1.01, transition: { duration: 0.4 } }}
-                        >
-                          <PortfolioProjectVisual
-                            projectId={project.id}
-                            projectTitle={project.title}
-                            index={index}
-                            imageUnavailableLabel={t('imageUnavailable')}
-                          />
-                        </motion.div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Hover effect: línea que crece al scrollear */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] bg-foreground"
-                  initial={{ width: 0, opacity: 0 }}
-                  whileInView={{ width: '100%', opacity: 0.3 }}
-                  viewport={{ once: true, amount: 0.8 }}
-                  transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-                  whileHover={{ opacity: 1 }}
-                />
-              </motion.article>
-            );
-          })}
+        {/* Projects */}
+        <div>
+          {filteredProjects.map((project, index) => (
+            <PortfolioProjectEntry
+              key={project.id}
+              project={project}
+              index={index}
+              categoryLabels={categoryLabels}
+              imageUnavailableLabel={t('imageUnavailable')}
+              t={t}
+            />
+          ))}
         </div>
       </div>
     </section>
