@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './language-switcher';
@@ -46,12 +46,19 @@ function SocialIcon({
 export function Nav() {
   const t = useTranslations('nav');
   const [isOpen, setIsOpen] = useState(false);
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) setHoveredKey(null);
+  }, [isOpen]);
+
+  const isMenuInverted = hoveredKey !== null;
 
   const navItems = [
     { key: 'services', href: '#services' },
     { key: 'process', href: '#process' },
     { key: 'portfolio', href: '#portfolio' },
-    { key: 'clients', href: '#clients' },
+    { key: 'products', href: '#products' },
     { key: 'about', href: '#about' },
     { key: 'skills', href: '#skills' },
     { key: 'experience', href: '#experience' },
@@ -200,11 +207,15 @@ export function Nav() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-background flex items-center justify-center overflow-y-auto"
+            className="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{
+              opacity: 1,
+              backgroundColor: isMenuInverted ? '#000000' : '#ffffff',
+            }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            onMouseLeave={() => setHoveredKey(null)}
           >
             <motion.div
               className="flex flex-col items-center justify-center gap-1 lg:gap-2 py-24"
@@ -213,48 +224,42 @@ export function Nav() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.key}
-                  className="overflow-hidden"
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.12 + index * 0.05,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  <motion.a
-                    href={item.href}
-                    onClick={handleLinkClick}
-                    className="relative flex items-center justify-center text-xl lg:text-2xl font-semibold uppercase tracking-[0.08em] px-8 py-2.5 lg:py-3 rounded-full"
-                    whileHover="hover"
-                    initial="rest"
-                    animate="rest"
+              {navItems.map((item, index) => {
+                const isHovered = hoveredKey === item.key;
+
+                return (
+                  <motion.div
+                    key={item.key}
+                    className="overflow-hidden"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.12 + index * 0.05,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                   >
-                    <motion.span
-                      className="absolute inset-0 rounded-full bg-foreground"
-                      variants={{
-                        rest: { scale: 0.4, opacity: 0 },
-                        hover: { scale: 1, opacity: 1 },
+                    <motion.a
+                      href={item.href}
+                      onClick={handleLinkClick}
+                      onMouseEnter={() => setHoveredKey(item.key)}
+                      className="relative flex items-center justify-center text-xl lg:text-2xl font-semibold uppercase tracking-[0.08em] px-8 py-2.5 lg:py-3"
+                      animate={{
+                        color: isMenuInverted
+                          ? isHovered
+                            ? '#ffffff'
+                            : 'rgba(255,255,255,0.35)'
+                          : '#0a0a0a',
+                        scale: isHovered ? 1.04 : 1,
                       }}
                       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                    <motion.span
-                      className="relative z-10"
-                      variants={{
-                        rest: { color: 'var(--foreground)' },
-                        hover: { color: 'var(--background)' },
-                      }}
-                      transition={{ duration: 0.25 }}
                     >
                       {t(item.key)}
-                    </motion.span>
-                  </motion.a>
-                </motion.div>
-              ))}
+                    </motion.a>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </motion.div>
         )}

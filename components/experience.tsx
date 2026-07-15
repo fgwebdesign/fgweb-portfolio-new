@@ -97,6 +97,8 @@ function CompanyLogo({ job }: { job: ExperienceJob }) {
         src={job.logo}
         alt={tCommon('logoOf', { name: job.company })}
         fill
+        loading="lazy"
+        quality={75}
         className="object-cover"
         onError={() => setImageError(true)}
         sizes="80px"

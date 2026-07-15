@@ -1,7 +1,12 @@
 {
   "metadata": {
-    "title": "FG Web Designs | Desarrollador Frontend y QA Engineer",
-    "description": "Servicios profesionales de desarrollo web y aseguramiento de calidad. Sitios web personalizados, plataformas e-commerce y diseños responsivos con testing meticuloso."
+    "title": "FG WEB DESIGNS - Desarrollo Web y Sistemas Profesionales en Uruguay | Diseño Web Montevideo",
+    "description": "🏆 Diseñador Web certificado y especialista en QA en Uruguay. Desarrollo web y sistemas a medida para empresas en Uruguay y el mundo. Sitios responsive, e-commerce, landing pages y plataformas personalizadas. ¡Cotiza tu proyecto hoy!",
+    "ogTitle": "FG WEB DESIGNS - Desarrollo Web y Sistemas Profesionales en Uruguay",
+    "ogDescription": "Diseñador Web certificado y especialista en QA en Uruguay. Desarrollo web, sistemas a medida, landing pages y e-commerce para empresas locales e internacionales.",
+    "twitterDescription": "Desarrollo web y sistemas profesionales en Uruguay. Sitios web, e-commerce y soluciones a medida para todo el mundo.",
+    "jsonLdDescription": "Diseñador Web certificado y especialista en QA en Uruguay. Desarrollo web y sistemas profesionales en Montevideo.",
+    "keywords": "diseño web uruguay, desarrollo web montevideo, desarrollo de sistemas uruguay, diseñador web montevideo, desarrollo web uruguay, landing pages uruguay, e-commerce montevideo, diseño web profesional uruguay, desarrollo web empresas montevideo, desarrollo web internacional, sistemas a medida uruguay, diseño web responsive uruguay, web design uruguay, desarrollo de plataformas uruguay, software a medida uruguay"
   },
   "common": {
     "loadMore": "Cargar más",
@@ -15,6 +20,7 @@
     "services": "Servicios",
     "process": "Proceso",
     "portfolio": "Portafolio",
+    "products": "Productos",
     "clients": "Clientes",
     "about": "Acerca de",
     "skills": "Habilidades",
@@ -183,20 +189,68 @@
     "filterCatalog": "Catálogo Web",
     "projects": [
       {
-        "id": "cebala",
-        "title": "Cebala E-Commerce",
-        "year": "2025",
-        "category": "ecommerce",
-        "stack": "WordPress, Elementor, WP Forms, WP Staging",
-        "description": "E-commerce para una tienda que vende mates, bombillas y accesorios para el mate, con un diseño moderno y minimalista. Construido con WordPress para un rendimiento óptimo."
+        "id": "rs-investments",
+        "title": "RS Investments",
+        "year": "2026",
+        "category": "catalog",
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Plataforma inmobiliaria premium para Punta del Este y la costa uruguaya. Buscador por venta y alquiler, filtros por tipo de propiedad, zonas populares, listados destacados y experiencia boutique en rsinvestmentsuy.com."
       },
       {
-        "id": "dracostore",
-        "title": "DracoStore E-Commerce",
+        "id": "schweizer",
+        "title": "Schweizer Psychology",
+        "year": "2025",
+        "category": "landing",
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Sitio web profesional para el psicólogo clínico Martin Schweizer. Plataforma bilingüe con servicios, membresías, carrusel de testimonios, CTAs de reserva y un diseño orientado a la confianza para terapia online a nivel mundial en schweizerpsychology.com."
+      },
+      {
+        "id": "suen",
+        "title": "SUEN Uruguay",
+        "year": "2025",
+        "category": "landing",
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Sitio web para la Sociedad Uruguaya de Endocannabinología. Plataforma de sociedad científica con línea de tiempo histórica, beneficios para socios, calendario de eventos, directorio de investigadores, recursos educativos y área de miembros en suen.uy."
+      },
+      {
+        "id": "castelier",
+        "title": "Castelier Bienes Raíces",
+        "year": "2024",
+        "category": "catalog",
+        "stack": "WordPress, Elementor Pro, Houzez",
+        "description": "Sitio web inmobiliario para Castelier en Punta del Este. Hero cinematográfico, buscador avanzado de propiedades por tipo, dormitorios y rango de precios, listados destacados y formulario para publicar inmuebles en castelier.com.uy."
+      },
+      {
+        "id": "luzuy",
+        "title": "Luz Uy Importaciones",
         "year": "2025",
         "category": "ecommerce",
-        "stack": "WordPress, WP Backery, WP Forms, WooCommerce",
-        "description": "E-commerce para una tienda que vende tecnología para el deporte y la salud, con un diseño moderno y minimalista. Construido con WordPress para un rendimiento óptimo."
+        "stack": "WordPress, WooCommerce, Elementor Pro",
+        "description": "E-commerce de artículos importados para el hogar: deco, juguetes, tecnología, material escolar y accesorios para piscina. Catálogo por categorías, promociones, envíos a todo el país y pagos con Mercado Pago en luzuyimportaciones.com."
+      },
+      {
+        "id": "byk",
+        "title": "B&K Arquitectos",
+        "year": "2026",
+        "category": "landing",
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Sitio web para estudio de arquitectura y constructora. Galería de proyectos con filtros, carrusel hero, obras en proceso, servicios y formulario de contacto. Diseño oscuro minimalista para bykarquitectos.com."
+      },
+      {
+        "id": "jeydi",
+        "title": "JEYDI Studio",
+        "year": "2025",
+        "category": "landing",
+        "stack": "Next.js, Tailwind CSS, TypeScript, React",
+        "description": "Portfolio audiovisual para JEYDI — Shot by Jeydi. Experiencia inmersiva con reel principal, listas de shorts y comerciales, menú fullscreen y estética dark con identidad visual fuerte en jeydi.com.uy."
+      },
+      {
+        "id": "drones-orientales",
+        "title": "Drones Orientales",
+        "year": "2024",
+        "category": "landing",
+        "stack": "WordPress, Elementor Pro",
+        "description": "Sitio web corporativo para servicios de aeroaplicación agrícola con drones. Hero inmersivo, servicios de herbicidas y fungicidas, estadísticas de operación, galería de trabajos y formulario de contacto en dronesorientales.com."
       },
       {
         "id": "casa-brava-studio",
@@ -211,24 +265,51 @@
         "title": "Casa Brava E-Commerce",
         "year": "2025",
         "category": "ecommerce",
-        "stack": "WordPress, WP Backery, WP Forms, WooCommerce",
-        "description": "E-commerce de muebles y decoración con un diseño moderno y minimalista. Implementación completa de WooCommerce con sistema de pagos, gestión de inventario y panel de administración personalizado."
+        "stack": "WordPress, WooCommerce, Elementor Pro",
+        "description": "Tienda online de muebles para living, comedor y dormitorio. Implementación completa de WooCommerce con variantes de producto, campañas promocionales, flujos de combo en checkout y una experiencia de compra premium en casabrava.com.uy."
       },
       {
-        "id": "schweizer",
-        "title": "Schweizer Psychology",
+        "id": "cebala",
+        "title": "Cebala E-Commerce",
         "year": "2025",
-        "category": "landing",
-        "stack": "Next.js, Tailwind CSS, TypeScript, React",
-        "description": "Sitio web profesional para servicios de psicología, con sistema de reserva de citas, blog integrado y área de recursos para pacientes. Diseño enfocado en la experiencia del usuario y la accesibilidad."
-      },
+        "category": "ecommerce",
+        "stack": "WordPress, Elementor, WP Forms, WP Staging",
+        "description": "E-commerce para una tienda que vende mates, bombillas y accesorios para el mate, con un diseño moderno y minimalista. Construido con WordPress para un rendimiento óptimo."
+      }
+    ]
+  },
+  "products": {
+    "title": "Productos",
+    "subtitle": "Plataformas SaaS diseñadas, desarrolladas y lanzadas de punta a punta",
+    "volumeLabel": "Volumen — 001",
+    "builtLabel": "Construido y en vivo",
+    "yearsRange": "2025—2026",
+    "productIdLabel": "ID",
+    "stackLabel": "Stack",
+    "roleLabel": "Rol",
+    "categoryLabel": "Categoría",
+    "featuresLabel": "Funcionalidades clave",
+    "statusLabel": "Estado",
+    "statusLive": "En producción",
+    "visitWebsite": "Visitar sitio web",
+    "list": [
       {
-        "id": "suen",
-        "title": "SUEN Uruguay",
-        "year": "2025",
-        "category": "landing",
-        "stack": "Next.js, Tailwind CSS, TypeScript, React",
-        "description": "Plataforma digital para servicios de bienestar y salud, con integración de calendario para citas, sistema de membresías y contenido multimedia interactivo."
+        "id": "matchly",
+        "title": "Matchly",
+        "tagline": "La plataforma integral para gestionar tu club de pádel",
+        "year": "2026",
+        "category": "SaaS · Deportes",
+        "stack": "Next.js, React, TypeScript, Tailwind CSS",
+        "role": "Desarrollo Full Stack y Diseño de Producto",
+        "description": "Matchly centraliza torneos, ligas, punto de venta, registro de clases y una app móvil para jugadores — pensada para clubs de pádel profesionales en Uruguay. Cuadros automáticos, pantalla TV en vivo, soporte multi-sede y operación en tiempo real sin herramientas fragmentadas.",
+        "features": [
+          "Panel de administración",
+          "Kiosco POS",
+          "Gestión de torneos",
+          "Sistema de ligas",
+          "App móvil del jugador",
+          "Pantalla TV en vivo"
+        ]
       }
     ]
   },

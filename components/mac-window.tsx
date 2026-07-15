@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { codeTheme } from './code-line';
+import { HERO_SEQUENCE } from '@/data/hero-sequence';
 
 export type MacWindowPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
@@ -50,9 +51,9 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
         rotateZ: isVisible ? 0 : -5,
       }}
       transition={{
-        duration: isVisible ? 0.8 : 0.5,
-        delay: isVisible ? delay + 0.5 : 0,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: isVisible ? HERO_SEQUENCE.macWindow.shellDuration : 0.5,
+        delay: isVisible ? delay : 0,
+        ease: HERO_SEQUENCE.ease,
       }}
       style={{ perspective: 1000 }}
     >
@@ -149,7 +150,11 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: delay + 0.8, duration: 0.6 }}
+            transition={{
+              delay: delay + HERO_SEQUENCE.macWindow.contentStagger,
+              duration: 0.55,
+              ease: HERO_SEQUENCE.ease,
+            }}
             className="px-4 py-5 font-mono text-[10px] lg:text-[11px] leading-[1.7] w-[220px] lg:w-[240px] xl:w-[280px] 2xl:w-[300px] select-none"
           >
             {children}

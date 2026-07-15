@@ -6,10 +6,9 @@ import { getSkillIconConfig } from '@/data/skill-icons';
 
 interface SkillTileProps {
   name: string;
-  index: number;
 }
 
-export function SkillTile({ name, index }: SkillTileProps) {
+export function SkillTile({ name }: SkillTileProps) {
   const config = getSkillIconConfig(name);
   const sources = config?.sources ?? [];
   const [sourceIndex, setSourceIndex] = useState(0);
@@ -24,21 +23,13 @@ export function SkillTile({ name, index }: SkillTileProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24, rotateX: 12 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 0.5,
-        delay: (index % 8) * 0.04,
-        ease: [0.22, 1, 0.36, 1],
-      }}
       whileHover={{
         y: -8,
         rotateX: 8,
         rotateY: -6,
         transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
       }}
-      className="group relative aspect-square"
+      className="group relative aspect-square h-full"
       style={{ transformStyle: 'preserve-3d', perspective: 800 }}
     >
       <div

@@ -71,6 +71,8 @@ export function Clients() {
                   src={client.logo}
                   alt={tCommon('logoOf', { name: client.name })}
                   fill
+                  loading="lazy"
+                  quality={75}
                   className="object-contain grayscale group-hover:grayscale-0 transition-all duration-500 p-4"
                 />
               </div>

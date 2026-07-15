@@ -46,28 +46,28 @@ export function Process() {
         className="absolute inset-0 opacity-[0.015]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.015 }}
-        viewport={{ once: false, amount: 0.8 }}
+        viewport={{ once: true, amount: 0.8 }}
         transition={{ duration: 1 }}
       >
         <motion.div 
           className="absolute top-1/4 left-0 w-full h-px bg-foreground"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
         />
         <motion.div 
           className="absolute top-2/4 left-0 w-full h-px bg-foreground"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
         />
         <motion.div 
           className="absolute top-3/4 left-0 w-full h-px bg-foreground"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
         />
       </motion.div>
@@ -78,7 +78,7 @@ export function Process() {
           className="mb-24 lg:mb-40"
           initial={{ opacity: 0, y: -80, filter: 'blur(20px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
         >
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
@@ -88,13 +88,13 @@ export function Process() {
                 className="flex items-center gap-4 mb-6"
                 initial={{ opacity: 0, x: -60 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
               >
                 <motion.div
                   initial={{ width: 0, opacity: 0 }}
                   whileInView={{ width: '4rem', opacity: 1 }}
-                  viewport={{ once: false }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
                   <motion.div 
@@ -121,7 +121,7 @@ export function Process() {
                 className="text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9]"
                 initial={{ opacity: 0, x: -100, filter: 'blur(15px)' }}
                 whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
               >
                 <motion.span
@@ -145,7 +145,7 @@ export function Process() {
               className="hidden lg:flex items-center gap-3"
               initial={{ opacity: 0, x: 80, rotate: 90, scale: 0.5 }}
               whileInView={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.4, ease: 'backOut' }}
             >
               <motion.div 
@@ -181,7 +181,7 @@ export function Process() {
                 className={`relative ${layout.containerClass}`}
                 initial={{ opacity: 0, y: 100, scale: 0.9, rotateX: -20 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{
                   duration: 1,
                   delay: index * 0.15,
@@ -209,7 +209,7 @@ export function Process() {
                   className={`${layout.numberClass} font-black text-foreground/[0.05] select-none cursor-pointer z-0`}
                   initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ once: false }}
+                  viewport={{ once: true }}
                   transition={{ 
                     duration: 1.2, 
                     delay: index * 0.15 + 0.2, 
@@ -250,7 +250,7 @@ export function Process() {
                       width: isEven ? '6rem' : '8rem',
                       opacity: 1
                     }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{
                       duration: 0.8,
                       delay: index * 0.15 + 0.3,
@@ -277,7 +277,7 @@ export function Process() {
                       x: 0, 
                       filter: 'blur(0px)' 
                     }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{
                       duration: 0.8,
                       delay: index * 0.15 + 0.4,
@@ -300,7 +300,7 @@ export function Process() {
                     className="text-base lg:text-lg text-foreground/60 leading-relaxed max-w-xl mb-8 cursor-pointer"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 0.6, y: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{
                       duration: 0.8,
                       delay: index * 0.15 + 0.5,
@@ -333,7 +333,7 @@ export function Process() {
                     className="space-y-3 lg:space-y-4"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ 
                       duration: 0.6,
                       delay: index * 0.15 + 0.6 
@@ -345,7 +345,7 @@ export function Process() {
                         className="flex items-start gap-3 group/item cursor-pointer"
                         initial={{ opacity: 0, x: -40, scale: 0.9 }}
                         whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{
                           duration: 0.6,
                           delay: index * 0.15 + 0.7 + detailIndex * 0.1,
@@ -361,7 +361,7 @@ export function Process() {
                           className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-foreground/30 rounded-full mt-2 shrink-0 group-hover/item:bg-foreground transition-colors"
                           initial={{ scale: 0 }}
                           whileInView={{ scale: 1 }}
-                          viewport={{ once: false }}
+                          viewport={{ once: true }}
                           transition={{ 
                             duration: 0.4, 
                             delay: index * 0.15 + 0.8 + detailIndex * 0.1,
@@ -384,7 +384,7 @@ export function Process() {
                     className="flex gap-0.5 mt-8 lg:mt-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ 
                       duration: 0.6,
                       delay: index * 0.15 + 0.9,
@@ -396,7 +396,7 @@ export function Process() {
                         key={i}
                         initial={{ scaleY: 0, opacity: 0 }}
                         whileInView={{ scaleY: 1, opacity: 1 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{
                           duration: 0.4,
                           delay: index * 0.15 + 1 + i * 0.05,

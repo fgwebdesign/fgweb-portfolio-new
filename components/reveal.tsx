@@ -71,7 +71,7 @@ export function Reveal({
       initial="hidden"
       whileInView="visible"
       exit="hidden"
-      viewport={{ once: false, amount }}
+      viewport={{ once: true, amount }}
       variants={variants}
       className={className}
     >

@@ -1,14 +1,19 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion } from 'motion/react';
-import { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'motion/react';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { SECTION_EASE, SECTION_VIEWPORT } from '@/lib/motion-viewport';
+
+const AUTOPLAY_MS = 6500;
+const CARD_SCROLL_PX = 420;
 
 export function Services() {
   const t = useTranslations('services');
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const sectionInView = useInView(sectionRef, { amount: 0.35 });
   
   const services = t.raw('list') as Array<{
     title: string;
@@ -16,10 +21,10 @@ export function Services() {
     items: string[];
   }>;
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = useCallback((direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const scrollAmount = 420; // Ancho de card + gap
+      const scrollAmount = CARD_SCROLL_PX;
       
       if (direction === 'right') {
         // Si está al final, volver al inicio
@@ -49,63 +54,76 @@ export function Services() {
         }
       }
     }
-  };
+  }, []);
 
-  // Autoplay con loop infinito
+  // Autoplay solo cuando la sección está visible
   useEffect(() => {
-    if (!isAutoPlaying || !scrollContainerRef.current) return;
+    if (!isAutoPlaying || !scrollContainerRef.current || !sectionInView) return;
 
     const interval = setInterval(() => {
       scroll('right');
-    }, 4000);
+    }, AUTOPLAY_MS);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, sectionInView, scroll]);
+
+  // Pausar carrusel al scrollear verticalmente dentro de la sección
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const onWheel = () => setIsAutoPlaying(false);
+    el.addEventListener('wheel', onWheel, { passive: true });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, []);
 
   const handleManualScroll = () => {
     setIsAutoPlaying(false);
   };
 
   return (
-    <section id="services" className="relative py-32 lg:py-40 bg-background overflow-hidden">
-      {/* Línea de transición desde Hero - entra desde arriba */}
+    <section
+      ref={sectionRef}
+      id="services"
+      className="relative min-h-[100svh] flex flex-col justify-center py-28 lg:py-36 bg-background overflow-hidden"
+    >
+      {/* Línea de transición desde Hero */}
       <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-foreground/20 to-transparent"
         initial={{ height: 0, opacity: 0 }}
         whileInView={{ height: 128, opacity: 1 }}
-        viewport={{ once: false, amount: 0.8 }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
+        viewport={SECTION_VIEWPORT}
+        transition={{ duration: 0.8, ease: SECTION_EASE }}
       />
 
-      <div ref={sectionRef} className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        {/* Header editorial - entra desde arriba con blur */}
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12 w-full">
+        {/* Header editorial */}
         <motion.div
-          className="mb-20 lg:mb-32"
-          initial={{ opacity: 0, y: -80, filter: 'blur(20px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
+          className="mb-16 lg:mb-24"
+          initial={{ opacity: 0, y: -48 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={SECTION_VIEWPORT}
+          transition={{ duration: 0.75, ease: SECTION_EASE }}
         >
           <div className="flex items-start justify-between mb-8">
             <div className="flex-1">
               {/* Subtitle - desde izquierda */}
               <motion.p
                 className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-4"
-                initial={{ opacity: 0, x: -60, rotateY: -45 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+                initial={{ opacity: 0, x: -32 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={SECTION_VIEWPORT}
+                transition={{ duration: 0.6, delay: 0.1, ease: SECTION_EASE }}
               >
                 {t('subtitle')}
               </motion.p>
-              
-              {/* Title - desde izquierda con más delay */}
+
               <motion.h2
                 className="text-[clamp(2rem,8vw,4.5rem)] font-bold leading-[0.9] tracking-tighter uppercase"
-                initial={{ opacity: 0, x: -120, filter: 'blur(15px)' }}
-                whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                viewport={{ once: false }}
-                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+                initial={{ opacity: 0, x: -48 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={SECTION_VIEWPORT}
+                transition={{ duration: 0.7, delay: 0.15, ease: SECTION_EASE }}
               >
                 {t('title')}
               </motion.h2>
@@ -114,10 +132,10 @@ export function Services() {
             {/* Services count - desde derecha con escala */}
             <motion.div
               className="hidden lg:block text-right"
-              initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.8, delay: 0.4, ease: 'backOut' }}
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={SECTION_VIEWPORT}
+              transition={{ duration: 0.6, delay: 0.2, ease: SECTION_EASE }}
             >
               <p className="text-xs uppercase tracking-[0.15em] text-foreground/60 mb-2">
                 {t('servicesLabel')}
@@ -128,20 +146,19 @@ export function Services() {
         </motion.div>
 
         {/* Scroll container con flechas - Loop infinito */}
-        <div className="relative lg:px-24">
-          {/* Flecha izquierda - entra desde izquierda */}
+        <div className="relative lg:px-24 py-4 lg:py-8">
           <motion.button
             className="hidden lg:flex absolute -left-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center bg-foreground text-background transition-all duration-300"
             onClick={() => {
               setIsAutoPlaying(false);
               scroll('left');
             }}
-            whileHover={{ scale: 1.15, x: -4 }}
+            whileHover={{ scale: 1.1, x: -4 }}
             whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, x: -60, rotate: -90 }}
-            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: 'backOut' }}
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={SECTION_VIEWPORT}
+            transition={{ duration: 0.55, delay: 0.25, ease: SECTION_EASE }}
           >
             <motion.svg
               className="w-5 h-5"
@@ -155,19 +172,18 @@ export function Services() {
             </motion.svg>
           </motion.button>
 
-          {/* Flecha derecha - entra desde derecha */}
           <motion.button
             className="hidden lg:flex absolute -right-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center bg-foreground text-background transition-all duration-300"
             onClick={() => {
               setIsAutoPlaying(false);
               scroll('right');
             }}
-            whileHover={{ scale: 1.15, x: 4 }}
+            whileHover={{ scale: 1.1, x: 4 }}
             whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, x: 60, rotate: 90 }}
-            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: 'backOut' }}
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={SECTION_VIEWPORT}
+            transition={{ duration: 0.55, delay: 0.3, ease: SECTION_EASE }}
           >
             <motion.svg
               className="w-5 h-5"
@@ -181,15 +197,14 @@ export function Services() {
             </motion.svg>
           </motion.button>
 
-          {/* Cards scrolleables - entran escalonadas desde abajo */}
           <motion.div
             ref={scrollContainerRef}
-            className="overflow-x-auto overflow-y-hidden pb-8 scrollbar-hide snap-x snap-mandatory"
+            className="overflow-x-auto overflow-y-hidden pb-8 scrollbar-hide snap-x snap-mandatory scroll-smooth"
             onScroll={handleManualScroll}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={SECTION_VIEWPORT}
+            transition={{ duration: 0.6, delay: 0.2, ease: SECTION_EASE }}
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -200,15 +215,15 @@ export function Services() {
                 <motion.article
                   key={index}
                   className="group relative border border-foreground/10 hover:border-foreground/40 transition-all duration-500 snap-start flex-shrink-0 w-[320px] lg:w-[400px] bg-background hover:bg-foreground/[0.02]"
-                  initial={{ opacity: 0, y: 80, rotateX: -30, scale: 0.9 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ ...SECTION_VIEWPORT, amount: 0.35 }}
                   transition={{
-                    duration: 0.8,
-                    delay: 0.8 + index * 0.1,
-                    ease: [0.22, 1, 0.36, 1] as const,
+                    duration: 0.55,
+                    delay: Math.min(index * 0.08, 0.4),
+                    ease: SECTION_EASE,
                   }}
-                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 >
                   {/* Card content */}
                   <div className="p-8 lg:p-10">
@@ -343,13 +358,12 @@ export function Services() {
             </div>
           </motion.div>
 
-          {/* Indicador de autoplay - entra con fade */}
           <motion.div
-            className="flex items-center justify-center gap-4 mt-8"
-            initial={{ opacity: 0, y: 30 }}
+            className="flex items-center justify-center gap-4 mt-10"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.8 }}
-            transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] as const }}
+            viewport={SECTION_VIEWPORT}
+            transition={{ duration: 0.55, delay: 0.35, ease: SECTION_EASE }}
           >
             <motion.p
               className="text-xs uppercase tracking-[0.15em] text-foreground/40"
@@ -375,20 +389,19 @@ export function Services() {
           </motion.div>
         </div>
 
-        {/* CTA - entra desde abajo con blur */}
         <motion.div
-          className="mt-20 lg:mt-28 text-center"
-          initial={{ opacity: 0, y: 60, filter: 'blur(15px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: false, amount: 0.8 }}
-          transition={{ duration: 1, delay: 1.3, ease: [0.22, 1, 0.36, 1] as const }}
+          className="mt-16 lg:mt-24 text-center"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={SECTION_VIEWPORT}
+          transition={{ duration: 0.65, delay: 0.2, ease: SECTION_EASE }}
         >
           <motion.p
             className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-6"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6, delay: 1.4 }}
+            viewport={SECTION_VIEWPORT}
+            transition={{ duration: 0.5, delay: 0.25 }}
             whileHover={{
               letterSpacing: '0.25em',
               color: 'rgb(0, 0, 0)',
@@ -400,10 +413,10 @@ export function Services() {
           <motion.a
             href="#contact"
             className="group inline-block px-12 py-5 bg-foreground text-background text-sm uppercase tracking-[0.15em] font-medium relative overflow-hidden"
-            initial={{ opacity: 0, scale: 0.8, rotateX: -30 }}
-            whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.8, delay: 1.5, ease: 'backOut' }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={SECTION_VIEWPORT}
+            transition={{ duration: 0.55, delay: 0.3, ease: SECTION_EASE }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >

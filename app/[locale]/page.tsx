@@ -1,15 +1,37 @@
-import { Nav } from "@/components/nav";
-import { Hero } from "@/components/hero";
-import { Services } from "@/components/services";
-import { Process } from "@/components/process";
-import { Portfolio } from "@/components/portfolio";
-import { Clients } from "@/components/clients";
-import { About } from "@/components/about";
-import { Skills } from "@/components/skills";
-import { Experience } from "@/components/experience";
-import { Education } from "@/components/education";
-import { Contact } from "@/components/contact";
-import { Footer } from "@/components/footer";
+import dynamic from 'next/dynamic';
+import { Nav } from '@/components/nav';
+import { Hero } from '@/components/hero';
+
+const Services = dynamic(() =>
+  import('@/components/services').then((m) => ({ default: m.Services })),
+);
+const Process = dynamic(() =>
+  import('@/components/process').then((m) => ({ default: m.Process })),
+);
+const Portfolio = dynamic(() =>
+  import('@/components/portfolio').then((m) => ({ default: m.Portfolio })),
+);
+const Products = dynamic(() =>
+  import('@/components/products').then((m) => ({ default: m.Products })),
+);
+const About = dynamic(() =>
+  import('@/components/about').then((m) => ({ default: m.About })),
+);
+const Skills = dynamic(() =>
+  import('@/components/skills').then((m) => ({ default: m.Skills })),
+);
+const Experience = dynamic(() =>
+  import('@/components/experience').then((m) => ({ default: m.Experience })),
+);
+const Education = dynamic(() =>
+  import('@/components/education').then((m) => ({ default: m.Education })),
+);
+const Contact = dynamic(() =>
+  import('@/components/contact').then((m) => ({ default: m.Contact })),
+);
+const Footer = dynamic(() =>
+  import('@/components/footer').then((m) => ({ default: m.Footer })),
+);
 
 export default function Home() {
   return (
@@ -19,7 +41,7 @@ export default function Home() {
       <Services />
       <Process />
       <Portfolio />
-      <Clients />
+      <Products />
       <About />
       <Skills />
       <Experience />

@@ -2,6 +2,8 @@
 
 import { motion, useReducedMotion } from 'motion/react';
 import { useIsDesktop } from '@/hooks/use-is-desktop';
+import { HeroCornerShapes } from './hero-corner-shapes';
+import { HERO_SEQUENCE } from '@/data/hero-sequence';
 
 const PALETTE = [
   '#0a0a0a',
@@ -262,12 +264,24 @@ export function HeroMinimalBackground() {
   const isDesktop = useIsDesktop();
   const shouldReduceMotion = useReducedMotion();
 
-  if (!isDesktop) {
-    return null;
-  }
-
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <motion.div
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: HERO_SEQUENCE.background.duration,
+        delay: HERO_SEQUENCE.background.enter,
+        ease: HERO_SEQUENCE.ease,
+      }}
+    >
+      <HeroCornerShapes
+        reduceMotion={!!shouldReduceMotion}
+        enterDelay={HERO_SEQUENCE.cornerShapes.enter}
+        enterDuration={HERO_SEQUENCE.cornerShapes.duration}
+      />
+
+      {isDesktop && (
       <svg
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
@@ -314,8 +328,9 @@ export function HeroMinimalBackground() {
           ))}
         </g>
       </svg>
+      )}
 
       <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.01] via-transparent to-foreground/[0.015]" />
-    </div>
+    </motion.div>
   );
 }
