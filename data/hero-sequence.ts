@@ -7,22 +7,40 @@ export const HERO_SEQUENCE = {
   cornerShapes: { enter: 0.2, duration: 1 },
 
   /** 2. Ventana skills.ts (arriba izquierda) */
-  skillsWindow: { enter: 0.4 },
+  skillsWindow: { enter: 0.35 },
 
   /** 3. Título felipegutierrez.dev */
-  title: { enter: 0.55, charSpeed: 95 },
+  title: { enter: 0.45, charSpeed: 72 },
 
-  /** Tras terminar el título — orden: profile → services → botones → scroll */
-  profileWindow: { afterTitle: 0.3 },
-  services: { afterTitle: 0.55 },
-  buttons: { afterTitle: 1.05 },
-  scroll: { afterTitle: 1.7 },
+  /**
+   * Tras terminar el título — offsets compactos para que nada quede colgado
+   * con el dominio largo (~2.1s de tipeo).
+   */
+  profileWindow: { afterTitle: 0.1, shellDelay: 0.06 },
+  services: { afterTitle: 0.22 },
+  description: { afterTitle: 0.38 },
+  buttons: { afterTitle: 0.55 },
+  scroll: { afterTitle: 0.85 },
 
   /** Pausa entre palabras del subtítulo de servicios */
   servicesWordPause: 2200,
 
   macWindow: {
-    shellDuration: 0.75,
-    contentStagger: 0.22,
+    shellDuration: 0.65,
+    /** Contenido entra cerca del final del shell, no al inicio */
+    contentDelayAfterShell: 0.42,
   },
 } as const;
+
+/** Estima cuánto tarda el typewriter del dominio (segundos). */
+export function estimateTitleTypeDuration(
+  text: string,
+  charSpeedMs: number,
+  startDelaySec: number,
+): number {
+  let ms = startDelaySec * 1000;
+  for (const char of text) {
+    ms += char === '.' ? charSpeedMs * 6 : charSpeedMs;
+  }
+  return ms / 1000;
+}

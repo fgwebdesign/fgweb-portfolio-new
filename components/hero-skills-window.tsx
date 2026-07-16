@@ -7,23 +7,20 @@ import { CodeLine, codeColors } from './code-line';
 interface HeroSkillsWindowProps {
   position: MacWindowPosition;
   delay?: number;
+  active?: boolean;
 }
 
-/** Ventana estilo editor con un resumen de skills, para mostrar en el Hero. */
-export function HeroSkillsWindow({ position, delay = 0 }: HeroSkillsWindowProps) {
-  const t = useTranslations('skills');
-  const categories = t.raw('categories') as Array<{ name: string; items: string[] }>;
-
-  const featured = categories
-    .flatMap((category) => category.items)
-    .slice(0, 7);
+/** Ventana estilo editor con capacidades genéricas, para mostrar en el Hero. */
+export function HeroSkillsWindow({ position, delay = 0, active = true }: HeroSkillsWindowProps) {
+  const t = useTranslations('hero');
+  const skills = t.raw('skills') as string[];
 
   let lineNumber = 1;
 
   return (
-    <MacWindow title="skills.ts" position={position} delay={delay}>
+    <MacWindow title="skills.ts" position={position} delay={delay} active={active}>
       <CodeLine number={lineNumber++}>
-        <span style={{ color: codeColors.comment }}>// core stack</span>
+        <span style={{ color: codeColors.comment }}>{'// capabilities'}</span>
       </CodeLine>
       <CodeLine number={lineNumber++}>
         <span style={{ color: codeColors.keyword }}>const</span>
@@ -33,11 +30,11 @@ export function HeroSkillsWindow({ position, delay = 0 }: HeroSkillsWindowProps)
         <span style={{ color: codeColors.type }}>[]</span>
         <span style={{ color: codeColors.punctuation }}> = [</span>
       </CodeLine>
-      {featured.map((skill, index) => (
+      {skills.map((skill, index) => (
         <CodeLine key={skill} number={lineNumber++}>
           <span style={{ color: codeColors.punctuation }}>  </span>
           <span style={{ color: codeColors.string }}>&apos;{skill}&apos;</span>
-          {index < featured.length - 1 && (
+          {index < skills.length - 1 && (
             <span style={{ color: codeColors.punctuation }}>,</span>
           )}
         </CodeLine>

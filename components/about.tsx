@@ -14,7 +14,7 @@ export function About() {
   }>;
 
   return (
-    <section id="about" className="py-24 lg:py-48 bg-background relative overflow-hidden">
+    <section id="about" aria-labelledby="about-heading" className="py-24 lg:py-48 bg-background relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="absolute top-1/4 left-0 w-1/2 h-px bg-foreground" />
@@ -48,6 +48,7 @@ export function About() {
           </motion.div>
           
           <motion.h2
+            id="about-heading"
             className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9] mb-8 lg:mb-16"
             animate={{
               y: [0, -6, 0],

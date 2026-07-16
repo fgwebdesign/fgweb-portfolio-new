@@ -29,6 +29,7 @@ function IntroSection() {
   return (
     <section
       id="contact"
+      aria-labelledby="contact-heading"
       className="min-h-[100svh] lg:min-h-screen flex flex-col items-center justify-center bg-background relative overflow-hidden px-6 pt-24 pb-32"
     >
       <motion.div
@@ -45,6 +46,7 @@ function IntroSection() {
       </motion.div>
 
       <motion.h2
+        id="contact-heading"
         className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4.5rem,9vw,8rem)] font-black tracking-tighter leading-[0.95] text-center uppercase max-w-[14ch] sm:max-w-none"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

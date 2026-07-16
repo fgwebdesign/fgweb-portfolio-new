@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import {
   orderPortfolioProjects,
@@ -14,6 +14,7 @@ import {
   useSectionScrollProgress,
   useSegmentProgress,
   useRevealMotion,
+  useScrollRevealEnabled,
   scrollItemRange,
   scrollItemPartRange,
 } from '@/hooks/use-scroll-reveal';
@@ -47,6 +48,7 @@ function getCategoryLabel(
 function PortfolioProjectVisual({
   projectId,
   projectTitle,
+  categoryLabel,
   index,
   imageUnavailableLabel,
   size = 'standard',
@@ -54,6 +56,7 @@ function PortfolioProjectVisual({
 }: {
   projectId: string;
   projectTitle: string;
+  categoryLabel: string;
   index: number;
   imageUnavailableLabel: string;
   size?: PortfolioVisualSize;
@@ -101,7 +104,7 @@ function PortfolioProjectVisual({
       <div className="relative w-full" style={{ aspectRatio: aspect }}>
         <Image
           src={imagePath}
-          alt={tCommon('projectOf', { name: projectTitle })}
+          alt={tCommon('projectPreviewAlt', { title: projectTitle, category: categoryLabel })}
           fill
           loading="lazy"
           quality={82}
@@ -122,6 +125,7 @@ function PortfolioProjectEntry({
   categoryLabels,
   imageUnavailableLabel,
   t,
+  scrollReveal,
 }: {
   project: PortfolioProject;
   index: number;
@@ -130,8 +134,8 @@ function PortfolioProjectEntry({
   categoryLabels: Record<string, string>;
   imageUnavailableLabel: string;
   t: ReturnType<typeof useTranslations<'portfolio'>>;
+  scrollReveal: boolean;
 }) {
-  const shouldReduceMotion = useReducedMotion();
   const isReversed = index % 2 === 1;
   const projectNumber = String(index + 1).padStart(2, '0');
   const textFromX = isReversed ? 48 : -48;
@@ -214,13 +218,14 @@ function PortfolioProjectEntry({
     <PortfolioProjectVisual
       projectId={project.id}
       projectTitle={project.title}
+      categoryLabel={getCategoryLabel(project.category, categoryLabels)}
       index={index}
       size="column"
       imageUnavailableLabel={imageUnavailableLabel}
     />
   );
 
-  if (shouldReduceMotion) {
+  if (!scrollReveal) {
     return (
       <article className="relative border-b border-foreground/10 py-12 lg:py-24 last:border-b-0">
         {meta}
@@ -289,18 +294,19 @@ function PortfolioFilterButton({
   onClick,
   sectionScroll,
   range,
+  scrollReveal,
 }: {
   label: string;
   isActive: boolean;
   onClick: () => void;
   sectionScroll: MotionValue<number>;
   range: [number, number];
+  scrollReveal: boolean;
 }) {
-  const shouldReduceMotion = useReducedMotion();
   const progress = useSegmentProgress(sectionScroll, range);
   const motionStyle = useRevealMotion(progress, { y: 16, scale: 0.92, blur: 6 });
 
-  if (shouldReduceMotion) {
+  if (!scrollReveal) {
     return (
       <button
         type="button"
@@ -336,7 +342,7 @@ function PortfolioFilterButton({
 
 export function Portfolio() {
   const t = useTranslations('portfolio');
-  const shouldReduceMotion = useReducedMotion();
+  const scrollReveal = useScrollRevealEnabled();
   const [activeFilter, setActiveFilter] = useState('all');
   const sectionRef = useRef<HTMLElement>(null);
   const sectionScroll = useSectionScrollProgress(sectionRef);
@@ -373,17 +379,22 @@ export function Portfolio() {
   const filtersBarMotion = useRevealMotion(filtersBarProgress, { y: 20, blur: 8 });
 
   return (
-    <section ref={sectionRef} id="portfolio" className="py-24 lg:py-32 bg-background overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="portfolio"
+      aria-labelledby="portfolio-heading"
+      className="py-24 lg:py-32 bg-background overflow-hidden"
+    >
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         {/* Header */}
-        {shouldReduceMotion ? (
+        {!scrollReveal ? (
           <div className="mb-12 lg:mb-32">
-            <div className="flex items-start justify-between mb-8">
-              <div>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-8">
+              <div className="min-w-0">
                 <p className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-3">
                   {t('volumeLabel')}
                 </p>
-                <h2 className="text-[clamp(3rem,15vw,12rem)] font-bold leading-[0.85] tracking-tighter uppercase">
+                <h2 id="portfolio-heading" className="text-[clamp(2.5rem,12vw,12rem)] font-bold leading-[0.85] tracking-tighter uppercase break-words">
                   {t('title')}
                 </h2>
               </div>
@@ -400,8 +411,8 @@ export function Portfolio() {
           </div>
         ) : (
           <div className="mb-12 lg:mb-32">
-            <div className="flex items-start justify-between mb-8">
-              <div>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-8">
+              <div className="min-w-0">
                 <motion.p
                   className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-3"
                   style={volumeMotion}
@@ -409,7 +420,8 @@ export function Portfolio() {
                   {t('volumeLabel')}
                 </motion.p>
                 <motion.h2
-                  className="text-[clamp(3rem,15vw,12rem)] font-bold leading-[0.85] tracking-tighter uppercase"
+                  id="portfolio-heading"
+                  className="text-[clamp(2.5rem,12vw,12rem)] font-bold leading-[0.85] tracking-tighter uppercase break-words"
                   style={titleMotion}
                 >
                   {t('title')}
@@ -432,7 +444,7 @@ export function Portfolio() {
         )}
 
         {/* Filters */}
-        {shouldReduceMotion ? (
+        {!scrollReveal ? (
           <div className="flex flex-wrap gap-2 mb-12 lg:mb-28 border-t border-b border-foreground/10 py-4 lg:py-6">
             {filters.map((filter, index) => (
               <PortfolioFilterButton
@@ -442,6 +454,7 @@ export function Portfolio() {
                 onClick={() => setActiveFilter(filter.key)}
                 sectionScroll={sectionScroll}
                 range={scrollItemRange(index, filters.length, [0.085, 0.14])}
+                scrollReveal={scrollReveal}
               />
             ))}
           </div>
@@ -458,6 +471,7 @@ export function Portfolio() {
                 onClick={() => setActiveFilter(filter.key)}
                 sectionScroll={sectionScroll}
                 range={scrollItemRange(index, filters.length, [0.085, 0.14])}
+                scrollReveal={scrollReveal}
               />
             ))}
           </motion.div>
@@ -475,6 +489,7 @@ export function Portfolio() {
               categoryLabels={categoryLabels}
               imageUnavailableLabel={t('imageUnavailable')}
               t={t}
+              scrollReveal={scrollReveal}
             />
           ))}
         </div>

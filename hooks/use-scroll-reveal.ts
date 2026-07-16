@@ -1,7 +1,15 @@
 'use client';
 
-import { useTransform, useSpring, useScroll, type MotionValue } from 'motion/react';
+import { useTransform, useSpring, useScroll, useReducedMotion, type MotionValue } from 'motion/react';
 import type { RefObject } from 'react';
+import { useIsDesktop } from '@/hooks/use-is-desktop';
+
+/** Scroll-driven reveal solo en desktop; en mobile el contenido debe verse al entrar. */
+export function useScrollRevealEnabled() {
+  const isDesktop = useIsDesktop();
+  const shouldReduceMotion = useReducedMotion();
+  return isDesktop && !shouldReduceMotion;
+}
 
 export const SCROLL_REVEAL_SPRING = {
   stiffness: 260,

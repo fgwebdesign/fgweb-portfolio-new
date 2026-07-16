@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { useTransition } from 'react';
 import { motion } from 'motion/react';
 
-const locales = ['en', 'es'] as const;
+const locales = ['es', 'en'] as const;
 type LocaleOption = (typeof locales)[number];
 
 export function LanguageSwitcher() {

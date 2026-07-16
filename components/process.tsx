@@ -40,7 +40,7 @@ export function Process() {
   ];
 
   return (
-    <section id="process" className="py-24 lg:py-48 bg-background relative overflow-hidden">
+    <section id="process" aria-labelledby="process-heading" className="py-24 lg:py-48 bg-background relative overflow-hidden">
       {/* Background decorations - entran desde los lados */}
       <motion.div 
         className="absolute inset-0 opacity-[0.015]"
@@ -118,6 +118,7 @@ export function Process() {
               
               {/* Title - desde izquierda con blur */}
               <motion.h2
+                id="process-heading"
                 className="text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9]"
                 initial={{ opacity: 0, x: -100, filter: 'blur(15px)' }}
                 whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}

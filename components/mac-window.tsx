@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'motion/react';
-import { useEffect, useState, type ReactNode } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
+import { useState, type ReactNode } from 'react';
 import { codeTheme } from './code-line';
 import { HERO_SEQUENCE } from '@/data/hero-sequence';
 
@@ -11,6 +11,8 @@ interface MacWindowProps {
   title: string;
   position: MacWindowPosition;
   delay?: number;
+  /** Cuando es false, la ventana no entra hasta activarse (evita remount). */
+  active?: boolean;
   children: ReactNode;
   widthClassName?: string;
 }
@@ -26,35 +28,55 @@ const positionClasses: Record<MacWindowPosition, string> = {
  * Ventana estilo macOS/VSCode reutilizable, con traffic lights interactivos
  * (cerrar, minimizar, maximizar) y animación flotante minimal.
  */
-export function MacWindow({ title, position, delay = 0, children, widthClassName }: MacWindowProps) {
-  const [mounted, setMounted] = useState(false);
+export function MacWindow({
+  title,
+  position,
+  delay = 0,
+  active = true,
+  children,
+  widthClassName,
+}: MacWindowProps) {
+  const shouldReduceMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(timer);
-  }, []);
+  const isShown = active && isVisible;
+  const shellDuration = HERO_SEQUENCE.macWindow.shellDuration;
+  const contentDelay = delay + HERO_SEQUENCE.macWindow.contentDelayAfterShell;
 
-  if (!mounted) return null;
+  const hiddenPose = {
+    opacity: 0,
+    y: 20,
+    rotateX: -15,
+    scale: 0.7,
+    rotateZ: -5,
+  } as const;
+
+  const shownPose = {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: isMinimized ? 0.8 : isMaximized ? 1.1 : 1,
+    rotateZ: 0,
+  } as const;
+
+  const shellTransition = shouldReduceMotion
+    ? { duration: 0, delay: 0 }
+    : {
+        duration: isShown ? shellDuration : 0.4,
+        delay: isShown ? delay : 0,
+        ease: HERO_SEQUENCE.ease,
+      };
 
   return (
     <motion.div
-      className={`absolute hidden lg:block ${positionClasses[position]} z-20`}
-      initial={{ opacity: 0, y: 20, rotateX: -15 }}
-      animate={{
-        opacity: isVisible ? 1 : 0,
-        y: isVisible ? 0 : 20,
-        rotateX: isVisible ? 0 : -15,
-        scale: isVisible ? (isMinimized ? 0.8 : isMaximized ? 1.1 : 1) : 0.7,
-        rotateZ: isVisible ? 0 : -5,
-      }}
-      transition={{
-        duration: isVisible ? HERO_SEQUENCE.macWindow.shellDuration : 0.5,
-        delay: isVisible ? delay : 0,
-        ease: HERO_SEQUENCE.ease,
-      }}
+      className={`absolute hidden lg:block ${positionClasses[position]} z-20 ${
+        !isShown ? 'pointer-events-none' : ''
+      }`}
+      initial={hiddenPose}
+      animate={isShown ? shownPose : hiddenPose}
+      transition={shellTransition}
       style={{ perspective: 1000 }}
     >
       <motion.div
@@ -149,12 +171,16 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
         >
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              delay: delay + HERO_SEQUENCE.macWindow.contentStagger,
-              duration: 0.55,
-              ease: HERO_SEQUENCE.ease,
-            }}
+            animate={{ opacity: isShown ? 1 : 0 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0, delay: 0 }
+                : {
+                    delay: isShown ? contentDelay : 0,
+                    duration: 0.5,
+                    ease: HERO_SEQUENCE.ease,
+                  }
+            }
             className="px-4 py-5 font-mono text-[10px] lg:text-[11px] leading-[1.7] w-[220px] lg:w-[240px] xl:w-[280px] 2xl:w-[300px] select-none"
           >
             {children}

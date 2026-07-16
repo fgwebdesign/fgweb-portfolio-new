@@ -111,14 +111,14 @@ export function Skills() {
   }>;
 
   return (
-    <section id="skills" className="py-24 lg:py-48 bg-background overflow-hidden">
+    <section id="skills" aria-labelledby="skills-heading" className="py-24 lg:py-48 bg-background overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <Reveal className="mb-12 lg:mb-24 text-center lg:text-left" amount={0.3}>
           <p className="text-xs uppercase tracking-[0.2em] text-secondary mb-4">
             {t('eyebrow')}
           </p>
-          <h2 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[0.95] tracking-tight uppercase">
+          <h2 id="skills-heading" className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[0.95] tracking-tight uppercase">
             {t('title')}
           </h2>
           <p className="mt-6 text-base lg:text-lg text-foreground/60 max-w-2xl mx-auto lg:mx-0 leading-relaxed">

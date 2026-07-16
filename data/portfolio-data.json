@@ -2,10 +2,10 @@
   "personal": {
     "name": "Felipe Gutierrez Romero",
     "phone": "+598 92 033 831",
-    "email": "contact@fgwebdesign.dev",
+    "email": "hello@felipegutierrez.dev",
     "location": "Uruguay",
-    "role": "CEO & Web Developer",
-    "company": "FG WEB DESIGNS"
+    "role": "Founder & Full Stack Developer",
+    "company": "felipegutierrez.dev"
   },
   "stats": {
     "experience": "5+",
@@ -139,9 +139,9 @@
   ],
   "experience": [
     {
-      "id": "fg-web-designs",
-      "company": "FG WEB DESIGNS",
-      "role": "CEO & Web Developer",
+      "id": "felipegutierrez-dev",
+      "company": "felipegutierrez.dev",
+      "role": "Founder & Full Stack Developer",
       "period": "2020 - Actual",
       "location": "Uruguay",
       "description": "Especializado en la gestión de diseño y desarrollo de páginas web a medida, incluyendo E-Commerce, landings y sitios corporativos.",

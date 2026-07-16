@@ -22,6 +22,7 @@ export function Hero() {
   const [titleTyped, setTitleTyped] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showServices, setShowServices] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
 
@@ -43,6 +44,7 @@ export function Hero() {
     if (shouldReduceMotion) {
       setShowProfile(true);
       setShowServices(true);
+      setShowDescription(true);
       setShowButtons(true);
       setShowScroll(true);
       return;
@@ -52,6 +54,7 @@ export function Hero() {
     const timers = [
       setTimeout(() => setShowProfile(true), ms(HERO_SEQUENCE.profileWindow.afterTitle)),
       setTimeout(() => setShowServices(true), ms(HERO_SEQUENCE.services.afterTitle)),
+      setTimeout(() => setShowDescription(true), ms(HERO_SEQUENCE.description.afterTitle)),
       setTimeout(() => setShowButtons(true), ms(HERO_SEQUENCE.buttons.afterTitle)),
       setTimeout(() => setShowScroll(true), ms(HERO_SEQUENCE.scroll.afterTitle)),
     ];
@@ -69,6 +72,7 @@ export function Hero() {
   return (
     <section
       id="hero"
+      aria-labelledby="hero-heading"
       className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center bg-background overflow-hidden"
     >
       <div className="absolute inset-0">
@@ -81,27 +85,30 @@ export function Hero() {
       <HeroSkillsWindow
         position="top-left"
         delay={HERO_SEQUENCE.skillsWindow.enter}
+        active={mounted || !!shouldReduceMotion}
       />
 
       {/* 4. profile.ts — después del título */}
-      {showProfile && (
-        <HeroProfileWindow position="bottom-right" delay={0.12} />
-      )}
+      <HeroProfileWindow
+        position="bottom-right"
+        delay={HERO_SEQUENCE.profileWindow.shellDelay}
+        active={showProfile}
+      />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-28 lg:py-32">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-32 sm:pt-24 sm:pb-28 lg:py-32">
         <div className="text-center">
           {/* 3. Título */}
           <motion.h1
+            id="hero-heading"
             initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1 } : {}}
             transition={{
-              duration: 0.45,
-              delay: HERO_SEQUENCE.title.enter,
+              duration: 0.35,
               ease: EASE,
             }}
             className="mb-8 lg:mb-12 min-h-[1.1em] flex justify-center select-none"
           >
-            <span className="relative inline-flex justify-center px-8 py-5 sm:px-10 sm:py-6 lg:px-14 lg:py-9">
+            <span className="relative inline-flex justify-center px-4 py-4 sm:px-8 sm:py-5 lg:px-14 lg:py-9 max-w-full">
               <span
                 className="absolute -inset-x-4 -inset-y-2 lg:-inset-x-6 lg:-inset-y-3 rounded-[2rem] bg-foreground/[0.04] blur-2xl pointer-events-none"
                 aria-hidden
@@ -126,14 +133,15 @@ export function Hero() {
                 )}
               </span>
             </span>
+            <span className="sr-only">{t('seoTagline')}</span>
           </motion.h1>
 
           {/* 5. Subtítulo servicios */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={showServices ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-            transition={{ duration: 0.65, ease: EASE }}
-            className="text-xl lg:text-2xl xl:text-3xl text-foreground/90 mb-12 lg:mb-16 font-medium tracking-tight min-h-[2.5em] flex items-center justify-center"
+            transition={{ duration: 0.55, ease: EASE }}
+            className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-foreground/90 mb-8 lg:mb-16 font-medium tracking-tight min-h-[2.5em] flex items-center justify-center px-2"
           >
             {showServices && (
               <Typewriter
@@ -143,11 +151,20 @@ export function Hero() {
             )}
           </motion.div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={showDescription ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.55, ease: EASE }}
+            className="text-sm lg:text-base text-foreground/55 leading-relaxed max-w-2xl mx-auto mb-8 lg:mb-14 px-2 sm:px-4 text-center"
+          >
+            {showDescription && t('description')}
+          </motion.p>
+
           {/* 6. CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={showButtons ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-            transition={{ duration: 0.7, ease: EASE }}
+            transition={{ duration: 0.55, ease: EASE }}
             className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center"
           >
             <motion.a

@@ -23,16 +23,16 @@ export function localize(text: LocalizedText, locale: Locale): string {
 
 export const experienceData: ExperienceJob[] = [
   {
-    id: 'fg-web-designs',
-    role: { es: 'CEO & Web Developer', en: 'CEO & Web Developer' },
-    company: 'FG WEB DESIGNS',
+    id: 'felipegutierrez-dev',
+    role: { es: 'Fundador & Desarrollador Full Stack', en: 'Founder & Full Stack Developer' },
+    company: 'felipegutierrez.dev',
     period: { es: '2020 - Actual', en: '2020 - Present' },
     location: { es: 'Uruguay', en: 'Uruguay' },
     description: {
-      es: 'Especializado en la gestión de diseño y desarrollo de páginas web a medida, incluyendo E-Commerce, landings y sitios corporativos.',
-      en: 'Specialized in the management of design and development of custom websites, including E-Commerce, landing pages and corporate websites.',
+      es: 'Desarrollo de productos SaaS, plataformas web y aplicaciones a medida para clientes en Uruguay y el mundo. Stack: React, Next.js, React Native, TypeScript y QA integrado en cada entrega.',
+      en: 'Building SaaS products, web platforms and custom applications for clients in Uruguay and worldwide. Stack: React, Next.js, React Native, TypeScript and QA built into every release.',
     },
-    skills: ['HTML', 'CSS', 'JavaScript', 'React Js', 'Tailwind CSS', 'WebFlow', 'Figma', 'WordPress', 'Adobe Photoshop'],
+    skills: ['React', 'Next.js', 'TypeScript', 'React Native', 'Tailwind CSS', 'Cypress', 'Postman', 'Figma'],
   },
   {
     id: 'practia',

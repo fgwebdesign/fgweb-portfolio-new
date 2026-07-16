@@ -1,4 +1,4 @@
-# FG Web Designs Portfolio
+# Felipe Gutiérrez Portfolio — felipegutierrez.dev
 
 Portfolio minimal blanco y negro construido con Next.js 15, TypeScript y animaciones de alto impacto.
 

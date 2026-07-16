@@ -7,14 +7,15 @@ import { CodeLine, codeColors } from './code-line';
 interface HeroProfileWindowProps {
   position: MacWindowPosition;
   delay?: number;
+  active?: boolean;
 }
 
 /** Ventana estilo editor con la información personal, para mostrar en el Hero. */
-export function HeroProfileWindow({ position, delay = 0 }: HeroProfileWindowProps) {
+export function HeroProfileWindow({ position, delay = 0, active = true }: HeroProfileWindowProps) {
   const t = useTranslations('hero');
 
   return (
-    <MacWindow title="profile.ts" position={position} delay={delay}>
+    <MacWindow title="profile.ts" position={position} delay={delay} active={active}>
       <CodeLine number={1}>
         <span style={{ color: codeColors.comment }}>// developer profile</span>
       </CodeLine>

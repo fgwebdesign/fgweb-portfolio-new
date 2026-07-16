@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './language-switcher';
+import { useScrollToSection } from '@/hooks/use-scroll-to-section';
 
 // Ícono social con círculo de fondo que se expande al hover, invirtiendo el color del ícono.
 function SocialIcon({
@@ -45,6 +46,7 @@ function SocialIcon({
 
 export function Nav() {
   const t = useTranslations('nav');
+  const { handleSectionClick } = useScrollToSection();
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
 
@@ -85,6 +87,7 @@ export function Nav() {
             {/* Logo - Ultra minimal */}
             <motion.a
               href="#hero"
+              onClick={(e) => handleSectionClick(e, 'hero')}
               className="text-base lg:text-lg font-bold tracking-tight lowercase select-none"
               whileHover={{ opacity: 0.6 }}
               whileTap={{ scale: 0.98 }}
@@ -247,7 +250,7 @@ export function Nav() {
                   >
                     <motion.a
                       href={item.href}
-                      onClick={handleLinkClick}
+                      onClick={(e) => handleSectionClick(e, item.href.slice(1), handleLinkClick)}
                       onMouseEnter={() => setHoveredKey(item.key)}
                       className="relative flex items-center justify-center text-xl lg:text-2xl font-semibold uppercase tracking-[0.08em] px-8 py-2.5 lg:py-3"
                       animate={{

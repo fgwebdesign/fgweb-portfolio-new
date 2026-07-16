@@ -9,14 +9,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: locale === routing.defaultLocale ? siteConfig.url : `${siteConfig.url}/${locale}`,
     lastModified,
     changeFrequency: 'monthly',
-    priority: 1,
+    priority: locale === routing.defaultLocale ? 1 : 0.9,
     alternates: {
-      languages: Object.fromEntries(
-        routing.locales.map((l) => [
-          l,
-          l === routing.defaultLocale ? siteConfig.url : `${siteConfig.url}/${l}`,
-        ]),
-      ),
+      languages: {
+        'x-default': siteConfig.url,
+        ...Object.fromEntries(
+          routing.locales.map((l) => [
+            l,
+            l === routing.defaultLocale ? siteConfig.url : `${siteConfig.url}/${l}`,
+          ]),
+        ),
+      },
     },
   }));
 }

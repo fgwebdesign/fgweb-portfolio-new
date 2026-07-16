@@ -4,7 +4,7 @@
 
 **Lee `PROJECT-CONTEXT.md` antes de hacer cualquier cambio.** Contiene arquitectura, stack, sistema de diseño, convenciones, anti-patrones y estado del proyecto.
 
-Resumen rápido: portfolio minimal B/N de Felipe Gutiérrez (FG Web Designs). Next.js 16 + React 19 + Tailwind v4 + Motion + next-intl (EN/ES). Animaciones sutiles, spacing estricto, sin colores de acento.
+Resumen rápido: portfolio minimal B/N de Felipe Gutiérrez (felipegutierrez.dev). Next.js 16 + React 19 + Tailwind v4 + Motion + next-intl (EN/ES). Animaciones sutiles, spacing estricto, sin colores de acento.
 
 ## Next.js 16 — breaking changes
 

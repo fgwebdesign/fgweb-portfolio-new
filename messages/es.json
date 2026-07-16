@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "title": "FG WEB DESIGNS - Desarrollo Web y Sistemas Profesionales en Uruguay | Diseño Web Montevideo",
-    "description": "🏆 Diseñador Web certificado y especialista en QA en Uruguay. Desarrollo web y sistemas a medida para empresas en Uruguay y el mundo. Sitios responsive, e-commerce, landing pages y plataformas personalizadas. ¡Cotiza tu proyecto hoy!",
-    "ogTitle": "FG WEB DESIGNS - Desarrollo Web y Sistemas Profesionales en Uruguay",
-    "ogDescription": "Diseñador Web certificado y especialista en QA en Uruguay. Desarrollo web, sistemas a medida, landing pages y e-commerce para empresas locales e internacionales.",
-    "twitterDescription": "Desarrollo web y sistemas profesionales en Uruguay. Sitios web, e-commerce y soluciones a medida para todo el mundo.",
-    "jsonLdDescription": "Diseñador Web certificado y especialista en QA en Uruguay. Desarrollo web y sistemas profesionales en Montevideo.",
-    "keywords": "diseño web uruguay, desarrollo web montevideo, desarrollo de sistemas uruguay, diseñador web montevideo, desarrollo web uruguay, landing pages uruguay, e-commerce montevideo, diseño web profesional uruguay, desarrollo web empresas montevideo, desarrollo web internacional, sistemas a medida uruguay, diseño web responsive uruguay, web design uruguay, desarrollo de plataformas uruguay, software a medida uruguay"
+    "title": "felipegutierrez.dev | desarrollador full stack en montevideo, uruguay",
+    "description": "Desarrollador Full Stack y QA Engineer en Montevideo, Uruguay. SaaS, plataformas web, apps React Native y automatización de pruebas para empresas en Uruguay, Latinoamérica y remoto internacional.",
+    "ogTitle": "felipegutierrez.dev — desarrollador full stack & qa engineer",
+    "ogDescription": "Portfolio de Felipe Gutiérrez desde Montevideo, Uruguay. Desarrollo Full Stack, SaaS, apps móviles y aseguramiento de calidad para Latinoamérica y el mundo.",
+    "twitterDescription": "Desarrollador Full Stack & QA Engineer en Uruguay. SaaS, web y React Native — felipegutierrez.dev",
+    "jsonLdDescription": "Felipe Gutiérrez — Desarrollador Full Stack y QA Engineer en Montevideo, Uruguay. SaaS, plataformas web, apps móviles y automatización de pruebas para Latinoamérica.",
+    "keywords": "felipe gutierrez desarrollador, felipegutierrez.dev, desarrollador full stack uruguay, desarrollador web montevideo, programador web uruguay, qa engineer uruguay, desarrollador react montevideo, next.js uruguay, react native uruguay, desarrollo saas uruguay, automatización de pruebas uruguay, freelance desarrollador montevideo, desarrollo software latinoamérica, ingeniero de software uruguay"
   },
   "common": {
     "loadMore": "Cargar más",
@@ -14,7 +14,8 @@
     "scroll": "Scroll",
     "signature": "Firma",
     "logoOf": "Logo de {name}",
-    "projectOf": "Proyecto {name}"
+    "projectOf": "Proyecto {name}",
+    "projectPreviewAlt": "{title} — {category} · desarrollo web uruguay"
   },
   "nav": {
     "services": "Servicios",
@@ -40,16 +41,24 @@
       "Aseguramiento de Calidad",
       "Automatización de Pruebas"
     ],
-    "description": "Construyo productos SaaS, plataformas web y apps mobile — de la arquitectura a producción. Código robusto, integraciones sólidas y calidad en cada release.",
+    "description": "Construyo productos SaaS, plataformas web y apps mobile para empresas en Uruguay y Latinoamérica — de la arquitectura a producción. Código robusto, integraciones sólidas y calidad en cada release.",
+    "seoTagline": "desarrollador full stack & qa engineer · montevideo, uruguay",
     "ctaDownload": "Descargar CV",
     "ctaContact": "Contacto",
     "role": "FullStack Developer",
     "location": "Uruguay",
-    "passion": "Quality Assurance"
+    "passion": "Quality Assurance",
+    "skills": [
+      "desarrollo mobile",
+      "testing automatizado y manual",
+      "integraciones con AI",
+      "desarrollo web",
+      "desarrollo full stack"
+    ]
   },
   "services": {
     "title": "Servicios",
-    "subtitle": "Lo que construyo",
+    "subtitle": "Lo que construyo para Uruguay y Latinoamérica",
     "servicesLabel": "Servicios",
     "serviceNumberLabel": "SERVICIO #",
     "includesLabel": "Incluye",
@@ -294,7 +303,7 @@
   "about": {
     "title": "Acerca de",
     "subtitle": "Quién soy",
-    "description": "Desarrollador Frontend y QA Engineer con pasión por crear experiencias digitales excepcionales. Combino sensibilidad de diseño con expertise técnico para entregar productos que son tanto hermosos como robustos.",
+    "description": "Desarrollador Full Stack y QA Engineer con base en Montevideo, Uruguay. Creo productos SaaS, plataformas web y apps mobile para clientes en Uruguay, Latinoamérica y proyectos remotos internacionales.",
     "stats": [
       {
         "value": "5",
@@ -354,8 +363,8 @@
     "skillsLabel": "Herramientas utilizadas",
     "jobs": [
       {
-        "company": "FG WEB DESIGNS",
-        "role": "CEO & Web Developer",
+        "company": "felipegutierrez.dev",
+        "role": "Fundador & Desarrollador Full Stack",
         "period": "2020 - Actual",
         "location": "Uruguay",
         "description": "Especializado en la gestión de diseño y desarrollo de páginas web a medida, incluyendo E-Commerce, landings y sitios corporativos."
@@ -422,7 +431,7 @@
     "title": "Hablemos",
     "subtitle": "Sobre futuros proyectos",
     "description": "¿Tenés un proyecto en mente? Hablemos sobre cómo podemos trabajar juntos para dar vida a tus ideas.",
-    "email": "hello@fgwebdesigns.dev",
+    "email": "hello@felipegutierrez.dev",
     "ctaEmail": "Enviar Email",
     "introSubtitle": "Iniciemos algo grande",
     "introTitleLine1": "Hablemos de",
@@ -451,7 +460,16 @@
     "formSuccessDescription": "Gracias por escribirme. Te voy a contactar muy pronto para hablar sobre tu proyecto."
   },
   "footer": {
-    "copyright": "© 2026 FG Web Designs. Todos los derechos reservados.",
-    "built": "Construido con Next.js, TypeScript y Motion"
+    "tagline": "Full Stack Developer & QA Engineer. Construyo productos SaaS, plataformas web y apps móviles.",
+    "location": "Montevideo, Uruguay",
+    "contactLabel": "Contacto",
+    "email": "hello@felipegutierrez.dev",
+    "availability": "Disponible para proyectos freelance y colaboraciones en todo el mundo.",
+    "navigateLabel": "Navegar",
+    "socialLabel": "Redes",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "cta": "Iniciar un proyecto",
+    "copyright": "© 2026 Felipe Gutiérrez. Todos los derechos reservados."
   }
 }

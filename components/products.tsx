@@ -65,32 +65,34 @@ function ProductImageFrame({
   title,
   viewSiteLabel,
   className = '',
+  imageClassName = '',
 }: {
   meta: ProductMeta;
   title: string;
   viewSiteLabel: string;
   className?: string;
+  imageClassName?: string;
 }) {
   return (
     <motion.a
       href={meta.url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group/img block relative overflow-hidden border border-foreground/10 bg-foreground/[0.02] hover:border-foreground/25 transition-colors ${className}`}
+      className={`group/img block relative overflow-hidden transition-opacity hover:opacity-90 ${className}`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={SECTION_VIEWPORT}
       transition={{ duration: 0.65, ease: EASE }}
       whileHover={{ y: -4 }}
     >
-      <div className="relative aspect-[4/3] w-full p-4 sm:p-6">
+      <div className="relative aspect-[4/3] w-full">
         <Image
           src={meta.image}
           alt={title}
           fill
           loading="lazy"
           quality={90}
-          className="object-contain object-center transition-transform duration-700 group-hover/img:scale-[1.02]"
+          className={`object-contain object-center transition-transform duration-700 group-hover/img:scale-[1.02] ${imageClassName}`}
           sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, 520px"
         />
       </div>
@@ -126,10 +128,10 @@ function ProductShowcase({
   tCommon: ReturnType<typeof useTranslations<'common'>>;
 }) {
   return (
-    <div className="relative border border-foreground/10 bg-background">
+    <div className="relative border border-foreground/10 bg-background overflow-hidden">
       {/* Meta bar */}
       <motion.div
-        className="flex flex-wrap items-center justify-between gap-4 px-5 sm:px-8 py-4 border-b border-foreground/10"
+        className="flex flex-wrap items-center justify-between gap-4 px-4 sm:px-8 py-4 border-b border-foreground/10"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={SECTION_VIEWPORT}
@@ -154,7 +156,7 @@ function ProductShowcase({
         </div>
       </motion.div>
 
-      <div className="px-5 sm:px-8 pt-8 pb-8 lg:pt-10 lg:pb-10">
+      <div className="px-4 sm:px-8 lg:pr-0 pt-8 pb-8 lg:pt-10 lg:pb-10">
         {/* Title block */}
         <motion.div
           className="mb-8 lg:mb-10 max-w-3xl"
@@ -171,28 +173,14 @@ function ProductShowcase({
           </p>
         </motion.div>
 
-        {/* Image + content */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Texto izquierda + imagen derecha (bleed) */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           <motion.div
-            className="lg:col-span-5 xl:col-span-5 max-w-xl lg:max-w-none mx-auto lg:mx-0 w-full"
-            initial={{ opacity: 0, x: -20 }}
+            className="lg:col-span-5 order-2 lg:order-1 space-y-8"
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={SECTION_VIEWPORT}
             transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
-          >
-            <ProductImageFrame
-              meta={meta}
-              title={product.title}
-              viewSiteLabel={tCommon('viewSite')}
-            />
-          </motion.div>
-
-          <motion.div
-            className="lg:col-span-7 xl:col-span-7 space-y-8"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={SECTION_VIEWPORT}
-            transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pb-6 border-b border-foreground/10">
               <MetaField label={t('stackLabel')} value={product.stack} />
@@ -200,7 +188,7 @@ function ProductShowcase({
               <MetaField label={t('categoryLabel')} value={product.category} />
             </div>
 
-            <p className="text-sm lg:text-base leading-relaxed text-foreground/70 max-w-2xl">
+            <p className="text-sm lg:text-base leading-relaxed text-foreground/70 max-w-xl">
               {product.description}
             </p>
 
@@ -250,6 +238,22 @@ function ProductShowcase({
                 <ExternalLinkIcon />
               </span>
             </motion.a>
+          </motion.div>
+
+          <motion.div
+            className="lg:col-span-7 lg:col-start-6 order-1 lg:order-2 relative w-full max-w-xl mx-auto lg:max-w-none lg:mx-0"
+            initial={{ opacity: 0, x: 48 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={SECTION_VIEWPORT}
+            transition={{ duration: 0.65, delay: 0.15, ease: EASE }}
+          >
+            <ProductImageFrame
+              meta={meta}
+              title={product.title}
+              viewSiteLabel={tCommon('viewSite')}
+              className="lg:translate-x-10 lg:scale-[1.12] origin-left"
+              imageClassName="object-left"
+            />
           </motion.div>
         </div>
       </div>
@@ -350,7 +354,7 @@ export function Products() {
   };
 
   return (
-    <section id="products" className="py-24 lg:py-32 bg-background overflow-hidden">
+    <section id="products" aria-labelledby="products-heading" className="py-24 lg:py-32 bg-background overflow-hidden">
       <div ref={sectionRef} className="max-w-[1200px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <motion.div
@@ -359,8 +363,8 @@ export function Products() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, ease: EASE }}
         >
-          <div className="flex items-start justify-between gap-6 mb-6">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-6">
+            <div className="min-w-0">
               <motion.p
                 className="text-xs uppercase tracking-[0.2em] text-foreground/40 mb-3"
                 initial={{ opacity: 0, x: -20 }}
@@ -370,6 +374,7 @@ export function Products() {
                 {t('volumeLabel')}
               </motion.p>
               <motion.h2
+                id="products-heading"
                 className="text-[clamp(2.25rem,8vw,5.5rem)] font-bold leading-[0.9] tracking-tighter uppercase"
                 initial={{ opacity: 0, x: -32 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}

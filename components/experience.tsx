@@ -482,7 +482,7 @@ export function Experience() {
   const jobs = experienceData;
 
   return (
-    <section id="experience" className="py-24 lg:py-48 bg-background relative overflow-hidden">
+    <section id="experience" aria-labelledby="experience-heading" className="py-24 lg:py-48 bg-background relative overflow-hidden">
       {/* Background llamativo: gradientes blureados en movimiento */}
       <ExperienceBackground />
 
@@ -507,6 +507,7 @@ export function Experience() {
           </motion.div>
 
           <motion.h2
+            id="experience-heading"
             className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9]"
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}

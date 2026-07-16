@@ -1,12 +1,13 @@
 /** Configuración global del sitio (SEO, URLs canónicas, redes) */
 export const siteConfig = {
-  name: 'FG WEB DESIGNS',
-  url: 'https://www.fgwebdesign.dev',
-  ogImage: '/HeroImage.jpg',
-  favicon: '/logofg.png',
-  author: 'Felipe Gutiérrez - FG WEB DESIGNS',
+  name: 'felipegutierrez.dev',
+  legalName: 'Felipe Gutiérrez',
+  url: 'https://felipegutierrez.dev',
+  ogImage: '/og.jpg',
+  favicon: '/favicon.svg',
+  author: 'Felipe Gutiérrez',
   telephone: '+59892033831',
-  email: 'hello@fgwebdesigns.dev',
+  email: 'hello@felipegutierrez.dev',
   address: {
     locality: 'Montevideo',
     country: 'Uruguay',

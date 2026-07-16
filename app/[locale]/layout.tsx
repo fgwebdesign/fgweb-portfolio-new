@@ -6,6 +6,7 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { JsonLd } from "@/components/seo/json-ld";
+import { Analytics } from "@/components/seo/analytics";
 import { siteConfig } from "@/lib/site";
 import "../globals.css";
 
@@ -39,6 +40,7 @@ export async function generateMetadata({
     .filter(Boolean);
 
   const canonicalPath = locale === routing.defaultLocale ? '/' : `/${locale}`;
+  const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -47,7 +49,7 @@ export async function generateMetadata({
     keywords,
     authors: [{ name: siteConfig.author, url: siteConfig.url }],
     creator: siteConfig.author,
-    publisher: siteConfig.name,
+    publisher: siteConfig.legalName,
     category: 'technology',
     alternates: {
       canonical: canonicalPath,
@@ -99,6 +101,7 @@ export async function generateMetadata({
     },
     other: {
       'theme-color': '#000000',
+      ...(gscVerification ? { 'google-site-verification': gscVerification } : {}),
     },
   };
 }
@@ -123,9 +126,12 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
+  const htmlLang = locale === 'es' ? 'es-UY' : 'en';
+
   return (
-    <html lang={locale} className={`${inter.variable} ${manrope.variable} h-full antialiased`}>
+    <html lang={htmlLang} className={`${inter.variable} ${manrope.variable} h-full antialiased`}>
       <body className="min-h-full bg-background text-foreground overflow-x-hidden">
+        <Analytics />
         <JsonLd locale={locale} description={t('jsonLdDescription')} />
         <NextIntlClientProvider messages={messages}>
           <SmoothScrollProvider>

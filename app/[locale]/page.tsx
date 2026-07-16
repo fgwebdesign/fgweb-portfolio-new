@@ -23,9 +23,6 @@ const Skills = dynamic(() =>
 const Experience = dynamic(() =>
   import('@/components/experience').then((m) => ({ default: m.Experience })),
 );
-const Education = dynamic(() =>
-  import('@/components/education').then((m) => ({ default: m.Education })),
-);
 const Contact = dynamic(() =>
   import('@/components/contact').then((m) => ({ default: m.Contact })),
 );
@@ -44,7 +41,6 @@ export default function Home() {
       <About />
       <Skills />
       <Experience />
-      <Education />
       <Process />
       <Contact />
       <Footer />
