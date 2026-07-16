@@ -33,7 +33,7 @@ export function SkillTile({ name }: SkillTileProps) {
       style={{ transformStyle: 'preserve-3d', perspective: 800 }}
     >
       <div
-        className="relative h-full flex flex-col items-center justify-center gap-3 p-4 rounded-2xl border border-foreground/10 bg-background transition-shadow duration-300 group-hover:border-foreground/25 group-hover:shadow-[0_16px_32px_rgba(10,10,10,0.1),0_4px_0_rgba(10,10,10,0.06)] shadow-[0_8px_24px_rgba(10,10,10,0.06),0_2px_0_rgba(10,10,10,0.04)]"
+        className="relative h-full flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-2xl border border-foreground/10 bg-background transition-shadow duration-300 group-hover:border-foreground/25 group-hover:shadow-[0_16px_32px_rgba(10,10,10,0.1),0_4px_0_rgba(10,10,10,0.06)] shadow-[0_8px_24px_rgba(10,10,10,0.06),0_2px_0_rgba(10,10,10,0.04)]"
         style={{ transformStyle: 'preserve-3d' }}
       >
         <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-2xl bg-gradient-to-b from-foreground/[0.03] to-transparent pointer-events-none" />

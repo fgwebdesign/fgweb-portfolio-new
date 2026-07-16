@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './language-switcher';
@@ -48,11 +48,8 @@ export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!isOpen) setHoveredKey(null);
-  }, [isOpen]);
-
-  const isMenuInverted = hoveredKey !== null;
+  const activeHoverKey = isOpen ? hoveredKey : null;
+  const isMenuInverted = activeHoverKey !== null;
 
   const navItems = [
     { key: 'services', href: '#services' },
@@ -67,17 +64,24 @@ export function Nav() {
 
   const handleLinkClick = () => {
     setIsOpen(false);
+    setHoveredKey(null);
   };
 
   const handleMenuClick = () => {
-    setIsOpen(!isOpen);
+    if (isOpen) {
+      setIsOpen(false);
+      setHoveredKey(null);
+    } else {
+      setHoveredKey(null);
+      setIsOpen(true);
+    }
   };
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-foreground/[0.06]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-[60px] lg:h-[68px]">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-foreground/[0.06] overflow-visible">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 overflow-visible">
+          <div className="flex items-center justify-between h-[60px] lg:h-[68px] overflow-visible">
             {/* Logo - Ultra minimal */}
             <motion.a
               href="#hero"
@@ -88,10 +92,9 @@ export function Nav() {
               felipegutierrez.dev
             </motion.a>
 
-            {/* Desktop & Mobile: Social + Language + Menu */}
-            <div className="flex items-center gap-6 lg:gap-8">
-              {/* Social Icons - Ultra Minimal */}
-              <div className="flex items-center gap-3 lg:gap-4">
+            {/* Language + Menu (social solo desktop) */}
+            <div className="flex items-center gap-4 lg:gap-8">
+              <div className="hidden lg:flex items-center gap-4">
                 <SocialIcon href="https://www.instagram.com/fgwebdesign_/" label="Instagram">
                   <svg
                     className="w-5 h-5 lg:w-[22px] lg:h-[22px]"
@@ -126,8 +129,7 @@ export function Nav() {
                 </SocialIcon>
               </div>
 
-              {/* Divider - más sutil */}
-              <div className="w-px h-5 bg-foreground/10" />
+              <div className="hidden lg:block w-px h-5 bg-foreground/10" />
 
               <LanguageSwitcher />
               
@@ -143,33 +145,36 @@ export function Nav() {
                 <AnimatePresence>
                   {!isOpen && (
                     <motion.div
-                      className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 bg-foreground text-background px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap pointer-events-none"
-                      initial={{ opacity: 0, x: -10, scale: 0.8 }}
-                      animate={{ 
-                        opacity: 1, 
-                        x: 0, 
+                      className="absolute left-1/2 top-[calc(100%+10px)] -translate-x-1/2 z-10 bg-foreground text-background px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap pointer-events-none lg:left-[calc(100%+12px)] lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2"
+                      initial={{ opacity: 0, y: -6, scale: 0.9 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
                         scale: 1,
                       }}
-                      exit={{ opacity: 0, scale: 0.8, x: -5 }}
+                      exit={{ opacity: 0, scale: 0.9, y: -4 }}
                       transition={{
                         duration: 0.3,
                         ease: [0.22, 1, 0.36, 1] as const,
                       }}
                     >
                       <motion.span
-                        animate={{ 
-                          x: [0, 3, 0],
+                        className="inline-block"
+                        animate={{
+                          y: [0, 2, 0],
                         }}
                         transition={{
                           duration: 1.5,
                           repeat: Infinity,
-                          ease: "easeInOut",
+                          ease: 'easeInOut',
                         }}
                       >
                         {t('tapHere')}
                       </motion.span>
-                      {/* Flecha hacia la izquierda */}
-                      <div className="absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-foreground transform rotate-45" />
+                      <div
+                        className="absolute left-1/2 -top-1 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45 lg:left-[-4px] lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0"
+                        aria-hidden
+                      />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -225,7 +230,7 @@ export function Nav() {
               transition={{ duration: 0.3, delay: 0.1 }}
             >
               {navItems.map((item, index) => {
-                const isHovered = hoveredKey === item.key;
+                const isHovered = activeHoverKey === item.key;
 
                 return (
                   <motion.div

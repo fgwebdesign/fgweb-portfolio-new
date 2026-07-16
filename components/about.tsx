@@ -14,7 +14,7 @@ export function About() {
   }>;
 
   return (
-    <section id="about" className="py-32 lg:py-48 bg-background relative overflow-hidden">
+    <section id="about" className="py-24 lg:py-48 bg-background relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="absolute top-1/4 left-0 w-1/2 h-px bg-foreground" />
@@ -24,7 +24,7 @@ export function About() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
-          className="mb-24 lg:mb-32"
+          className="mb-16 lg:mb-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -48,7 +48,7 @@ export function About() {
           </motion.div>
           
           <motion.h2
-            className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9] mb-12 lg:mb-16"
+            className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9] mb-8 lg:mb-16"
             animate={{
               y: [0, -6, 0],
             }}
@@ -62,7 +62,7 @@ export function About() {
           </motion.h2>
 
           <motion.p
-            className="text-xl lg:text-2xl xl:text-3xl text-foreground/60 leading-relaxed max-w-4xl"
+            className="text-lg lg:text-2xl xl:text-3xl text-foreground/60 leading-relaxed max-w-4xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -73,11 +73,11 @@ export function About() {
         </motion.div>
 
         {/* Stats grid editorial */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="relative group"
+              className="relative group overflow-hidden"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -93,7 +93,7 @@ export function About() {
             >
               {/* Background number */}
               <motion.div
-                className="absolute -top-8 lg:-top-12 left-0 text-[120px] lg:text-[160px] font-black text-foreground/[0.02] select-none -z-10"
+                className="absolute -top-4 lg:-top-12 left-0 text-[72px] sm:text-[96px] lg:text-[160px] font-black text-foreground/[0.02] select-none -z-10"
                 animate={{
                   y: [0, -8, 0],
                   rotate: [0, 2, 0],
@@ -110,7 +110,7 @@ export function About() {
 
               {/* Line */}
               <motion.div
-                className="w-16 h-0.5 bg-foreground/20 mb-8 group-hover:bg-foreground/40 group-hover:w-24 transition-all duration-300"
+                className="w-12 lg:w-16 h-0.5 bg-foreground/20 mb-6 lg:mb-8 group-hover:bg-foreground/40 group-hover:w-24 transition-all duration-300"
                 initial={{ width: 0 }}
                 whileInView={{ width: '4rem' }}
                 viewport={{ once: true }}
@@ -127,13 +127,13 @@ export function About() {
                   end={parseInt(stat.value)} 
                   suffix={stat.suffix}
                   duration={2}
-                  className="text-5xl lg:text-6xl xl:text-7xl font-bold"
+                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold"
                 />
               </div>
 
               {/* Label */}
               <motion.p
-                className="text-sm lg:text-base text-foreground/50 uppercase tracking-[0.15em] group-hover:text-foreground/70 transition-colors"
+                className="text-xs sm:text-sm lg:text-base text-foreground/50 uppercase tracking-[0.15em] group-hover:text-foreground/70 transition-colors"
                 animate={{
                   x: [0, 4, 0],
                 }}

@@ -1,7 +1,6 @@
 'use client';
 
 import { motion, useReducedMotion } from 'motion/react';
-import { useIsDesktop } from '@/hooks/use-is-desktop';
 import { HeroCornerShapes } from './hero-corner-shapes';
 import { HERO_SEQUENCE } from '@/data/hero-sequence';
 
@@ -261,7 +260,6 @@ function BrushPath({ stroke, reduceMotion }: { stroke: BrushStroke; reduceMotion
 }
 
 export function HeroMinimalBackground() {
-  const isDesktop = useIsDesktop();
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -281,12 +279,12 @@ export function HeroMinimalBackground() {
         enterDuration={HERO_SEQUENCE.cornerShapes.duration}
       />
 
-      {isDesktop && (
       <svg
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${W} ${H}`}
         preserveAspectRatio="xMidYMid slice"
+        aria-hidden
       >
         <defs>
           {/* Filtro pincel: bordes suaves como trazo de tinta */}
@@ -328,7 +326,6 @@ export function HeroMinimalBackground() {
           ))}
         </g>
       </svg>
-      )}
 
       <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.01] via-transparent to-foreground/[0.015]" />
     </motion.div>

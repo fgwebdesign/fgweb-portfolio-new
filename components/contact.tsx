@@ -29,7 +29,7 @@ function IntroSection() {
   return (
     <section
       id="contact"
-      className="min-h-screen flex flex-col items-center justify-center bg-background relative overflow-hidden px-6"
+      className="min-h-[100svh] lg:min-h-screen flex flex-col items-center justify-center bg-background relative overflow-hidden px-6 pt-24 pb-32"
     >
       <motion.div
         className="flex items-center gap-4 mb-8"
@@ -45,7 +45,7 @@ function IntroSection() {
       </motion.div>
 
       <motion.h2
-        className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4.5rem,9vw,8rem)] font-black tracking-tighter leading-[0.95] text-center uppercase"
+        className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4.5rem,9vw,8rem)] font-black tracking-tighter leading-[0.95] text-center uppercase max-w-[14ch] sm:max-w-none"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -57,7 +57,7 @@ function IntroSection() {
       </motion.h2>
 
       <motion.div
-        className="absolute bottom-12 flex flex-col items-center gap-3"
+        className="absolute bottom-8 lg:bottom-12 flex flex-col items-center gap-3"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -108,7 +108,7 @@ function ContactForm() {
     <section className="py-24 lg:py-32 bg-background">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <motion.div
-          className="mb-16 lg:mb-20"
+          className="mb-12 lg:mb-20"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -127,7 +127,7 @@ function ContactForm() {
 
         {isSubmitted ? (
           <motion.div
-            className="border border-foreground/10 p-10 lg:p-14 text-center"
+            className="border border-foreground/10 p-8 lg:p-14 text-center"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -234,7 +234,7 @@ function ContactForm() {
 
             <motion.button
               type="submit"
-              className="group relative px-10 py-4 lg:px-12 lg:py-5 bg-foreground text-background text-sm lg:text-base uppercase tracking-[0.15em] font-medium overflow-hidden"
+              className="group relative w-full sm:w-auto px-10 py-4 lg:px-12 lg:py-5 bg-foreground text-background text-sm lg:text-base uppercase tracking-[0.15em] font-medium overflow-hidden"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

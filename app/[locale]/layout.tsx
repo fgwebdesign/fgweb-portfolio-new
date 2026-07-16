@@ -125,7 +125,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${inter.variable} ${manrope.variable} h-full antialiased`}>
-      <body className="min-h-full bg-background text-foreground">
+      <body className="min-h-full bg-background text-foreground overflow-x-hidden">
         <JsonLd locale={locale} description={t('jsonLdDescription')} />
         <NextIntlClientProvider messages={messages}>
           <SmoothScrollProvider>

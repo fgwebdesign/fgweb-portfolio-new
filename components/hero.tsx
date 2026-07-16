@@ -69,7 +69,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden"
+      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center bg-background overflow-hidden"
     >
       <div className="absolute inset-0">
         <HeroMinimalBackground />
@@ -88,7 +88,7 @@ export function Hero() {
         <HeroProfileWindow position="bottom-right" delay={0.12} />
       )}
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-32">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-28 lg:py-32">
         <div className="text-center">
           {/* 3. Título */}
           <motion.h1

@@ -19,28 +19,28 @@ export function Process() {
     // Layout 1 - Número a la derecha superior (01)
     {
       containerClass: 'lg:col-span-5 lg:row-span-1',
-      numberClass: 'absolute -top-12 lg:-top-16 -right-8 lg:-right-20 xl:-right-32 text-[120px] lg:text-[180px] xl:text-[220px]',
-      contentClass: 'pt-16 lg:pt-20 pr-24 lg:pr-32 xl:pr-48',
-      titleClass: 'text-3xl lg:text-4xl xl:text-5xl mb-6',
+      numberClass: 'absolute -top-4 lg:-top-16 -right-2 lg:-right-20 xl:-right-32 text-[72px] sm:text-[96px] lg:text-[180px] xl:text-[220px]',
+      contentClass: 'pt-10 lg:pt-20 pr-14 sm:pr-20 lg:pr-32 xl:pr-48',
+      titleClass: 'text-2xl sm:text-3xl lg:text-4xl xl:text-5xl mb-4 lg:mb-6',
     },
     // Layout 2 - Número centro-derecha (02)
     {
       containerClass: 'lg:col-span-4 lg:row-span-1 lg:col-start-7',
-      numberClass: 'absolute top-8 lg:top-4 -right-4 lg:-right-12 xl:-right-20 text-[100px] lg:text-[160px] xl:text-[200px]',
-      contentClass: 'pt-20 lg:pt-28 pr-16 lg:pr-24 xl:pr-32',
-      titleClass: 'text-3xl lg:text-4xl xl:text-5xl mb-6',
+      numberClass: 'absolute top-4 lg:top-4 -right-2 lg:-right-12 xl:-right-20 text-[64px] sm:text-[80px] lg:text-[160px] xl:text-[200px]',
+      contentClass: 'pt-14 lg:pt-28 pr-12 sm:pr-16 lg:pr-24 xl:pr-32',
+      titleClass: 'text-2xl sm:text-3xl lg:text-4xl xl:text-5xl mb-4 lg:mb-6',
     },
     // Layout 3 - Número derecha abajo (03)
     {
       containerClass: 'lg:col-span-6 lg:row-span-1 lg:col-start-4',
-      numberClass: 'absolute top-20 lg:top-32 -right-4 lg:-right-16 xl:-right-24 text-[140px] lg:text-[200px] xl:text-[260px]',
-      contentClass: 'pt-28 lg:pt-40 px-4 lg:px-12 pr-20 lg:pr-32 xl:pr-48',
-      titleClass: 'text-3xl lg:text-4xl xl:text-5xl mb-6',
+      numberClass: 'absolute top-12 lg:top-32 -right-2 lg:-right-16 xl:-right-24 text-[80px] sm:text-[100px] lg:text-[200px] xl:text-[260px]',
+      contentClass: 'pt-16 lg:pt-40 px-0 lg:px-12 pr-14 sm:pr-20 lg:pr-32 xl:pr-48',
+      titleClass: 'text-2xl sm:text-3xl lg:text-4xl xl:text-5xl mb-4 lg:mb-6',
     },
   ];
 
   return (
-    <section id="process" className="py-32 lg:py-48 bg-background relative overflow-hidden">
+    <section id="process" className="py-24 lg:py-48 bg-background relative overflow-hidden">
       {/* Background decorations - entran desde los lados */}
       <motion.div 
         className="absolute inset-0 opacity-[0.015]"
@@ -75,7 +75,7 @@ export function Process() {
       <div className="max-w-[1600px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Header editorial style - entra desde arriba con blur */}
         <motion.div
-          className="mb-24 lg:mb-40"
+          className="mb-16 lg:mb-40"
           initial={{ opacity: 0, y: -80, filter: 'blur(20px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, amount: 0.3 }}
@@ -170,7 +170,7 @@ export function Process() {
         </motion.div>
 
         {/* Steps con layouts asimétricos - animaciones profesionales */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-32 lg:gap-y-48 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-24 lg:gap-y-48 relative">
           {steps.map((step, index) => {
             const layout = layouts[index % layouts.length];
             const isEven = index % 2 === 0;

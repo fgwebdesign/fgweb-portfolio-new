@@ -34,12 +34,13 @@
   "hero": {
     "title": "felipegutierrez.dev",
     "services": [
-      "QA Manual Testing",
-      "QA Automation",
-      "UX/UI Designer",
-      "Custom Development"
+      "SaaS Software Development",
+      "Full Stack Engineering",
+      "React Native Applications",
+      "Software Quality Assurance",
+      "Test Automation Engineering"
     ],
-    "description": "Transforming ideas into powerful digital experiences. From concept to deployment, I deliver pixel-perfect designs, robust code, and comprehensive quality assurance.",
+    "description": "Building SaaS products, web platforms and mobile apps — from architecture to production. Robust code, solid integrations and quality built into every release.",
     "ctaDownload": "Download CV",
     "ctaContact": "Contact",
     "role": "FullStack Developer",
@@ -48,7 +49,7 @@
   },
   "services": {
     "title": "Services",
-    "subtitle": "What I do",
+    "subtitle": "What I build",
     "servicesLabel": "Services",
     "serviceNumberLabel": "SERVICE #",
     "includesLabel": "Includes",
@@ -56,70 +57,47 @@
     "paused": "Paused",
     "play": "Play",
     "pause": "Pause",
+    "swipeHint": "Swipe to explore",
     "readyToStart": "Ready to Start?",
     "getInTouch": "Get in Touch",
     "list": [
       {
-        "title": "Web Development",
-        "description": "Custom web development solutions using modern technologies and best practices.",
+        "title": "Full Stack Development",
+        "description": "End-to-end product development — SaaS platforms, APIs, databases, and polished interfaces. I build connected systems with third-party integrations, ready to ship and scale.",
         "items": [
-          "Custom Website Development",
-          "E-commerce Solutions",
-          "Web Application Development"
+          "SaaS platforms & multi-tenant architecture",
+          "Backend APIs & business logic",
+          "Frontend architecture (React, Next.js)",
+          "Third-party integrations & deployments"
         ]
       },
       {
-        "title": "Web Design",
-        "description": "Creative and responsive web design that captures the essence of your brand.",
+        "title": "Mobile Development",
+        "description": "Cross-platform mobile apps with React Native. From prototype to production-ready builds, with performance and reliability considered from day one.",
         "items": [
-          "UI/UX Design",
-          "Responsive Design",
-          "Brand Integration"
+          "React Native apps (iOS & Android)",
+          "Navigation, state management & native modules",
+          "Testing & release support"
+        ]
+      },
+      {
+        "title": "Web Development",
+        "description": "Modern websites, SaaS web apps and platforms — fast, accessible, and maintainable. Landing pages, corporate sites, e-commerce, and product interfaces built with current best practices.",
+        "items": [
+          "SaaS dashboards & web applications",
+          "Next.js & React applications",
+          "Landing pages & corporate websites",
+          "E-commerce & CMS integrations"
         ]
       },
       {
         "title": "Quality Assurance",
-        "description": "Comprehensive testing and quality assurance services for web applications.",
+        "description": "Structured quality assurance for SaaS, web and mobile products. Test strategy, manual validation and automated suites integrated into the development lifecycle.",
         "items": [
-          "Manual Testing",
-          "Automated Testing",
-          "Performance Testing"
-        ]
-      },
-      {
-        "title": "Responsive Development",
-        "description": "Mobile-first development ensuring your site works perfectly on all devices.",
-        "items": [
-          "Mobile-First Approach",
-          "Cross-Browser Compatibility",
-          "Performance Optimization"
-        ]
-      },
-      {
-        "title": "SEO Optimization",
-        "description": "Improve your website's visibility and ranking in search engines.",
-        "items": [
-          "On-Page SEO",
-          "Technical SEO",
-          "Performance Optimization"
-        ]
-      },
-      {
-        "title": "Corporate Email",
-        "description": "Professional email solutions for your business with your own domain.",
-        "items": [
-          "Custom Email Addresses",
-          "Email Configuration",
-          "Technical Support"
-        ]
-      },
-      {
-        "title": "Custom Development",
-        "description": "Custom development of complete systems, both backend and frontend, tailored to your specific needs.",
-        "items": [
-          "Custom Backend Development",
-          "Tailored Frontend Development",
-          "System Integration"
+          "Test planning & quality strategy",
+          "Manual & exploratory testing",
+          "Test automation (E2E & regression)",
+          "Performance & release validation"
         ]
       }
     ]

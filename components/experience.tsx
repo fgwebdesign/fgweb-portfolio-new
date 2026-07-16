@@ -131,7 +131,7 @@ function SkillTags({ skills }: { skills: string[] }) {
 
 function RoadmapCard({ job, index, locale }: { job: ExperienceJob; index: number; locale: Locale }) {
   return (
-    <div className="group border border-foreground/10 p-6 lg:p-8 bg-background/90 backdrop-blur-xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] hover:border-foreground/30 hover:shadow-[0_12px_50px_-12px_rgba(0,0,0,0.14)] transition-all duration-300 relative overflow-hidden">
+    <div className="group border border-foreground/10 p-5 sm:p-6 lg:p-8 bg-background/90 backdrop-blur-xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] hover:border-foreground/30 hover:shadow-[0_12px_50px_-12px_rgba(0,0,0,0.14)] transition-all duration-300 relative overflow-hidden">
       {/* Número gigante de fondo */}
       <div className="absolute -top-4 right-3 text-[70px] lg:text-[100px] font-black text-foreground/[0.03] select-none -z-10 leading-none pointer-events-none">
         {String(index + 1).padStart(2, '0')}
@@ -447,11 +447,11 @@ function MobileTimeline({ jobs, locale }: { jobs: ExperienceJob[]; locale: Local
         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      <div className="space-y-10">
+      <div className="space-y-8 lg:space-y-10">
         {jobs.map((job, index) => (
           <motion.div
             key={job.id}
-            className="relative pl-10"
+            className="relative pl-8 sm:pl-10"
             initial={{ opacity: 0, y: 60, scale: 0.85, rotate: -3, filter: 'blur(14px)' }}
             whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, amount: 0.3 }}
@@ -482,14 +482,14 @@ export function Experience() {
   const jobs = experienceData;
 
   return (
-    <section id="experience" className="py-32 lg:py-48 bg-background relative overflow-hidden">
+    <section id="experience" className="py-24 lg:py-48 bg-background relative overflow-hidden">
       {/* Background llamativo: gradientes blureados en movimiento */}
       <ExperienceBackground />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
-          className="mb-24 lg:mb-32"
+          className="mb-16 lg:mb-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}

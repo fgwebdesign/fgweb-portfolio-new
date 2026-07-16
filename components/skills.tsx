@@ -21,7 +21,7 @@ function CategoryHeader({
 
   if (shouldReduceMotion) {
     return (
-      <div className="flex items-center gap-6 mb-8 lg:mb-10">
+      <div className="flex items-center gap-4 lg:gap-6 mb-6 lg:mb-10">
         <span className="text-4xl lg:text-5xl font-bold text-foreground/[0.06] tabular-nums leading-none">
           {String(index + 1).padStart(2, '0')}
         </span>
@@ -35,7 +35,7 @@ function CategoryHeader({
 
   return (
     <motion.div
-      className="flex items-center gap-6 mb-8 lg:mb-10"
+      className="flex items-center gap-4 lg:gap-6 mb-6 lg:mb-10"
       initial={{
         opacity: 0,
         x: index % 2 === 0 ? (isDesktop ? -60 : -30) : isDesktop ? 60 : 30,
@@ -76,7 +76,7 @@ function CategoryGrid({ children }: { children: React.ReactNode }) {
 
   if (shouldReduceMotion) {
     return (
-      <div className="relative rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-6 lg:p-8">
+      <div className="relative rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-4 sm:p-6 lg:p-8">
         {children}
       </div>
     );
@@ -84,7 +84,7 @@ function CategoryGrid({ children }: { children: React.ReactNode }) {
 
   return (
     <motion.div
-      className="relative rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-6 lg:p-8 shadow-[0_16px_48px_rgba(10,10,10,0.05)]"
+      className="relative rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-4 sm:p-6 lg:p-8 shadow-[0_16px_48px_rgba(10,10,10,0.05)]"
       style={{ perspective: 1200 }}
       initial={{ opacity: 0, y: 50, scale: 0.94, rotateX: 8 }}
       whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
@@ -111,10 +111,10 @@ export function Skills() {
   }>;
 
   return (
-    <section id="skills" className="py-32 lg:py-48 bg-background overflow-hidden">
+    <section id="skills" className="py-24 lg:py-48 bg-background overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
-        <Reveal className="mb-16 lg:mb-24 text-center lg:text-left" amount={0.3}>
+        <Reveal className="mb-12 lg:mb-24 text-center lg:text-left" amount={0.3}>
           <p className="text-xs uppercase tracking-[0.2em] text-secondary mb-4">
             {t('eyebrow')}
           </p>
@@ -127,7 +127,7 @@ export function Skills() {
         </Reveal>
 
         {/* Categorías con animación bidireccional al scroll */}
-        <div className="space-y-16 lg:space-y-24">
+        <div className="space-y-12 lg:space-y-24">
           {categories.map((category, catIndex) => (
             <div key={category.name}>
               <CategoryHeader
@@ -142,7 +142,7 @@ export function Skills() {
                 <StaggerContainer
                   staggerDelay={0.05}
                   initialDelay={0.08}
-                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:gap-5"
+                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-5"
                 >
                   {category.items.map((skill) => (
                     <StaggerItem key={`${category.name}-${skill}`}>

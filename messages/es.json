@@ -34,12 +34,13 @@
   "hero": {
     "title": "felipegutierrez.dev",
     "services": [
-      "QA Manual Testing",
-      "QA Automation",
-      "Diseñador UX/UI",
-      "Desarrollo a Medida"
+      "Desarrollo de Software SaaS",
+      "Ingeniería Full Stack",
+      "Aplicaciones React Native",
+      "Aseguramiento de Calidad",
+      "Automatización de Pruebas"
     ],
-    "description": "Transformando ideas en experiencias digitales poderosas. Del concepto al despliegue, entrego diseños pixel-perfect, código robusto y aseguramiento de calidad integral.",
+    "description": "Construyo productos SaaS, plataformas web y apps mobile — de la arquitectura a producción. Código robusto, integraciones sólidas y calidad en cada release.",
     "ctaDownload": "Descargar CV",
     "ctaContact": "Contacto",
     "role": "FullStack Developer",
@@ -48,7 +49,7 @@
   },
   "services": {
     "title": "Servicios",
-    "subtitle": "Lo que hago",
+    "subtitle": "Lo que construyo",
     "servicesLabel": "Servicios",
     "serviceNumberLabel": "SERVICIO #",
     "includesLabel": "Incluye",
@@ -56,70 +57,47 @@
     "paused": "Pausado",
     "play": "Reproducir",
     "pause": "Pausar",
+    "swipeHint": "Desliza para explorar",
     "readyToStart": "¿Listo para empezar?",
     "getInTouch": "Contactame",
     "list": [
       {
+        "title": "Desarrollo Full Stack",
+        "description": "Desarrollo de producto de punta a punta — plataformas SaaS, APIs, bases de datos e interfaces pulidas. Construyo sistemas conectados con integraciones de terceros, listos para salir a producción y escalar.",
+        "items": [
+          "Plataformas SaaS y arquitectura multi-tenant",
+          "APIs y lógica de negocio backend",
+          "Arquitectura frontend (React, Next.js)",
+          "Integraciones y despliegues"
+        ]
+      },
+      {
+        "title": "Desarrollo Mobile",
+        "description": "Apps mobile multiplataforma con React Native. Del prototipo al build listo para producción, con rendimiento y confiabilidad pensados desde el primer día.",
+        "items": [
+          "Apps React Native (iOS y Android)",
+          "Navegación, estado y módulos nativos",
+          "Testing y soporte de release"
+        ]
+      },
+      {
         "title": "Desarrollo Web",
-        "description": "Soluciones de desarrollo web personalizadas utilizando tecnologías modernas y mejores prácticas.",
+        "description": "Sitios web, aplicaciones SaaS y plataformas modernas — rápidas, accesibles y mantenibles. Landings, sitios corporativos, e-commerce e interfaces de producto con buenas prácticas actuales.",
         "items": [
-          "Desarrollo de Sitios Web Personalizados",
-          "Soluciones E-commerce",
-          "Desarrollo de Aplicaciones Web"
+          "Dashboards SaaS y aplicaciones web",
+          "Aplicaciones Next.js y React",
+          "Landing pages y sitios corporativos",
+          "E-commerce e integraciones CMS"
         ]
       },
       {
-        "title": "Diseño Web",
-        "description": "Diseño web creativo y responsivo que captura la esencia de tu marca.",
+        "title": "Aseguramiento de Calidad",
+        "description": "Aseguramiento de calidad estructurado para productos SaaS, web y mobile. Estrategia de pruebas, validación manual y suites automatizadas integradas al ciclo de desarrollo.",
         "items": [
-          "Diseño UI/UX",
-          "Diseño Responsivo",
-          "Integración de Marca"
-        ]
-      },
-      {
-        "title": "Control de Calidad",
-        "description": "Servicios completos de pruebas y aseguramiento de calidad para aplicaciones web.",
-        "items": [
-          "Pruebas Manuales",
-          "Pruebas Automatizadas",
-          "Pruebas de Rendimiento"
-        ]
-      },
-      {
-        "title": "Desarrollo Responsivo",
-        "description": "Desarrollo mobile-first asegurando que tu sitio funcione perfectamente en todos los dispositivos.",
-        "items": [
-          "Enfoque Mobile-First",
-          "Compatibilidad Cross-Browser",
-          "Optimización de Rendimiento"
-        ]
-      },
-      {
-        "title": "Optimización SEO",
-        "description": "Mejora la visibilidad y el ranking de tu sitio web en los motores de búsqueda.",
-        "items": [
-          "SEO On-Page",
-          "SEO Técnico",
-          "Optimización de Rendimiento"
-        ]
-      },
-      {
-        "title": "Correo Corporativo",
-        "description": "Soluciones de correo profesional para tu empresa con tu propio dominio.",
-        "items": [
-          "Direcciones de Correo Personalizadas",
-          "Configuración de Correos",
-          "Soporte Técnico"
-        ]
-      },
-      {
-        "title": "Desarrollo a Medida",
-        "description": "Desarrollo personalizado de sistemas completos, tanto backend como frontend, adaptados a tus necesidades específicas.",
-        "items": [
-          "Desarrollo Backend Personalizado",
-          "Desarrollo Frontend a Medida",
-          "Integración de Sistemas"
+          "Planificación de pruebas y estrategia de calidad",
+          "Testing manual y exploratorio",
+          "Automatización de pruebas (E2E y regresión)",
+          "Validación de performance y releases"
         ]
       }
     ]

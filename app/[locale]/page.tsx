@@ -39,13 +39,13 @@ export default function Home() {
       <Nav />
       <Hero />
       <Services />
-      <Process />
       <Portfolio />
       <Products />
       <About />
       <Skills />
       <Experience />
       <Education />
+      <Process />
       <Contact />
       <Footer />
     </>

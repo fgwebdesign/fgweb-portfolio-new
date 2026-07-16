@@ -12,7 +12,7 @@ export function Education() {
   const items = certificationsData;
 
   return (
-    <section id="education" className="py-32 lg:py-48 bg-background relative overflow-hidden">
+    <section id="education" className="py-24 lg:py-48 bg-background relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="absolute top-1/4 left-0 w-1/3 h-px bg-foreground" />
@@ -22,7 +22,7 @@ export function Education() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
-          className="mb-24 lg:mb-32"
+          className="mb-16 lg:mb-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -61,11 +61,11 @@ export function Education() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12">
           {items.map((item, index) => (
             <motion.div
               key={item.id}
-              className="relative group"
+              className="relative group overflow-hidden"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -81,7 +81,7 @@ export function Education() {
             >
               {/* Background number */}
               <motion.div
-                className="absolute -top-6 -right-4 text-[100px] lg:text-[140px] font-black text-foreground/[0.02] select-none -z-10"
+                className="absolute -top-4 -right-2 text-[72px] sm:text-[96px] lg:text-[140px] font-black text-foreground/[0.02] select-none -z-10"
                 animate={{
                   rotate: [0, 5, 0],
                 }}
@@ -95,13 +95,13 @@ export function Education() {
               </motion.div>
 
               {/* Card */}
-              <div className="border border-foreground/10 p-8 lg:p-10 group-hover:border-foreground/30 transition-colors bg-background h-full">
+              <div className="border border-foreground/10 p-6 lg:p-10 group-hover:border-foreground/30 transition-colors bg-background h-full">
                 {/* Header */}
                 <div className="mb-6">
                   <p className="text-xs uppercase tracking-[0.2em] text-foreground/40 font-medium mb-1">
                     {localizeText(certificationTypeLabels[item.type], locale)}
                   </p>
-                  <p className="text-2xl lg:text-3xl font-bold text-foreground/80">
+                  <p className="text-xl lg:text-3xl font-bold text-foreground/80">
                     {item.year}
                   </p>
                 </div>
@@ -116,7 +116,7 @@ export function Education() {
                 />
 
                 {/* Content */}
-                <h3 className="text-xl lg:text-2xl font-bold mb-4 group-hover:text-foreground/80 transition-colors">
+                <h3 className="text-lg lg:text-2xl font-bold mb-4 group-hover:text-foreground/80 transition-colors">
                   {localizeText(item.title, locale)}
                 </h3>
                 <p className="text-base lg:text-lg text-foreground/60 leading-relaxed">

@@ -41,7 +41,7 @@ export function MacWindow({ title, position, delay = 0, children, widthClassName
 
   return (
     <motion.div
-      className={`absolute ${positionClasses[position]} z-20`}
+      className={`absolute hidden lg:block ${positionClasses[position]} z-20`}
       initial={{ opacity: 0, y: 20, rotateX: -15 }}
       animate={{
         opacity: isVisible ? 1 : 0,
