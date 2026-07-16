@@ -471,5 +471,21 @@
     "linkedin": "LinkedIn",
     "cta": "Iniciar un proyecto",
     "copyright": "© 2026 Felipe Gutiérrez. Todos los derechos reservados."
+  },
+  "whatsapp": {
+    "title": "felipegutierrez.dev",
+    "status": "Respondo en menos de 24 h",
+    "greeting": "Hola 👋 ¿En qué te puedo ayudar?",
+    "placeholder": "Contame sobre tu proyecto...",
+    "send": "Enviar",
+    "openLabel": "Abrir chat de WhatsApp",
+    "ctaLabel": "Contáctame",
+    "close": "Cerrar",
+    "defaultMessage": "Hola Felipe, vi tu portfolio y me gustaría hablar sobre un proyecto.",
+    "prompts": {
+      "project": "Quiero consultar por un proyecto web",
+      "quote": "¿Podés enviarme una cotización?",
+      "collab": "Me interesa una colaboración freelance"
+    }
   }
 }

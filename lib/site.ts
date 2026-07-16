@@ -17,3 +17,9 @@ export const siteConfig = {
     instagram: 'https://www.instagram.com/fgwebdesign_/',
   },
 } as const;
+
+/** Abre WhatsApp con mensaje precargado (teléfono sin + ni espacios). */
+export function getWhatsAppUrl(message: string): string {
+  const phone = siteConfig.telephone.replace(/\D/g, '');
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}

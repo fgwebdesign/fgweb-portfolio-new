@@ -135,6 +135,16 @@ export function Nav() {
               <div className="hidden lg:block w-px h-5 bg-foreground/10" />
 
               <LanguageSwitcher />
+
+              <motion.a
+                href="#contact"
+                onClick={(e) => handleSectionClick(e, 'contact')}
+                className="hidden lg:inline-flex items-center px-5 py-2 bg-foreground text-background text-xs uppercase tracking-[0.12em] font-medium"
+                whileHover={{ scale: 1.03, opacity: 0.92 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {t('contact')}
+              </motion.a>
               
               {/* Menu button - Ultra minimal */}
               <motion.button

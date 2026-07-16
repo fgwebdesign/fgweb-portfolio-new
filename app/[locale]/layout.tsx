@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { WhatsAppChat } from "@/components/whatsapp-chat";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Analytics } from "@/components/seo/analytics";
 import { siteConfig } from "@/lib/site";
@@ -136,6 +137,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <SmoothScrollProvider>
             {children}
+            <WhatsAppChat />
           </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>
