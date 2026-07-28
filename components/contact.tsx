@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
 import { CustomSelect } from './custom-select';
+import { sendContactEmail } from '@/lib/send-contact-email';
 
 interface FormState {
   name: string;
@@ -92,6 +93,8 @@ function ContactForm() {
   const t = useTranslations('contact');
   const [form, setForm] = useState<FormState>(initialFormState);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const projectTypeOptions = t.raw('formProjectTypeOptions') as string[];
   const budgetOptions = t.raw('formBudgetOptions') as string[];
@@ -101,9 +104,22 @@ function ContactForm() {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setIsSubmitted(true);
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setHasError(false);
+
+    const result = await sendContactEmail(form);
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setIsSubmitted(true);
+    } else {
+      setHasError(true);
+    }
   };
 
   return (
@@ -234,22 +250,31 @@ function ContactForm() {
               />
             </div>
 
+            {hasError && (
+              <p className="text-sm text-foreground/70" role="alert">
+                {t('formErrorDescription')}
+              </p>
+            )}
+
             <motion.button
               type="submit"
-              className="group relative w-full sm:w-auto px-10 py-4 lg:px-12 lg:py-5 bg-foreground text-background text-sm lg:text-base uppercase tracking-[0.15em] font-medium overflow-hidden"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
+              className="group relative w-full sm:w-auto px-10 py-4 lg:px-12 lg:py-5 bg-foreground text-background text-sm lg:text-base uppercase tracking-[0.15em] font-medium overflow-hidden disabled:opacity-60"
+              whileHover={isSubmitting ? undefined : { scale: 1.02 }}
+              whileTap={isSubmitting ? undefined : { scale: 0.98 }}
             >
-              <span className="relative z-10">{t('formSubmit')}</span>
+              <span className="relative z-10">
+                {isSubmitting ? t('formSubmitting') : t('formSubmit')}
+              </span>
               <motion.div
                 className="absolute inset-0 bg-background"
                 initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
+                whileHover={isSubmitting ? undefined : { scaleX: 1 }}
                 transition={{ duration: 0.4 }}
                 style={{ originX: 0 }}
               />
               <span className="absolute inset-0 flex items-center justify-center text-foreground text-sm lg:text-base uppercase tracking-[0.15em] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {t('formSubmit')}
+                {isSubmitting ? t('formSubmitting') : t('formSubmit')}
               </span>
             </motion.button>
           </motion.form>

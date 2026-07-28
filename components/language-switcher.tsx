@@ -20,7 +20,7 @@ export function LanguageSwitcher() {
   const switchLocale = (locale: LocaleOption) => {
     if (locale === currentLocale || isPending) return;
     startTransition(() => {
-      router.replace(pathname, { locale });
+      router.replace(pathname, { locale, scroll: false });
     });
   };
 

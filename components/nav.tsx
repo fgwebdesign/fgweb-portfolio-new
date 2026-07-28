@@ -158,7 +158,7 @@ export function Nav() {
                 <AnimatePresence>
                   {!isOpen && (
                     <motion.div
-                      className="absolute left-1/2 top-[calc(100%+10px)] -translate-x-1/2 z-10 bg-foreground text-background px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap pointer-events-none lg:left-[calc(100%+12px)] lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2"
+                      className="absolute left-1/2 top-[calc(100%+10px)] -translate-x-1/2 z-10 bg-foreground text-background px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap pointer-events-none lg:hidden"
                       initial={{ opacity: 0, y: -6, scale: 0.9 }}
                       animate={{
                         opacity: 1,
@@ -185,7 +185,7 @@ export function Nav() {
                         {t('tapHere')}
                       </motion.span>
                       <div
-                        className="absolute left-1/2 -top-1 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45 lg:left-[-4px] lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0"
+                        className="absolute left-1/2 -top-1 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45"
                         aria-hidden
                       />
                     </motion.div>

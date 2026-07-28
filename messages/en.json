@@ -457,7 +457,10 @@
     "formMessagePlaceholder": "Describe your idea, goals, and any relevant details...",
     "formSubmit": "Send Message",
     "formSuccessTitle": "Message received!",
-    "formSuccessDescription": "Thanks for reaching out. I'll contact you very soon to talk about your project."
+    "formSuccessDescription": "Thanks for reaching out. I'll contact you very soon to talk about your project.",
+    "formSubmitting": "Sending...",
+    "formErrorTitle": "Couldn't send it",
+    "formErrorDescription": "Something went wrong sending your message. Try again or email me directly."
   },
   "footer": {
     "tagline": "Full Stack Developer & QA Engineer building SaaS products, web platforms and mobile apps.",

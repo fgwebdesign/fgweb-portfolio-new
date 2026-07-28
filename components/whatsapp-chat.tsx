@@ -402,7 +402,7 @@ export function WhatsAppChat() {
               initial="hidden"
               animate="visible"
               exit={{ opacity: 0, x: 8, transition: { duration: 0.22, ease: EASE } }}
-              className="absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-foreground/10 bg-background px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground shadow-[0_8px_24px_rgba(10,10,10,0.1)]"
+              className="pointer-events-none absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-foreground/10 bg-background px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground shadow-[0_8px_24px_rgba(10,10,10,0.1)]"
               aria-hidden
             >
               {t('ctaLabel')}

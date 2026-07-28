@@ -74,7 +74,7 @@ export function CustomSelect({ label, placeholder, options, value, onChange }: C
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
             className="absolute left-0 right-0 top-[calc(100%+0.75rem)] z-50 bg-background border border-foreground/10 rounded-xl shadow-[0_16px_48px_-12px_rgba(0,0,0,0.25)] py-2 max-h-72 overflow-y-auto"
-            style={{ transformOrigin: 'top' }}
+            style={{ transformOrigin: 'top', pointerEvents: isOpen ? 'auto' : 'none' }}
           >
             {options.map((option) => {
               const isSelected = value === option;

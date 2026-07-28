@@ -106,7 +106,7 @@ function PortfolioProjectVisual({
           src={imagePath}
           alt={tCommon('projectPreviewAlt', { title: projectTitle, category: categoryLabel })}
           fill
-          loading="lazy"
+          {...(index === 0 ? { priority: true } : { loading: 'lazy' as const })}
           quality={82}
           className="object-contain object-center drop-shadow-[0_24px_48px_rgba(0,0,0,0.14)] transition-transform duration-700 group-hover:scale-[1.02]"
           onError={handleImageError}

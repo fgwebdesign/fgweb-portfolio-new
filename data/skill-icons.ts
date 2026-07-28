@@ -30,7 +30,7 @@ export const skillIconMap: Record<string, SkillIconConfig> = {
   // Testing & QA
   Cypress: { sources: [`${DEVICON}/cypressio/cypressio-original.svg`] },
   Postman: { sources: [SI('postman', 'FF6C37')] },
-  BrowserStack: { sources: [SI('selenium', '43B02A'), `${DEVICON}/selenium/selenium-original.svg`] },
+  BrowserStack: { sources: [] },
   'Xray Testing': { sources: [SI('jira', '0052CC')] },
   'Zephyr Testing': { sources: [SI('jira', '0052CC')] },
   'App Center': { sources: [SI('microsoft', '5E5E5E')] },
@@ -46,7 +46,7 @@ export const skillIconMap: Record<string, SkillIconConfig> = {
   // Development tools
   'Android Studio': { sources: [`${DEVICON}/androidstudio/androidstudio-original.svg`] },
   'Visual Studio Code': { sources: [`${DEVICON}/vscode/vscode-original.svg`] },
-  LaunchDarkly: { sources: [SI('datadog', '632CA6'), SI('docker', '2496ED')] },
+  LaunchDarkly: { sources: [] },
   Bitrise: { sources: [SI('bitrise', '683D87')] },
   Git: { sources: [`${DEVICON}/git/git-original.svg`] },
   'GitHub Desktop': { sources: [`${DEVICON}/github/github-original.svg`], dark: true },

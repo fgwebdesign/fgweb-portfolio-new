@@ -457,7 +457,10 @@
     "formMessagePlaceholder": "Describí tu idea, objetivos y cualquier detalle relevante...",
     "formSubmit": "Enviar Mensaje",
     "formSuccessTitle": "¡Mensaje recibido!",
-    "formSuccessDescription": "Gracias por escribirme. Te voy a contactar muy pronto para hablar sobre tu proyecto."
+    "formSuccessDescription": "Gracias por escribirme. Te voy a contactar muy pronto para hablar sobre tu proyecto.",
+    "formSubmitting": "Enviando...",
+    "formErrorTitle": "No se pudo enviar",
+    "formErrorDescription": "Algo falló al enviar tu mensaje. Probá de nuevo o escribime directamente por email."
   },
   "footer": {
     "tagline": "Full Stack Developer & QA Engineer. Construyo productos SaaS, plataformas web y apps móviles.",

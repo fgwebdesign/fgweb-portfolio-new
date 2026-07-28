@@ -32,6 +32,14 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
 
     function raf(time: number) {
       instance.raf(time);
+      // Framer Motion's scroll-linked reveals (Services/Portfolio) only
+      // re-measure on a native "scroll" event. Lenis can settle a fast/large
+      // scroll without one firing on the final frame, leaving those reveals
+      // stuck mid-transition until the next manual scroll. Force one on every
+      // frame Lenis is actually animating so they never fall out of sync.
+      if (instance.isScrolling) {
+        window.dispatchEvent(new Event('scroll'));
+      }
       requestAnimationFrame(raf);
     }
 

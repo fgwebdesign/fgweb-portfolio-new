@@ -94,7 +94,7 @@ export function About() {
             >
               {/* Background number */}
               <motion.div
-                className="absolute -top-4 lg:-top-12 left-0 text-[72px] sm:text-[96px] lg:text-[160px] font-black text-foreground/[0.02] select-none -z-10"
+                className="absolute -top-12 sm:-top-16 lg:-top-12 left-0 text-[56px] sm:text-[88px] lg:text-[160px] font-black text-foreground/[0.02] select-none -z-10"
                 animate={{
                   y: [0, -8, 0],
                   rotate: [0, 2, 0],
