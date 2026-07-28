@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'motion/react';
 import { HeroCornerShapes } from './hero-corner-shapes';
+import { HeroHalftone } from './hero-halftone';
 import { HERO_SEQUENCE } from '@/data/hero-sequence';
 
 const PALETTE = [
@@ -278,6 +279,8 @@ export function HeroMinimalBackground() {
         enterDelay={HERO_SEQUENCE.cornerShapes.enter}
         enterDuration={HERO_SEQUENCE.cornerShapes.duration}
       />
+
+      <HeroHalftone />
 
       <svg
         className="absolute inset-0 w-full h-full"

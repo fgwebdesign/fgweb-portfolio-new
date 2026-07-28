@@ -42,7 +42,7 @@ const fabLabelVariants = {
 
 const PROMPT_KEYS = ['project', 'quote', 'collab'] as const;
 
-function SiteMark({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
+function SiteMark({ size = 'md', inverted = false }: { size?: 'sm' | 'md' | 'lg'; inverted?: boolean }) {
   const sizes = {
     sm: 'h-10 w-10 rounded-[10px] text-[15px]',
     md: 'h-11 w-11 rounded-[11px] text-base',
@@ -51,11 +51,28 @@ function SiteMark({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
 
   return (
     <div
-      className={`flex shrink-0 items-center justify-center bg-foreground font-[family-name:var(--font-manrope)] font-extrabold leading-none text-background ${sizes[size]}`}
+      className={`flex shrink-0 items-center justify-center font-[family-name:var(--font-manrope)] font-extrabold leading-none ${sizes[size]} ${
+        inverted
+          ? 'bg-gradient-to-br from-background to-background/85 text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.25)]'
+          : 'bg-gradient-to-br from-foreground to-[#000] text-background shadow-[0_2px_6px_rgba(0,0,0,0.18)]'
+      }`}
       aria-hidden
     >
       f
     </div>
+  );
+}
+
+function StatusDot() {
+  return (
+    <span className="relative flex h-1.5 w-1.5 shrink-0">
+      <motion.span
+        className="absolute inline-flex h-full w-full rounded-full bg-background/70"
+        animate={{ scale: [1, 2.4], opacity: [0.6, 0] }}
+        transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut' }}
+      />
+      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-background" />
+    </span>
   );
 }
 
@@ -246,11 +263,19 @@ export function WhatsAppChat() {
             aria-modal="true"
             {...panelMotion}
             transition={{ duration: 0.35, ease: EASE }}
-            className="pointer-events-auto w-[min(100vw-3rem,24rem)] overflow-hidden rounded-2xl border border-foreground/10 bg-background shadow-[0_24px_64px_rgba(10,10,10,0.2)]"
+            className="pointer-events-auto w-[min(100vw-3rem,24rem)] overflow-hidden rounded-[28px] border border-foreground/10 bg-background/95 shadow-[0_32px_80px_-12px_rgba(10,10,10,0.35),0_8px_24px_rgba(10,10,10,0.12)] backdrop-blur-2xl"
             style={{ transformOrigin: 'bottom right' }}
           >
-            <div className="border-b border-background/10 bg-foreground px-6 py-5">
-              <div className="flex items-center justify-between gap-6">
+            <div className="relative overflow-hidden border-b border-background/10 bg-gradient-to-br from-[#1c1c1c] via-foreground to-black px-6 py-5">
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.06]"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle at 20% 20%, #fff 0%, transparent 45%)',
+                }}
+                aria-hidden
+              />
+              <div className="relative flex items-center justify-between gap-6">
                 <div className="shrink-0 pt-0.5">
                   <MacTrafficLights
                     onClose={closeChat}
@@ -262,10 +287,13 @@ export function WhatsAppChat() {
                   <p id={`${panelId}-title`} className="truncate text-sm font-semibold tracking-tight text-background">
                     {t('title')}
                   </p>
-                  <p className="mt-1 truncate text-xs text-background/55">{t('status')}</p>
+                  <p className="mt-1 flex items-center justify-center gap-1.5 truncate text-xs text-background/55">
+                    <StatusDot />
+                    {t('status')}
+                  </p>
                 </div>
                 <div className="shrink-0">
-                  <SiteMark size="lg" />
+                  <SiteMark size="lg" inverted />
                 </div>
               </div>
             </div>
@@ -278,7 +306,7 @@ export function WhatsAppChat() {
               <div className="space-y-5 px-5 py-5">
                 <div className="flex items-end gap-3">
                   <SiteMark size="sm" />
-                  <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-foreground/10 bg-foreground/[0.03] px-4 py-3.5 text-[0.9375rem] leading-relaxed text-foreground">
+                  <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-foreground/10 bg-foreground/[0.03] px-4 py-3.5 text-[0.9375rem] leading-relaxed text-foreground shadow-[0_2px_10px_rgba(10,10,10,0.04)]">
                     {t('greeting')}
                   </div>
                 </div>
@@ -289,8 +317,12 @@ export function WhatsAppChat() {
                       key={key}
                       type="button"
                       onClick={() => handlePromptClick(key)}
-                      className="group flex w-full items-center justify-between gap-4 rounded-xl border border-foreground/10 bg-background px-4 py-3.5 text-left transition-colors hover:border-foreground hover:bg-foreground"
-                      whileHover={shouldReduceMotion ? undefined : { x: 2 }}
+                      className="group flex w-full items-center justify-between gap-4 rounded-2xl border border-foreground/10 bg-background px-4 py-3.5 text-left shadow-[0_1px_2px_rgba(10,10,10,0.04)] transition-colors hover:border-foreground hover:bg-foreground"
+                      whileHover={
+                        shouldReduceMotion
+                          ? undefined
+                          : { x: 2, y: -2, boxShadow: '0 12px 24px rgba(10,10,10,0.16)' }
+                      }
                       whileTap={{ scale: 0.995 }}
                       transition={{ duration: 0.2, ease: EASE }}
                     >
@@ -309,7 +341,7 @@ export function WhatsAppChat() {
               </div>
 
               <div className="border-t border-foreground/10 px-5 py-4">
-                <div className="flex items-end gap-3 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-3 transition-colors focus-within:border-foreground/30 focus-within:bg-foreground/[0.03]">
+                <div className="flex items-end gap-3 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-3 transition-all focus-within:border-foreground/40 focus-within:bg-foreground/[0.03] focus-within:shadow-[0_0_0_4px_rgba(10,10,10,0.05)]">
                   <textarea
                     ref={textareaRef}
                     value={message}
@@ -328,7 +360,7 @@ export function WhatsAppChat() {
                     type="button"
                     onClick={sendToWhatsApp}
                     disabled={!message.trim()}
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-foreground text-background disabled:cursor-not-allowed disabled:opacity-30"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-foreground to-black text-background shadow-[0_6px_16px_rgba(10,10,10,0.25)] disabled:cursor-not-allowed disabled:opacity-30 disabled:shadow-none"
                     aria-label={t('send')}
                     whileHover={shouldReduceMotion || !message.trim() ? undefined : { scale: 1.06 }}
                     whileTap={{ scale: 0.94 }}
@@ -350,6 +382,14 @@ export function WhatsAppChat() {
         initial="hidden"
         animate={showFab ? 'visible' : 'hidden'}
       >
+        {!isOpen && !shouldReduceMotion && (
+          <motion.span
+            className="pointer-events-none absolute inset-0 rounded-full bg-foreground/25"
+            animate={{ scale: [1, 1.55, 1.55], opacity: [0.35, 0, 0] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeOut' }}
+            aria-hidden
+          />
+        )}
         <motion.button
           type="button"
           variants={fabButtonVariants}
@@ -357,8 +397,8 @@ export function WhatsAppChat() {
           aria-expanded={isOpen}
           aria-controls={isOpen ? panelId : undefined}
           aria-label={isOpen ? t('close') : t('openLabel')}
-          className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-foreground text-background shadow-[0_12px_32px_rgba(10,10,10,0.2)]"
-          whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
+          className="relative flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-gradient-to-br from-foreground to-black text-background shadow-[0_16px_36px_-6px_rgba(10,10,10,0.4),0_4px_0_rgba(10,10,10,0.08)]"
+          whileHover={shouldReduceMotion ? undefined : { scale: 1.08, y: -2 }}
           whileTap={{ scale: 0.96 }}
           transition={{ duration: 0.25, ease: EASE }}
         >
@@ -402,7 +442,7 @@ export function WhatsAppChat() {
               initial="hidden"
               animate="visible"
               exit={{ opacity: 0, x: 8, transition: { duration: 0.22, ease: EASE } }}
-              className="pointer-events-none absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-foreground/10 bg-background px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground shadow-[0_8px_24px_rgba(10,10,10,0.1)]"
+              className="pointer-events-none absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-foreground/10 bg-background/90 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground shadow-[0_8px_24px_rgba(10,10,10,0.12)] backdrop-blur-md"
               aria-hidden
             >
               {t('ctaLabel')}

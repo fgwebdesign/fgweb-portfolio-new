@@ -5,6 +5,8 @@ export const HERO_SEQUENCE = {
   /** 1. Fondo + trazos + formas 3D */
   background: { enter: 0, duration: 0.9 },
   cornerShapes: { enter: 0.2, duration: 1 },
+  /** Laptop en halftone (puntos) — barrido de izquierda a derecha */
+  halftoneLaptop: { enter: 0.25, sweepDuration: 1.3 },
 
   /** 2. Ventana skills.ts (arriba izquierda) */
   skillsWindow: { enter: 0.35 },
