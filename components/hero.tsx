@@ -104,6 +104,26 @@ export function Hero() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-32 sm:pt-24 sm:pb-28 lg:py-32">
         <div className="text-center">
+          {/* Foto — solo mobile/tablet, la versión flotante de desktop está oculta acá */}
+          <motion.div
+            className="lg:hidden mb-6 flex justify-center"
+            initial={{ opacity: 0, scale: 0.85, rotate: -6, y: 10 }}
+            animate={mounted ? { opacity: 1, scale: 1, rotate: -3, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
+          >
+            <div className="relative w-[5.5rem] sm:w-[6.5rem] border-[3px] border-background bg-background shadow-xl">
+              <div className="relative aspect-square overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element -- imagen dithered: pixelated evita el suavizado/moiré del optimizador */}
+                <img
+                  src="/felipe-halftone-portrait.png"
+                  alt="Felipe Gutiérrez"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </div>
+            </div>
+          </motion.div>
+
           {/* 3. Título */}
           <motion.h1
             id="hero-heading"

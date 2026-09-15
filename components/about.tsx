@@ -75,7 +75,7 @@ export function About() {
 
           {/* Retrato halftone */}
           <motion.div
-            className="hidden lg:block w-[13rem] xl:w-[15rem] shrink-0"
+            className="w-[10rem] sm:w-[12rem] lg:w-[13rem] xl:w-[15rem] shrink-0 mx-auto lg:mx-0 mt-8 lg:mt-0"
             initial={{ opacity: 0, scale: 0.9, y: 24 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
@@ -93,7 +93,7 @@ export function About() {
                 style={{ imageRendering: 'pixelated' }}
               />
             </motion.div>
-            <p className="mt-4 text-xs uppercase tracking-[0.15em] text-foreground/40">
+            <p className="mt-4 text-xs uppercase tracking-[0.15em] text-foreground/40 text-center lg:text-left">
               Felipe Gutiérrez — Montevideo, UY
             </p>
           </motion.div>
