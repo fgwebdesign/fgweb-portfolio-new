@@ -289,9 +289,9 @@ export function Services() {
       ref={sectionRef}
       id="services"
       aria-labelledby="services-heading"
-      className="relative lg:min-h-[175svh] flex flex-col justify-center py-24 lg:py-48 bg-background overflow-hidden"
+      className="relative lg:min-h-[130svh] flex flex-col justify-center py-24 lg:py-32 bg-background overflow-hidden"
     >
-      <div className="hidden lg:block h-24 shrink-0" aria-hidden />
+      <div className="hidden lg:block h-12 shrink-0" aria-hidden />
 
       <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-foreground/20 to-transparent hidden lg:block"
@@ -464,7 +464,7 @@ export function Services() {
         )}
       </div>
 
-      <div className="hidden lg:block h-24 shrink-0" aria-hidden />
+      <div className="hidden lg:block h-12 shrink-0" aria-hidden />
 
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {

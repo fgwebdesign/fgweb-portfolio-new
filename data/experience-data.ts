@@ -25,7 +25,7 @@ export const experienceData: ExperienceJob[] = [
   {
     id: 'felipegutierrez-dev',
     role: { es: 'Fundador & Desarrollador Full Stack', en: 'Founder & Full Stack Developer' },
-    company: 'felipegutierrez.dev',
+    company: 'fgwebdesign.dev',
     period: { es: '2020 - Actual', en: '2020 - Present' },
     location: { es: 'Uruguay', en: 'Uruguay' },
     description: {

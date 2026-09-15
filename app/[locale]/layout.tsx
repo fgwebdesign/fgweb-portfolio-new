@@ -8,6 +8,7 @@ import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provi
 import { WhatsAppChat } from "@/components/whatsapp-chat";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Analytics } from "@/components/seo/analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/lib/site";
 import "../globals.css";
 
@@ -133,6 +134,7 @@ export default async function LocaleLayout({
     <html lang={htmlLang} className={`${inter.variable} ${manrope.variable} h-full antialiased`}>
       <body className="min-h-full bg-background text-foreground overflow-x-hidden">
         <Analytics />
+        <VercelAnalytics />
         <JsonLd locale={locale} description={t('jsonLdDescription')} />
         <NextIntlClientProvider messages={messages}>
           <SmoothScrollProvider>

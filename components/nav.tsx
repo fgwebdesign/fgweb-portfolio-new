@@ -92,7 +92,7 @@ export function Nav() {
               whileHover={{ opacity: 0.6 }}
               whileTap={{ scale: 0.98 }}
             >
-              felipegutierrez.dev
+              fgwebdesign.dev
             </motion.a>
 
             {/* Language + Menu (social solo desktop) */}

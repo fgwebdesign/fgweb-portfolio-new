@@ -4,8 +4,8 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const CONTACT_RECIPIENT = process.env.CONTACT_EMAIL_TO ?? 'hello@felipegutierrez.dev';
-const CONTACT_SENDER = process.env.CONTACT_EMAIL_FROM ?? 'felipegutierrez.dev <onboarding@resend.dev>';
+const CONTACT_RECIPIENT = process.env.CONTACT_EMAIL_TO ?? 'hello@fgwebdesign.dev';
+const CONTACT_SENDER = process.env.CONTACT_EMAIL_FROM ?? 'fgwebdesign.dev <onboarding@resend.dev>';
 
 export type ContactFormPayload = {
   name: string;

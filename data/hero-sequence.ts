@@ -11,7 +11,7 @@ export const HERO_SEQUENCE = {
   /** 2. Ventana skills.ts (arriba izquierda) */
   skillsWindow: { enter: 0.35 },
 
-  /** 3. Título felipegutierrez.dev */
+  /** 3. Título fgwebdesign.dev */
   title: { enter: 0.45, charSpeed: 72 },
 
   /**

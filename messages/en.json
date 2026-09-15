@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "title": "felipegutierrez.dev | full stack developer in montevideo, uruguay",
+    "title": "fgwebdesign.dev | full stack developer in montevideo, uruguay",
     "description": "Full Stack Developer and QA Engineer based in Montevideo, Uruguay. SaaS products, web platforms, React Native apps and test automation for clients in Uruguay, Latin America and worldwide.",
-    "ogTitle": "felipegutierrez.dev — full stack developer & qa engineer",
+    "ogTitle": "fgwebdesign.dev — full stack developer & qa engineer",
     "ogDescription": "Portfolio of Felipe Gutiérrez from Montevideo, Uruguay. Full Stack development, SaaS, mobile apps and quality assurance for Latin America and beyond.",
-    "twitterDescription": "Full Stack Developer & QA Engineer in Uruguay. SaaS, web and React Native — felipegutierrez.dev",
+    "twitterDescription": "Full Stack Developer & QA Engineer in Uruguay. SaaS, web and React Native — fgwebdesign.dev",
     "jsonLdDescription": "Felipe Gutiérrez — Full Stack Developer and QA Engineer in Montevideo, Uruguay. SaaS, web platforms, mobile apps and test automation for Latin America.",
-    "keywords": "felipe gutierrez developer, felipegutierrez.dev, full stack developer uruguay, web developer montevideo, qa engineer uruguay, react developer montevideo, next.js developer uruguay, react native developer, saas development uruguay, test automation uruguay, freelance developer montevideo, software development latin america, software engineer uruguay"
+    "keywords": "felipe gutierrez developer, fgwebdesign.dev, full stack developer uruguay, web developer montevideo, qa engineer uruguay, react developer montevideo, next.js developer uruguay, react native developer, saas development uruguay, test automation uruguay, freelance developer montevideo, software development latin america, software engineer uruguay"
   },
   "common": {
     "loadMore": "Load More",
@@ -33,7 +33,7 @@
     "close": "Close"
   },
   "hero": {
-    "title": "felipegutierrez.dev",
+    "title": "fgwebdesign.dev",
     "services": [
       "SaaS Software Development",
       "Full Stack Engineering",
@@ -363,7 +363,7 @@
     "skillsLabel": "Tools used",
     "jobs": [
       {
-        "company": "felipegutierrez.dev",
+        "company": "fgwebdesign.dev",
         "role": "Founder & Full Stack Developer",
         "period": "2020 - Present",
         "location": "Uruguay",
@@ -431,7 +431,7 @@
     "title": "Let's Talk",
     "subtitle": "About future projects",
     "description": "Have a project in mind? Let's discuss how we can work together to bring your ideas to life.",
-    "email": "hello@felipegutierrez.dev",
+    "email": "hello@fgwebdesign.dev",
     "ctaEmail": "Send Email",
     "introSubtitle": "Let's start something great",
     "introTitleLine1": "Let's talk about",
@@ -466,7 +466,7 @@
     "tagline": "Full Stack Developer & QA Engineer building SaaS products, web platforms and mobile apps.",
     "location": "Montevideo, Uruguay",
     "contactLabel": "Contact",
-    "email": "hello@felipegutierrez.dev",
+    "email": "hello@fgwebdesign.dev",
     "availability": "Available for freelance projects and collaborations worldwide.",
     "navigateLabel": "Navigate",
     "socialLabel": "Social",
@@ -476,7 +476,7 @@
     "copyright": "© 2026 Felipe Gutiérrez. All rights reserved."
   },
   "whatsapp": {
-    "title": "felipegutierrez.dev",
+    "title": "fgwebdesign.dev",
     "status": "I reply within 24 hours",
     "greeting": "Hi 👋 How can I help you?",
     "placeholder": "Tell me about your project...",

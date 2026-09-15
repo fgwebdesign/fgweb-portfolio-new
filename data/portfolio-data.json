@@ -2,10 +2,10 @@
   "personal": {
     "name": "Felipe Gutierrez Romero",
     "phone": "+598 92 033 831",
-    "email": "hello@felipegutierrez.dev",
+    "email": "hello@fgwebdesign.dev",
     "location": "Uruguay",
     "role": "Founder & Full Stack Developer",
-    "company": "felipegutierrez.dev"
+    "company": "fgwebdesign.dev"
   },
   "stats": {
     "experience": "5+",
@@ -140,7 +140,7 @@
   "experience": [
     {
       "id": "felipegutierrez-dev",
-      "company": "felipegutierrez.dev",
+      "company": "fgwebdesign.dev",
       "role": "Founder & Full Stack Developer",
       "period": "2020 - Actual",
       "location": "Uruguay",
