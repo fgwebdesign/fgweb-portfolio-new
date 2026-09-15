@@ -9,6 +9,7 @@ import { HeroMinimalBackground } from './hero-minimal-background';
 import { HeroCursorSpotlight } from './hero-cursor-spotlight';
 import { HeroSkillsWindow } from './hero-skills-window';
 import { HeroProfileWindow } from './hero-profile-window';
+import { HeroPortraitPhoto } from './hero-portrait-photo';
 import { HERO_SEQUENCE } from '@/data/hero-sequence';
 
 const EASE = HERO_SEQUENCE.ease;
@@ -93,6 +94,12 @@ export function Hero() {
         position="bottom-right"
         delay={HERO_SEQUENCE.profileWindow.shellDelay}
         active={showProfile}
+      />
+
+      {/* Foto — reemplaza el glifo de laptop en puntos, entra temprano */}
+      <HeroPortraitPhoto
+        delay={HERO_SEQUENCE.halftoneLaptop.enter + 0.3}
+        active={mounted || !!shouldReduceMotion}
       />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-32 sm:pt-24 sm:pb-28 lg:py-32">

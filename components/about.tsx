@@ -23,55 +23,81 @@ export function About() {
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div
-          className="mb-16 lg:mb-32"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className="mb-16 lg:mb-32 grid lg:grid-cols-[1fr_auto] lg:gap-16 xl:gap-24 items-end">
           <motion.div
-            className="flex items-center gap-4 mb-6"
-            animate={{
-              opacity: [0.4, 0.8, 0.4],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="w-12 lg:w-16 h-px bg-foreground/30" />
-            <p className="text-xs lg:text-sm uppercase tracking-[0.25em] text-foreground/40 font-medium">
-              {t('subtitle')}
+            <motion.div
+              className="flex items-center gap-4 mb-6"
+              animate={{
+                opacity: [0.4, 0.8, 0.4],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              <div className="w-12 lg:w-16 h-px bg-foreground/30" />
+              <p className="text-xs lg:text-sm uppercase tracking-[0.25em] text-foreground/40 font-medium">
+                {t('subtitle')}
+              </p>
+            </motion.div>
+
+            <motion.h2
+              id="about-heading"
+              className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9] mb-8 lg:mb-16"
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              {t('title')}
+            </motion.h2>
+
+            <motion.p
+              className="text-lg lg:text-2xl xl:text-3xl text-foreground/60 leading-relaxed max-w-4xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {t('description')}
+            </motion.p>
+          </motion.div>
+
+          {/* Retrato halftone */}
+          <motion.div
+            className="hidden lg:block w-[13rem] xl:w-[15rem] shrink-0"
+            initial={{ opacity: 0, scale: 0.9, y: 24 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div
+              className="relative aspect-square border border-foreground/10"
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- imagen dithered: pixelated evita el suavizado/moiré del optimizador */}
+              <img
+                src="/felipe-halftone-portrait.png"
+                alt="Felipe Gutiérrez"
+                className="absolute inset-0 h-full w-full object-cover"
+                style={{ imageRendering: 'pixelated' }}
+              />
+            </motion.div>
+            <p className="mt-4 text-xs uppercase tracking-[0.15em] text-foreground/40">
+              Felipe Gutiérrez — Montevideo, UY
             </p>
           </motion.div>
-          
-          <motion.h2
-            id="about-heading"
-            className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9] mb-8 lg:mb-16"
-            animate={{
-              y: [0, -6, 0],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          >
-            {t('title')}
-          </motion.h2>
-
-          <motion.p
-            className="text-lg lg:text-2xl xl:text-3xl text-foreground/60 leading-relaxed max-w-4xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            {t('description')}
-          </motion.p>
-        </motion.div>
+        </div>
 
         {/* Stats grid editorial */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12">

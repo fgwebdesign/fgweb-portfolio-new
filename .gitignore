@@ -45,3 +45,7 @@ next-env.d.ts
 *.swo
 *~
 .env*
+
+# documentos de negocio (propuestas de clientes, marca) — no van al repo público
+docs/*.docx
+docs/*.pdf
