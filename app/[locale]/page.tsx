@@ -17,9 +17,6 @@ const Products = dynamic(() =>
 const About = dynamic(() =>
   import('@/components/about').then((m) => ({ default: m.About })),
 );
-const Skills = dynamic(() =>
-  import('@/components/skills').then((m) => ({ default: m.Skills })),
-);
 const Experience = dynamic(() =>
   import('@/components/experience').then((m) => ({ default: m.Experience })),
 );
@@ -39,7 +36,6 @@ export default function Home() {
       <Portfolio />
       <Products />
       <About />
-      <Skills />
       <Experience />
       <Process />
       <Contact />

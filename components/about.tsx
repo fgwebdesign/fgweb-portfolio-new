@@ -6,7 +6,7 @@ import { CountUp } from './count-up';
 
 export function About() {
   const t = useTranslations('about');
-  
+
   const stats = t.raw('stats') as Array<{
     value: string;
     suffix: string;
@@ -63,26 +63,15 @@ export function About() {
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            <motion.div
-              className="relative aspect-square border border-foreground/10 overflow-hidden group/photo"
-              whileHover={{ y: -6, transition: { duration: 0.3 } }}
-              style={{ perspective: 900 }}
-            >
-              <motion.div
-                className="absolute inset-0"
-                whileHover={{ rotateY: 360 }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: 'linear' }}
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element -- imagen dithered: pixelated evita el suavizado/moiré del optimizador */}
-                <img
-                  src="/felipe-halftone-portrait.png"
-                  alt="Felipe Gutiérrez"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{ imageRendering: 'pixelated' }}
-                />
-              </motion.div>
-            </motion.div>
+            <div className="relative aspect-square border border-foreground/10 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element -- imagen dithered: pixelated evita el suavizado/moiré del optimizador */}
+              <img
+                src="/felipe-halftone-portrait.png"
+                alt="Felipe Gutiérrez"
+                className="absolute inset-0 h-full w-full object-cover"
+                style={{ imageRendering: 'pixelated' }}
+              />
+            </div>
             <p className="mt-4 text-xs uppercase tracking-[0.15em] text-foreground/40 text-center lg:text-left">
               Felipe Gutiérrez — Montevideo, UY
             </p>
