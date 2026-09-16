@@ -30,37 +30,19 @@ export function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <motion.div
-              className="flex items-center gap-4 mb-6"
-              animate={{
-                opacity: [0.4, 0.8, 0.4],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
+            <div className="flex items-center gap-4 mb-6">
               <div className="w-12 lg:w-16 h-px bg-foreground/30" />
               <p className="text-xs lg:text-sm uppercase tracking-[0.25em] text-foreground/40 font-medium">
                 {t('subtitle')}
               </p>
-            </motion.div>
+            </div>
 
-            <motion.h2
+            <h2
               id="about-heading"
               className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9] mb-8 lg:mb-16"
-              animate={{
-                y: [0, -6, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
             >
               {t('title')}
-            </motion.h2>
+            </h2>
 
             <motion.p
               className="text-lg lg:text-2xl xl:text-3xl text-foreground/60 leading-relaxed max-w-4xl"
@@ -82,16 +64,24 @@ export function About() {
             transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div
-              className="relative aspect-square border border-foreground/10"
+              className="relative aspect-square border border-foreground/10 overflow-hidden group/photo"
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              style={{ perspective: 900 }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element -- imagen dithered: pixelated evita el suavizado/moiré del optimizador */}
-              <img
-                src="/felipe-halftone-portrait.png"
-                alt="Felipe Gutiérrez"
-                className="absolute inset-0 h-full w-full object-cover"
-                style={{ imageRendering: 'pixelated' }}
-              />
+              <motion.div
+                className="absolute inset-0"
+                whileHover={{ rotateY: 360 }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: 'linear' }}
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element -- imagen dithered: pixelated evita el suavizado/moiré del optimizador */}
+                <img
+                  src="/felipe-halftone-portrait.png"
+                  alt="Felipe Gutiérrez"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </motion.div>
             </motion.div>
             <p className="mt-4 text-xs uppercase tracking-[0.15em] text-foreground/40 text-center lg:text-left">
               Felipe Gutiérrez — Montevideo, UY
@@ -119,21 +109,9 @@ export function About() {
               }}
             >
               {/* Background number */}
-              <motion.div
-                className="absolute -top-12 sm:-top-16 lg:-top-12 left-0 text-[56px] sm:text-[88px] lg:text-[160px] font-black text-foreground/[0.02] select-none -z-10"
-                animate={{
-                  y: [0, -8, 0],
-                  rotate: [0, 2, 0],
-                }}
-                transition={{
-                  duration: 5 + index,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: index * 0.3,
-                }}
-              >
+              <div className="absolute -top-12 sm:-top-16 lg:-top-12 left-0 text-[56px] sm:text-[88px] lg:text-[160px] font-black text-foreground/[0.02] select-none -z-10">
                 {String(index + 1).padStart(2, '0')}
-              </motion.div>
+              </div>
 
               {/* Line */}
               <motion.div
@@ -159,20 +137,9 @@ export function About() {
               </div>
 
               {/* Label */}
-              <motion.p
-                className="text-xs sm:text-sm lg:text-base text-foreground/50 uppercase tracking-[0.15em] group-hover:text-foreground/70 transition-colors"
-                animate={{
-                  x: [0, 4, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: index * 0.5,
-                }}
-              >
+              <p className="text-xs sm:text-sm lg:text-base text-foreground/50 uppercase tracking-[0.15em] group-hover:text-foreground/70 transition-colors">
                 {stat.label}
-              </motion.p>
+              </p>
 
               {/* Mini barcode */}
               <motion.div
@@ -183,20 +150,10 @@ export function About() {
                 transition={{ delay: index * 0.1 + 0.8 }}
               >
                 {[12, 18, 14, 20, 16, 22].map((height, i) => (
-                  <motion.div
+                  <div
                     key={i}
-                    className="w-0.5 bg-foreground/15"
+                    className="w-0.5 bg-foreground/20"
                     style={{ height: `${height}px` }}
-                    animate={{
-                      scaleY: [1, 1.3, 1],
-                      opacity: [0.15, 0.3, 0.15],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: i * 0.1,
-                    }}
                   />
                 ))}
               </motion.div>

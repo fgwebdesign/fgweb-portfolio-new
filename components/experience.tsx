@@ -7,26 +7,14 @@ import Image from 'next/image';
 import { useIsDesktop } from '@/hooks/use-is-desktop';
 import { experienceData, localize, type ExperienceJob, type Locale } from '@/data/experience-data';
 
-// Fondo llamativo detrás del roadmap: manchas de gradiente muy blureadas que
-// derivan suavemente en loop, más un viñetado radial para dar profundidad.
+// Fondo detrás del roadmap: manchas de gradiente blureadas, estáticas
+// (el blur de este radio ya es costoso de pintar; animarlo por siempre
+// no aporta nada y es uno de los mayores consumidores de CPU en mobile).
 function ExperienceBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <motion.div
-        className="absolute -top-[10%] -left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] rounded-full bg-foreground/[0.07] blur-[110px]"
-        animate={{ x: [0, 60, -30, 0], y: [0, 50, -20, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute bottom-[-10%] right-[-10%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px] rounded-full bg-foreground/[0.06] blur-[100px]"
-        animate={{ x: [0, -50, 30, 0], y: [0, -40, 20, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-      />
-      <motion.div
-        className="absolute top-[30%] left-[45%] w-[30vw] h-[30vw] max-w-[420px] max-h-[420px] rounded-full bg-foreground/[0.05] blur-[90px]"
-        animate={{ x: [0, 40, -30, 0], y: [0, -30, 30, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-      />
+      <div className="absolute -top-[10%] -left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] rounded-full bg-foreground/[0.07] blur-[110px]" />
+      <div className="hidden lg:block absolute bottom-[-10%] right-[-10%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px] rounded-full bg-foreground/[0.06] blur-[100px]" />
       {/* Viñeta radial sutil para concentrar la atención en el centro */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_15%,rgba(10,10,10,0.05),transparent_55%)]" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
@@ -47,21 +35,7 @@ function MiniBarcode({ delay = 0 }: { delay?: number }) {
       transition={{ delay }}
     >
       {bars.map((height, i) => (
-        <motion.div
-          key={i}
-          className="w-0.5 bg-foreground/15"
-          style={{ height: `${height}px` }}
-          animate={{
-            scaleY: [1, 1.3, 1],
-            opacity: [0.15, 0.3, 0.15],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: i * 0.1,
-          }}
-        />
+        <div key={i} className="w-0.5 bg-foreground/20" style={{ height: `${height}px` }} />
       ))}
     </motion.div>
   );
@@ -495,25 +469,19 @@ export function Experience() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.div
-            className="flex items-center gap-4 mb-6"
-            animate={{ opacity: [0.4, 0.8, 0.4] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          >
+          <div className="flex items-center gap-4 mb-6">
             <div className="w-12 lg:w-16 h-px bg-foreground/30" />
             <p className="text-xs lg:text-sm uppercase tracking-[0.25em] text-foreground/40 font-medium">
               {t('subtitle')}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.h2
+          <h2
             id="experience-heading"
             className="font-[family-name:var(--font-manrope)] text-[clamp(2.5rem,10vw,4rem)] lg:text-[clamp(4rem,8vw,7rem)] font-black tracking-tighter leading-[0.9]"
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           >
             {t('title')}
-          </motion.h2>
+          </h2>
         </motion.div>
 
         {/* Roadmap: SVG scroll-driven en desktop, timeline simple en mobile */}

@@ -97,19 +97,7 @@ export function Process() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
-                  <motion.div 
-                    className="w-12 lg:w-16 h-px bg-foreground/30"
-                    animate={{
-                      opacity: [0.4, 0.8, 0.4],
-                    }}
-                    transition={{
-                      opacity: {
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                      }
-                    }}
-                  />
+                  <div className="w-12 lg:w-16 h-px bg-foreground/30" />
                 </motion.div>
                 <p className="text-xs lg:text-sm uppercase tracking-[0.25em] text-foreground/40 font-medium">
                   {t('subtitle')}
@@ -125,19 +113,7 @@ export function Process() {
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
               >
-                <motion.span
-                  className="inline-block"
-                  animate={{
-                    y: [0, -6, 0],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                >
-                  {t('title')}
-                </motion.span>
+                <span className="inline-block">{t('title')}</span>
               </motion.h2>
             </div>
 
@@ -149,19 +125,7 @@ export function Process() {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.4, ease: 'backOut' }}
             >
-              <motion.div 
-                className="text-8xl font-black text-foreground/5"
-                animate={{
-                  x: [0, 8, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              >
-                03
-              </motion.div>
+              <div className="text-8xl font-black text-foreground/5">03</div>
               <div className="flex flex-col gap-1">
                 <div className="w-1 h-12 bg-foreground/20" />
                 <div className="w-1 h-6 bg-foreground/40" />
@@ -223,22 +187,7 @@ export function Process() {
                     transition: { duration: 0.3 },
                   }}
                 >
-                  <motion.div
-                    animate={{
-                      y: [0, -10, 0],
-                      rotate: [0, 2, 0],
-                    }}
-                    transition={{
-                      y: {
-                        duration: 6 + index,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                        delay: index * 0.5,
-                      }
-                    }}
-                  >
-                    {step.number}
-                  </motion.div>
+                  <div>{step.number}</div>
                 </motion.div>
 
                 {/* Contenido */}
@@ -314,19 +263,7 @@ export function Process() {
                       transition: { duration: 0.2 },
                     }}
                   >
-                    <motion.span
-                      animate={{
-                        opacity: [0.6, 0.85, 0.6],
-                      }}
-                      transition={{
-                        duration: 5,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                        delay: index * 0.8,
-                      }}
-                    >
-                      {step.description}
-                    </motion.span>
+                    <span>{step.description}</span>
                   </motion.p>
 
                   {/* Lista de detalles - entran escalonados */}
@@ -396,7 +333,7 @@ export function Process() {
                       <motion.div
                         key={i}
                         initial={{ scaleY: 0, opacity: 0 }}
-                        whileInView={{ scaleY: 1, opacity: 1 }}
+                        whileInView={{ scaleY: 1, opacity: 0.3 }}
                         viewport={{ once: true }}
                         transition={{
                           duration: 0.4,
@@ -404,29 +341,9 @@ export function Process() {
                           ease: 'backOut'
                         }}
                       >
-                        <motion.div
+                        <div
                           className="w-0.5 bg-foreground/20"
-                          style={{
-                            height: `${height}px`,
-                          }}
-                          animate={{
-                            scaleY: [1, 1.2, 1],
-                            opacity: [0.2, 0.4, 0.2],
-                          }}
-                          transition={{
-                            scaleY: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: 'easeInOut',
-                              delay: i * 0.1,
-                            },
-                            opacity: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: 'easeInOut',
-                              delay: i * 0.1,
-                            }
-                          }}
+                          style={{ height: `${height}px` }}
                         />
                       </motion.div>
                     ))}
@@ -434,19 +351,9 @@ export function Process() {
                 </div>
 
                 {/* Número pequeño en esquina (label) */}
-                <motion.div
-                  className="absolute top-0 right-0 text-xs font-mono text-foreground/20 tracking-wider"
-                  animate={{
-                    opacity: [0.2, 0.4, 0.2],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                >
+                <div className="absolute top-0 right-0 text-xs font-mono text-foreground/20 tracking-wider">
                   {`0${index + 1}`}
-                </motion.div>
+                </div>
               </motion.div>
             );
           })}
@@ -460,32 +367,11 @@ export function Process() {
           viewport={{ once: true }}
           transition={{ delay: 1 }}
         >
-          <motion.div
-            className="w-24 h-px bg-foreground/20"
-            animate={{
-              scaleX: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
+          <div className="w-24 h-px bg-foreground/20" />
           <span className="text-xs uppercase tracking-[0.2em] text-foreground/30">
             {t('footerTagline')}
           </span>
-          <motion.div
-            className="w-24 h-px bg-foreground/20"
-            animate={{
-              scaleX: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: 1.5,
-            }}
-          />
+          <div className="w-24 h-px bg-foreground/20" />
         </motion.div>
       </div>
     </section>

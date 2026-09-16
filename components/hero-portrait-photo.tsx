@@ -31,11 +31,17 @@ export function HeroPortraitPhoto({ delay = 0, active = true }: HeroPortraitPhot
       style={{ transformOrigin: 'top right' }}
     >
       <motion.div
-        className="relative w-[15vw] min-w-[200px] max-w-[300px] border-4 border-background bg-background shadow-2xl"
+        className="relative w-[15vw] min-w-[200px] max-w-[300px] border-4 border-background bg-background shadow-2xl pointer-events-auto"
         animate={shouldReduceMotion ? {} : { y: [0, -10, 0], rotate: [-3, -1, -3] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ perspective: 900 }}
       >
-        <div className="relative aspect-square overflow-hidden">
+        <motion.div
+          className="relative aspect-square overflow-hidden"
+          whileHover={shouldReduceMotion ? undefined : { rotateY: 360 }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'linear' }}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element -- imagen dithered: pixelated evita el suavizado/moiré del optimizador */}
           <img
             src="/felipe-halftone-portrait.png"
@@ -43,7 +49,7 @@ export function HeroPortraitPhoto({ delay = 0, active = true }: HeroPortraitPhot
             className="absolute inset-0 h-full w-full object-cover"
             style={{ imageRendering: 'pixelated' }}
           />
-        </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

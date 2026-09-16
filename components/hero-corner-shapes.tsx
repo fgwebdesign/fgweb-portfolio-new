@@ -149,7 +149,7 @@ export function HeroCornerShapes({
       }}
     >
       {/* Top-right */}
-      <div className="absolute top-[9%] right-[4%] lg:top-[11%] lg:right-[7%] pointer-events-none">
+      <div className="hidden lg:block absolute top-[9%] right-[4%] lg:top-[11%] lg:right-[7%] pointer-events-none">
         <div
           className="absolute -inset-8 lg:-inset-12 rounded-full blur-3xl opacity-60"
           style={{
@@ -162,7 +162,7 @@ export function HeroCornerShapes({
       </div>
 
       {/* Bottom-left */}
-      <div className="absolute bottom-[11%] left-[3%] lg:bottom-[13%] lg:left-[6%] pointer-events-none">
+      <div className="hidden lg:block absolute bottom-[11%] left-[3%] lg:bottom-[13%] lg:left-[6%] pointer-events-none">
         <div
           className="absolute -inset-10 lg:-inset-14 rounded-full blur-3xl opacity-55"
           style={{
